@@ -1,6 +1,7 @@
 .navigation {
   flex-grow: 1;
   display: flex;
+  justify-content: center;
 
   &__item {
     padding: 0 12px;

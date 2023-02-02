@@ -15,7 +15,7 @@ function Search() {
       <input
         className={ styles.search__input }
         type="text" 
-        placeholder="Carbonara"
+        placeholder="Carbonara..."
       />
 
       <span className={ styles.search__clean }></span>

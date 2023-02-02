@@ -1,4 +1,26 @@
 .header {
   display: flex;
   justify-content: space-between;
+
+  &__add {
+    margin: 0 20px 0 0;
+    padding: 0 10px;
+
+    font: inherit;
+    font-size: 2rem;
+
+    background-color: #ffe5a1;
+    border: none;
+    border-radius: 50%;
+    transition: .2s;
+
+    &:hover {
+      cursor: pointer;
+      background-color: #ead296;
+    }
+
+    &:active {
+      background-color: #d7c18b;
+    }
+  }
 }
