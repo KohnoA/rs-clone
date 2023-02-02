@@ -6,8 +6,8 @@ import Button from '../Button/Button'
 
 function Header() {
   return (
-    <div
-      className={ 'container' + ' ' + styles.header }
+    <header
+      className={ `container ${styles.header}` }
     >
       <Logo />
       <Search />
@@ -15,7 +15,7 @@ function Header() {
 
       <button className={ styles.header__add }>+</button>
       <Button text="Login"/>
-    </div>
+    </header>
   )
 }
 
