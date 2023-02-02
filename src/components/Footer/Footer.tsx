@@ -1,4 +1,4 @@
-import styles from './Footer.module.scss'
+import styles from './Footer.module.scss';
 
 function Footer() {
   return (
@@ -19,14 +19,14 @@ function Footer() {
         </ul>
       </div>
 
-      <p className={ styles.footer__description }>2023 IEAT<sup>®</sup></p>
+      <p className={ styles.footer__description }>IEAT<sup>®</sup> 2023</p>
 
       <a
         className={ styles.footer__rss }
         href="https://rs.school/js/"
-        ></a>
+      ></a>
     </footer>
-  )
+  );
 }
 
-export default Footer
+export default Footer;

@@ -1,23 +1,28 @@
+@import '../../styles/variables.scss';
+
 .footer {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
 
   padding: 30px 40px;
-  background-color: #ffe5a1;
+  background-color: $appColor;
 
   &__description {
-    place-self: center center;
+    place-self: end center;
   }
 
   &__rss {
-    justify-self: end;
+    place-self: end end;
 
     width: 100px;
+    height: 44px;
 
     background-image: url('../../assets/icons/rsschool-logo.svg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
+
+    transform: translateY(1px);
     transition: .2s;
 
     &:hover {
@@ -55,7 +60,6 @@
 
     &:hover {
       opacity: .7;
-      text-decoration: underline;
     }
   }
 }

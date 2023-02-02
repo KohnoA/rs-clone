@@ -1,3 +1,5 @@
+@import '../../styles/variables.scss';
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -9,18 +11,18 @@
     font: inherit;
     font-size: 2rem;
 
-    background-color: #ffe5a1;
+    background-color: $appColor;
     border: none;
     border-radius: 50%;
     transition: .2s;
 
     &:hover {
       cursor: pointer;
-      background-color: #ead296;
+      background-color: $appColorHover;
     }
 
     &:active {
-      background-color: #d7c18b;
+      background-color: $appColorActive;
     }
   }
 }

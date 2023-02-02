@@ -1,9 +1,9 @@
-import styles from './Search.module.scss'
+import styles from './Search.module.scss';
 
 function Search() {
   const submitHandler = (event: React.FormEvent) => {
-    event.preventDefault()
-  }
+    event.preventDefault();
+  };
 
   return (
     <form 
@@ -27,7 +27,7 @@ function Search() {
         Search
       </button>
     </form>
-  )
+  );
 }
 
-export default Search
+export default Search;
