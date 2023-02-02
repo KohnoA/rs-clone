@@ -9,9 +9,7 @@ function Header() {
       className={ 'container' + ' ' + styles.header }
     >
       <Logo />
-
       <Search />
-
       <Navigation />
 
       <button>+</button>
