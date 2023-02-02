@@ -1,0 +1,9 @@
+.navigation {
+  flex-grow: 1;
+  
+  &__list {
+    display: flex;
+
+    list-style: none;
+  }
+}

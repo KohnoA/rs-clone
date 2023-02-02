@@ -20,3 +20,22 @@ body {
 
   background-color: white;
 }
+
+#root {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  max-width: 1240px;
+  min-height: 100vh;
+
+  margin: 0 auto;
+}
+
+.page {
+  flex-grow: 1;
+}
+
+.container {
+  padding: 15px;
+}
