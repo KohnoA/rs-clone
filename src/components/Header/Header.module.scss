@@ -1,0 +1,28 @@
+@import '../../styles/variables.scss';
+
+.header {
+  display: flex;
+  justify-content: space-between;
+
+  &__add {
+    margin: 0 15px;
+    padding: 0 10px;
+
+    font: inherit;
+    font-size: 2rem;
+
+    background-color: $appColor;
+    border: none;
+    border-radius: 50%;
+    transition: .2s;
+
+    &:hover {
+      cursor: pointer;
+      background-color: $appColorHover;
+    }
+
+    &:active {
+      background-color: $appColorActive;
+    }
+  }
+}

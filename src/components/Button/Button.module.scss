@@ -1,0 +1,25 @@
+@import '../../styles/variables.scss';
+
+.button {
+  padding: 10px 30px;
+  margin: 0 .5rem;
+
+  font: inherit;
+  font-weight: 500;
+  color: white;
+
+  background-color: $buttonColor;
+  border: none;
+  border-radius: 15px;
+  transition: .2s;
+
+  &:hover {
+    cursor: pointer;
+    color: black;
+    background-color: $appColorHover;
+  }
+
+  &:active {
+    background-color: $appColorActive;
+  }
+}
