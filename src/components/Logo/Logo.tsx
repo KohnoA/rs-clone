@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import styles from './Logo.module.scss';
 
-function Logo() {
+const Logo: React.FC = () => {
   return (
     <Link className={styles.logo} to="/">
       <span className={ styles.logo__image }></span>

@@ -1,4 +1,4 @@
-function Constructor() {
+const Constructor: React.FC = () => {
   return (
     <div
       className="container page"

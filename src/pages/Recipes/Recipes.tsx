@@ -1,4 +1,4 @@
-function Recipes() {
+const Recipes: React.FC = () => {
   return (
     <div
       className="container page"

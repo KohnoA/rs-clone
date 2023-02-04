@@ -1,4 +1,4 @@
-function AboutUs() {
+const AboutUs: React.FC = () => {
   return (
     <div
       className="container page"

@@ -1,11 +1,15 @@
 @import '../../styles/variables.scss';
 
+.footerBg {
+  background-color: $appColor;
+}
+
 .footer {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
 
-  padding: 30px 40px;
-  background-color: $appColor;
+  width: 100%;
+  padding: 30px 15px;
 
   &__description {
     place-self: end center;
