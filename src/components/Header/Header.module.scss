@@ -4,12 +4,15 @@
   display: flex;
   justify-content: space-between;
 
+  width: 100%;
+
   &__add {
     margin: 0 15px;
     padding: 0 10px;
 
     font: inherit;
     font-size: 2rem;
+    color: black;
 
     background-color: $appColor;
     border: none;

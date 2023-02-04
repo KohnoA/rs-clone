@@ -1,4 +1,4 @@
-function Articles() {
+const Articles: React.FC = () => {
   return (
     <div
       className="container page"
