@@ -1,6 +1,6 @@
 import styles from './Search.module.scss';
 
-function Search() {
+const Search: React.FC = () => {
   const submitHandler = (event: React.FormEvent) => {
     event.preventDefault();
   };

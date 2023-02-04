@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import styles from './Navigation.module.scss';
 
-function Navigation() {
+const Navigation: React.FC = () => {
   return (
     <nav className={ styles.navigation }>
       <Link to="/" className={ styles.navigation__item }>Recipes</Link>

@@ -4,7 +4,7 @@ import Search from '../Search/Search';
 import Logo from '../Logo/Logo';
 import Button from '../Button/Button';
 
-function Header() {
+const Header: React.FC = () => {
   return (
     <header
       className={ `container ${styles.header}` }

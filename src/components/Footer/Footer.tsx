@@ -1,6 +1,6 @@
 import styles from './Footer.module.scss';
 
-function Footer() {
+const Footer: React.FC = () => {
   return (
     <footer className={ styles.footerBg }
     >

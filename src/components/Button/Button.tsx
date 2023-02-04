@@ -4,7 +4,7 @@ interface IButton {
   text: string
 };
 
-function Button({ text }: IButton) {
+const Button: React.FC<IButton> = ({ text }: IButton) => {
   return (
     <button className={ styles.button }> { text } </button>
   );
