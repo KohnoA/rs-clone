@@ -26,16 +26,18 @@ body {
   flex-direction: column;
   justify-content: space-between;
 
-  max-width: 1240px;
   min-height: 100vh;
 
   margin: 0 auto;
 }
 
 .page {
+  width: 100%;
   flex-grow: 1;
 }
 
 .container {
+  max-width: 1400px;
+  margin: 0 auto;
   padding: 15px;
 }
