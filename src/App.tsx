@@ -6,6 +6,7 @@ import Constructor from './pages/Constructor/Constructor';
 import Articles from './pages/Articles/Articles';
 import AboutUs from './pages/AboutUs/AboutUs';
 import PageNotFound from './pages/404/404';
+import Main from './pages/Main/Main';
 
 function App() {
   return (
@@ -14,7 +15,8 @@ function App() {
 
       <Routes>
         <Route path='*' element={ <PageNotFound /> } />
-        <Route path='/' element={ <Recipes /> } />
+        <Route path='/' element={ <Main /> } />
+        <Route path='/recipes' element={ <Recipes /> } />
         <Route path='/constructor' element={ <Constructor /> } />
         <Route path='/articles' element={ <Articles /> } />
         <Route path='/about' element={ <AboutUs /> } />
