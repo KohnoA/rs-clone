@@ -1,0 +1,36 @@
+.card {
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.card__header {
+    margin: 1em auto;
+    text-align: center;
+}
+
+.card__img {
+    max-width: 100%;
+}
+
+.cardParams__wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 1em auto;
+    width: 100%;
+    font-weight: bold;
+}
+
+.cardParams__item {
+}
+
+.card__content {
+padding: 0 1em 1em 1em;
+
+}
