@@ -1,0 +1,43 @@
+@import '../../styles/variables.scss';
+
+.login {
+  display: flex;
+  flex-direction: column;
+
+  &__email, &__password {
+    margin: 0 .5rem;
+    margin-bottom: 25px;
+    padding: 10px 20px;
+
+    font: inherit;
+
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    outline: none;
+    transition: .2s;
+
+    &:hover, &:focus {
+      border: 1px solid rgba(0, 0, 0, 0.5);
+    }
+  }
+
+  &__signIn, &__help {
+    margin-bottom: 25px;
+  }
+
+  &__signIn {
+    padding-top: 11px;
+    padding-bottom: 11px;
+  }
+
+  &__help {
+    padding-bottom: 25px;
+
+    color: $appColorActive;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  &__register {
+    color: $appColorActive;
+  }
+}

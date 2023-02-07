@@ -1,12 +1,14 @@
 import styles from './Button.module.scss';
 
 interface IButton {
-  text: string
+  text: string,
+  additionalClasses?: string,
+  onClick?: () => void
 };
 
-const Button: React.FC<IButton> = ({ text }: IButton) => {
+const Button: React.FC<IButton> = ({ text, additionalClasses, onClick }: IButton) => {
   return (
-    <button className={ styles.button }> { text } </button>
+    <button className={ `${styles.button} ${additionalClasses}` } onClick={ onClick }> { text } </button>
   );
 }
 
