@@ -1,4 +1,5 @@
-import FilterComponent from './FilterItem/FilterItem';
+import { RecipeFiltersData } from '../../constants';
+import FilterItem from './FilterItem/FilterItem';
 import styles from './RecipeFilter.module.scss'
 
 const RecipeFilter: React.FC = () => {
@@ -6,48 +7,20 @@ const RecipeFilter: React.FC = () => {
         <div className={styles.filter}>
                   <h2 className={styles.filter__header}>Category</h2>
                   <ul className={styles.filterList}> 
-                  <FilterComponent
-                        id={0}
-                        query={'diet'}
-                         header={'Diet'}
-                         item1={'balanced'}
-                         item2={'high-fiber'}
-                         item3={'high-protein'}
-                         item4={'low-carb'}
-                         item5={'low-fat'}
-                         item6={'low-sodium'}
-                        />
-                  <FilterComponent
-                        id={1}
-                        query={'health'}
-                         header={'Health'}
-                         item1={'vegetarian'}
-                         item2={'alcohol-free'}
-                         item3={'vegan'}
-                         item4={'pork-free'}
-                         item5={'gluten-free'}
-                         item6={'fish-free'}
-                        />
-                  <FilterComponent
-                        id={2}
-                        query={'mealType'}
-                         header={'Meal type'}
-                         item1={'breakfast'}
-                         item2={'lunch'}
-                         item3={'dinner'}
-                         item4={'snack'}
-                         item5={'tea-time'}
-                        />
-                  <FilterComponent
-                        id={3}
-                        query={'cuisineType'}
-                         header={'Cuisune'}
-                         item1={'American'}
-                         item2={'Asian'}
-                         item3={'French'}
-                         item4={'Italian'}
-                         item5={'Mexican'}
-                        />
+                  {RecipeFiltersData.map((filter, i) => 
+                        <FilterItem
+                        key={i}
+                        id={i}
+                        query={filter.query}
+                         header={filter.header}
+                         item1={filter.items.item1}
+                         item2={filter.items.item2}
+                         item3={filter.items.item3}
+                         item4={filter.items.item4}
+                         item5={filter.items.item5}
+                         item6={filter.items.item6}
+                         />
+                  )}
                   </ul>
             </div>
     );
