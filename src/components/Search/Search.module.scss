@@ -73,4 +73,9 @@
       opacity: 1;
     }
   }
+
+  &__hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
 }
