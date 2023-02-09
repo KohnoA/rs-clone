@@ -27,10 +27,10 @@ const RecipeCard: React.FC<IRecipeCard> = ({id, header, title, image, type = 'ha
                 <div className={styles.cardParams__wrapper}>
                     <div className={styles.cardParams__item}>
                     <img className={styles.cardParams__img} src={typeIcon} />
-                    {type}</div>
+                    <span>{type}</span></div>
                     <div className={styles.cardParams__item}>
                     <img className={styles.cardParams__img} src={kcalIcon} alt="kcal icon" />
-                    {kcal}</div>
+                    <span>{kcal}</span></div>
                 </div>
                 <p className={styles.card__content}>{title}</p>
         </div>
