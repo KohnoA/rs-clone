@@ -4,7 +4,6 @@ import health from '../../../assets/icons/health.svg'
 import cuisines from '../../../assets/icons/cuisines.svg'
 import mealType from '../../../assets/icons/mealType.svg'
 import { Link, useLocation } from 'react-router-dom'
-import { RecipeFiltersData } from '../../../constants'
 
 interface IFilterItem {
     query: string;

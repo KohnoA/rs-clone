@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
 import styles from './FavouriteBtn.module.scss'
 
 const FavouriteBtn = () => {
@@ -12,7 +12,7 @@ const FavouriteBtn = () => {
             Created by potrace 1.15, written by Peter Selinger 2001-2017
             </metadata>
             <g transform="translate(0.000000,1189.000000) scale(0.100000,-0.100000)"
-            fill="#E0E0E0" stroke="none">
+            fill={color} stroke="none">
             <path d="M3250 11884 c-25 -2 -106 -11 -180 -20 -1485 -172 -2704 -1295 -3001
             -2764 -133 -660 -67 -1507 171 -2223 252 -753 675 -1411 1397 -2172 342 -360
             634 -630 1588 -1470 231 -203 488 -430 570 -505 1024 -920 1735 -1692 2346
