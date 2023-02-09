@@ -1,8 +1,8 @@
-import styles from './RecipeFilter.module.scss'
-import diet from '../../assets/icons/diet.svg'
-import health from '../../assets/icons/health.svg'
-import cuisines from '../../assets/icons/cuisines.svg'
-import mealType from '../../assets/icons/mealType.svg'
+import styles from '../RecipeFilter.module.scss'
+import diet from '../../../assets/icons/diet.svg'
+import health from '../../../assets/icons/health.svg'
+import cuisines from '../../../assets/icons/cuisines.svg'
+import mealType from '../../../assets/icons/mealType.svg'
 import { Link, useLocation } from 'react-router-dom'
 
 interface IFilterComponent {
