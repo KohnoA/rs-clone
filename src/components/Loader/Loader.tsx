@@ -5,7 +5,7 @@ import styles from './Loader.module.scss'
 const Loader = () => {
     return (
         <div className={styles.loader}>
-            <img src={loader} alt="loader" />
+            <img className={styles.loaderImg} src={loader} alt="loader" />
         </div>
     );
 };
