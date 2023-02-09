@@ -9,9 +9,6 @@ function App() {
     <>
       <Header />
       <AppRouter/>
-      {}
-      <Example/>
-
       <Footer />
     </>
   );
