@@ -1,3 +1,4 @@
+import { AxiosError } from 'axios'
 import { useState } from 'react'
 
 export const useFetching = (callback: () => void) => {
@@ -9,8 +10,12 @@ export const useFetching = (callback: () => void) => {
             setIsLoading(true)
             await callback(...args as [])
         } catch (err: unknown) {
-            if(!(err instanceof Error)) return 
-            const message: string = err.message
+            if(!(err instanceof AxiosError)) return 
+            let message: string = err.message
+            if (err.request.status === 0) {
+                message += '. It`s too many requests, please try later.'
+            }
+            setIsLoading(false)
             setError(message)
         } finally {
             setIsLoading(false)
