@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useInput } from '../../hooks/useInput';
 import styles from './userForms.module.scss';
 import Button from '../Button/Button';
 
@@ -7,17 +7,19 @@ interface ISignInProp {
 }
 
 const SignIn: React.FC<ISignInProp> = ({ changeForm }: ISignInProp) => {
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
+  const [email, clearEmail] = useInput('');
+  const [password, clearPassword] = useInput('');
 
   const signInHandler = (event: React.FormEvent) => {
     event.preventDefault();
 
-    if (!email || !password) return;
+    if (!email.value || !password.value) return;
 
-    console.log(`email - ${email}`);
-    console.log(`password - ${password}`);
+    console.log(`email - ${email.value}`);
+    console.log(`password - ${password.value}`);
 
+    clearEmail();
+    clearPassword();
   }
 
   const changeFormHandler = (event: React.MouseEvent<HTMLAnchorElement>) => {
@@ -32,15 +34,13 @@ const SignIn: React.FC<ISignInProp> = ({ changeForm }: ISignInProp) => {
         type="email"
         placeholder='E-mail'
         className={ styles.userForm__input }
-        value={ email }
-        onChange={ (event) => setEmail(event.target.value) }
+        { ...email }
       />
       <input 
         type="password"
         placeholder='Password'
         className={ styles.userForm__input }
-        value={ password }
-        onChange={ (event) => setPassword(event.target.value) }
+        { ...password }
       />
 
       <Button text='Sign In' additionalClasses={ styles.userForm__submit }/>

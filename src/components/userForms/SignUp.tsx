@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useInput } from '../../hooks/useInput';
 import styles from './userForms.module.scss';
 import Button from '../Button/Button';
 
@@ -7,20 +7,26 @@ interface ISignUpProp {
 }
 
 const SignUp: React.FC<ISignUpProp> = ({ changeForm }: ISignUpProp) => {
-  const [name, setName] = useState<string>('');
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
-  const [confirmPassword, setConfirmPassword] = useState<string>('');
+  const [name, clearName] = useInput('');
+  const [email, clearEmail] = useInput('');
+  const [password, clearPassword] = useInput('');
+  const [confirmPassword, clearConfirmPassword] = useInput('');
+
 
   const signUpHandler = (event: React.FormEvent) => {
     event.preventDefault();
 
-    if (!email || !password) return;
+    if (!email.value || !password.value) return;
 
-    console.log(`name - ${name}`);
-    console.log(`email - ${email}`);
-    console.log(`password - ${password}`);
-    console.log(`confirmPassword - ${confirmPassword}`);
+    console.log(`name - ${name.value}`);
+    console.log(`email - ${email.value}`);
+    console.log(`password - ${password.value}`);
+    console.log(`confirmPassword - ${confirmPassword.value}`);
+
+    clearName();
+    clearEmail();
+    clearPassword();
+    clearConfirmPassword();
   }
 
   const changeFormHandler = (event: React.MouseEvent<HTMLAnchorElement>) => {
@@ -35,29 +41,25 @@ const SignUp: React.FC<ISignUpProp> = ({ changeForm }: ISignUpProp) => {
         type="text"
         placeholder='Your Name'
         className={ styles.userForm__input }
-        value={ name }
-        onChange={ (event) => setName(event.target.value) }
+        { ...name }
       />
       <input 
         type="email"
         placeholder='E-mail'
         className={ styles.userForm__input }
-        value={ email }
-        onChange={ (event) => setEmail(event.target.value) }
+        { ...email }
       />
       <input 
         type="password"
         placeholder='Password'
         className={ styles.userForm__input }
-        value={ password }
-        onChange={ (event) => setPassword(event.target.value) }
+        { ...password }
       />
       <input 
         type="password"
         placeholder='Confirm the password'
         className={ styles.userForm__input }
-        value={ confirmPassword }
-        onChange={ (event) => setConfirmPassword(event.target.value) }
+        { ...confirmPassword }
       />
 
       <Button text='Sign Up' additionalClasses={ styles.userForm__submit }/>
