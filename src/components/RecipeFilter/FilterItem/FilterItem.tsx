@@ -4,8 +4,9 @@ import health from '../../../assets/icons/health.svg'
 import cuisines from '../../../assets/icons/cuisines.svg'
 import mealType from '../../../assets/icons/mealType.svg'
 import { Link, useLocation } from 'react-router-dom'
+import { RecipeFiltersData } from '../../../constants'
 
-interface IFilterComponent {
+interface IFilterItem {
     query: string;
     id: number;
     header: string;
@@ -19,15 +20,18 @@ interface IFilterComponent {
 
 const iconArr: string[] = [diet, health, mealType, cuisines]
 
-const FilterComponent: React.FC<IFilterComponent> = ({id, query, header, item1, item2, item3, item4, item5, item6}: IFilterComponent) => {
+const FilterItem: React.FC<IFilterItem> = ({id, query, header, item1, item2, item3, item4, item5, item6}: IFilterItem) => {
    const location = useLocation()
 
     return (
-        <ul className={styles.filterSublist}>
+        <div>
+            <div className={styles.filter__subheaderWrapper}>
             <h3 className={styles.filter__subheader}>
                 {header}
+            </h3>
                 <img className={styles.filterList__img} src={`${iconArr[id]}`} alt="" />
-                </h3>
+            </div>
+        <ul className={styles.filterSublist}>
             <li className={styles.filterList__item}>
                 <Link className={styles.filterList__link} to={`${location.pathname}?${query}=${item1}`}>{item1}</Link>
             </li>
@@ -48,7 +52,8 @@ const FilterComponent: React.FC<IFilterComponent> = ({id, query, header, item1, 
             : null
             }
         </ul>
+        </div>
     );
 };
 
-export default FilterComponent;
+export default FilterItem;
