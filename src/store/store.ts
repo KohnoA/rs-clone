@@ -1,10 +1,8 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { foodAPI } from '../sevices/foodService';
-import { foodReducer } from './reducers/FoodSlice';
 
 // all reducers in one combine reducer
 const rootReducer = combineReducers({
-    foodReducer,
     [foodAPI.reducerPath]: foodAPI.reducer,
 });
 
