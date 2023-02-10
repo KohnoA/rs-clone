@@ -45,6 +45,7 @@ root.render(
 
 // cors header 'access-control-allow-origin' missing
 // async function ex() {
-//     const response = await app.get('https://api.edamam.com/auto-complete?app_id=b9b5075e&app_key=bfb38903c2fd0251dcf47f98780cc404&q=chi')
+//     const response = await axios.get('https://api.edamam.com/auto-complete?app_id=b9b5075e&app_key=bfb38903c2fd0251dcf47f98780cc404')
+//     console.log(response);
 // }
 // ex();
