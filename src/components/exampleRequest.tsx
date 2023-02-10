@@ -7,6 +7,8 @@ import { foodAPI } from '../sevices/foodService';
 export const Example = () => {
     const [session, setSession] = useState(0);
     const { data: foodApi, error, isLoading, refetch } = foodAPI.useFetchAllFoodQuery(session);
+    const data = foodAPI.useFetchRecipesStartQuery(true);
+    console.log(data);
 
     return (
         <div> Example (you can find it: ./components/exampleRequest.tsx; PS: это маскимальное количество данных с одного запроса):
