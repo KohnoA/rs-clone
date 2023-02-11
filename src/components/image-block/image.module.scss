@@ -1,0 +1,51 @@
+.about-page-cart {
+    display: block;
+    display: flex;
+    background-color: rgba(175,175,175,.2);
+    box-shadow: 7px 7px 36px -10px rgb(0 0 0 / 25%);
+    margin: 0px 20px 30px 20px;
+
+    &__image-block {
+        width: 285px;
+        min-height: 340px;
+        position: relative;
+
+        & > img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    &-text {
+        width: calc(100% - 285px - 30px);
+        padding: 10px;
+        margin-left: 20px;
+
+        &__name {
+            font-size: 32px;
+            font-weight: 700;
+            line-height: 120%;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        &__position {
+            font-size: 20px;
+            font-weight: 400;
+            margin-bottom: 20px;
+            line-height: 120%;
+            text-align: center;
+        }
+
+        &__paragraph {
+            text-align: justify;
+            text-indent: 30px;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+    }
+}
