@@ -17,6 +17,11 @@ const Header: React.FC = () => {
   const [modal, setModal] = useState<boolean>(false);
   const [form, setForm] = useState<UserForms>(UserForms.signIn);
 
+  const closeModalHandler = () => {
+    setModal(false);
+    setForm(UserForms.signIn);
+  }
+
   return (
     <header
       className={ `container ${styles.header}` }
@@ -29,7 +34,7 @@ const Header: React.FC = () => {
       <Button text="Sign In" onClick={ () => setModal(true) } />
 
       { modal &&  
-        <Modal title={ form } closeModal={ () => setModal(false) }>
+        <Modal title={ form } closeModal={ closeModalHandler }>
           { form === UserForms.signIn && <SignIn changeForm={ () => setForm(UserForms.signUp) } /> }
           { form === UserForms.signUp && <SignUp changeForm={ () => setForm(UserForms.signIn) } /> }
         </Modal>
