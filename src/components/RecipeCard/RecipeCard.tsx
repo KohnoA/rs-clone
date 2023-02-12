@@ -1,24 +1,14 @@
 import { useNavigate } from 'react-router-dom';
-import FavouriteBtn from '../FavouriteBtn/FavouriteBtn';
+import { IRecipeCard } from '../../types/types';
+import FavouriteBtn from '../Favourite/FavoriteBtn/FavoriteBtn';
 import styles from './RecipeCard.module.scss'
 
-interface IRecipeCard {
-    id?: string;
-    header: string;
-    title: string;
-    image: string;
-    type: string;
-    typeIcon: string;
-    kcalIcon: string;
-    kcal: number;
-}
-
-const RecipeCard: React.FC<IRecipeCard> = ({id, header, title, image, type = 'happy meal', typeIcon, kcalIcon, kcal}: IRecipeCard) => {
+const RecipeCard: React.FC<IRecipeCard> = ({route, id, header, title, image, type = 'happy meal', typeIcon, kcalIcon, kcal}: IRecipeCard) => {
 
     const router = useNavigate()
   
     return (
-        <div onClick={() => router('/recipes/:id')} id={id} className={styles.card}>
+        <div onClick={() => router(`/${route}/${id}`)} id={id} className={styles.card}>
             <div className={styles.card__headerPanel}>
                 <h3 className={styles.card__header}>{header}</h3>
                 <FavouriteBtn/>
