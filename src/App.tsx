@@ -20,7 +20,7 @@ function App() {
         <Route path='/articles' element={ <Articles /> } />
         <Route path='/about' element={ <AboutUs /> } />
       </Routes>
-      {}
+
       <Example/>
 
       <Footer />

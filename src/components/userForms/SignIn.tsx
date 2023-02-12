@@ -81,7 +81,7 @@ const SignIn: React.FC<SignInProp> = ({ changeForm }: SignInProp) => {
               <span 
                 className={ styles.userForm__errorInfo_message }
               >
-                The name must be at least 4 and not more than 15 characters!
+                The name must be at least 6 and not more than 15 characters!
               </span>
             }
           </span>

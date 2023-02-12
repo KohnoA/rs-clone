@@ -3,6 +3,10 @@ import { Validations } from '../../constants/constants';
 import styles from './userForms.module.scss';
 import Button from '../Button/Button';
 import { useState, useEffect } from 'react';
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { useAppDispatch } from '../../hooks/reduxHooks';
+import { setUser } from '../../store/slices/userSlice';
+// import { redirect, useNavigate } from 'react-router-dom';
 
 interface SignUpProp {
   changeForm: () => void
@@ -20,6 +24,9 @@ const SignUp: React.FC<SignUpProp> = ({ changeForm }: SignUpProp) => {
   const [passwordsMatchError, setPasswordsMatchError] = useState<boolean>(false);
   const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState<boolean>(false);
+  const [formError, setFormError] = useState<boolean>(false);
+  const dispatch = useAppDispatch();
+  // const navigate = useNavigate();
 
   useEffect(() => {
     if (
@@ -29,17 +36,30 @@ const SignUp: React.FC<SignUpProp> = ({ changeForm }: SignUpProp) => {
     else setPasswordsMatchError(false);
     
   }, [confirmPassword.value, password.value, confirmPassword.isDirty, confirmPassword.isValid]);
-  
+
+  const changeFormHandler = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    changeForm();
+  }
 
   const signUpHandler = (event: React.FormEvent) => {
     event.preventDefault();
 
-    if (!email.isValid || !password.isValid) return;
+    if (!email.isValid || !password.isValid || !name.isValid || passwordsMatchError) {
+      setFormError(true);
+      return;
+    }
 
     console.log(`name - ${name.value}`);
     console.log(`email - ${email.value}`);
     console.log(`password - ${password.value}`);
     console.log(`confirmPassword - ${confirmPassword.value}`);
+
+    signUpNewUser(email.value.toLowerCase(), password.value.toLowerCase());
+    setFormError(false);
+
+    // navigate('/', {replace: true});
+    // redirect('/');
 
     name.clear();
     email.clear();
@@ -47,9 +67,18 @@ const SignUp: React.FC<SignUpProp> = ({ changeForm }: SignUpProp) => {
     confirmPassword.clear();
   }
 
-  const changeFormHandler = (event: React.MouseEvent<HTMLAnchorElement>) => {
-    event.preventDefault();
-    changeForm();
+  const signUpNewUser = (userEmail: string, userPassword: string) => {
+    const auth = getAuth();
+
+    createUserWithEmailAndPassword(auth, userEmail, userPassword)
+      .then(({user}) => {
+        dispatch(setUser({
+          email: user.email,
+          token: user.refreshToken,
+          id: user.uid
+        }));
+      })
+      .catch((error) => console.error(error.code, error.message));
   }
 
   return (
@@ -126,7 +155,7 @@ const SignUp: React.FC<SignUpProp> = ({ changeForm }: SignUpProp) => {
               <span 
                 className={ styles.userForm__errorInfo_message }
               >
-                The name must be at least 4 and not more than 15 characters!
+                The name must be at least 6 and not more than 15 characters!
               </span>
             }
           </span>
@@ -165,7 +194,7 @@ const SignUp: React.FC<SignUpProp> = ({ changeForm }: SignUpProp) => {
               <span 
                 className={ styles.userForm__errorInfo_message }
               >
-                The fields, password and confirm password must match. And must be at least 4 and not more than 15 characters!
+                The fields, password and confirm password must match. And must be at least 6 and not more than 15 characters!
               </span>
             }
           </span>
@@ -193,6 +222,7 @@ const SignUp: React.FC<SignUpProp> = ({ changeForm }: SignUpProp) => {
         </span>
       </div>
 
+      { formError && <div className={ styles.userForm__formError }>Incorrect form fields!</div> }
       <Button text='Sign Up' additionalClasses={ styles.userForm__submit }/>
 
       <p>

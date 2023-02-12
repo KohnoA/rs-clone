@@ -1,9 +1,11 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { foodAPI } from '../sevices/foodService';
+import userReducer from './slices/userSlice';
 
 // all reducers in one combine reducer
 const rootReducer = combineReducers({
     [foodAPI.reducerPath]: foodAPI.reducer,
+    user: userReducer,
 });
 
 // initialize store with reducer and adding middleware
