@@ -9,9 +9,11 @@ import SignUp from '../userForms/SignUp';
 import { openModal } from '../../store/slices/modalSlice';
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
 import { ModalContent } from '../../constants/constants';
+import { useAuth } from '../../hooks/useAuth';
 
 const Header: React.FC = () => {
   const {isOpen, content} = useAppSelector(state => state.modal);
+  const {isAuth} = useAuth();
   const dispatch = useAppDispatch();
 
   const openSignInModal = () => {
@@ -30,7 +32,9 @@ const Header: React.FC = () => {
       <Navigation />
 
       <button className={ styles.header__add }>+</button>
-      <Button text="Sign In" onClick={ openSignInModal } />
+
+      { !isAuth && <Button text="Sign In" onClick={ openSignInModal } /> }
+      { isAuth && <Button text="Profile" /> }
 
       { isOpen &&  
         <Modal title={ content }>

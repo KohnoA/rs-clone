@@ -4,7 +4,10 @@ import styles from './userForms.module.scss';
 import Button from '../Button/Button';
 import { useState } from 'react';
 import { useAppDispatch } from '../../hooks/reduxHooks';
-import { openModal } from '../../store/slices/modalSlice';
+import { openModal, closeModal } from '../../store/slices/modalSlice';
+import { useNavigate } from 'react-router-dom';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { setUser } from '../../store/slices/userSlice';
 
 const SignIn: React.FC = () => {
   const [formError, setFormError] = useState<boolean>(false);
@@ -14,31 +17,47 @@ const SignIn: React.FC = () => {
   const [emailInfo, setEmailInfo] = useState<boolean>(false);
   const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
   const dispatch = useAppDispatch();
-
-  const signInHandler = (event: React.FormEvent) => {
-    event.preventDefault();
-
-    if (!email.isValid || !password.isValid) return;
-
-    console.log(`email - ${email.value}`);
-    console.log(`password - ${password.value}`);
-
-    email.clear();
-    password.clear();
-    setFormError(true);
-  }
+  const navigate = useNavigate();
 
   const changeFormHandler = (event: React.MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
     dispatch(openModal({content: ModalContent.signUp}));
   }
 
-  const forgotHandler = (event: React.MouseEvent<HTMLAnchorElement>) => event.preventDefault();
+  const signInHandler = (event: React.FormEvent) => {
+    event.preventDefault();
+
+    if (!email.isValid || !password.isValid) {
+      setFormError(true);
+      return;
+    }
+
+    signInExistingUser(email.value.toLowerCase(), password.value.toLowerCase());
+    setFormError(false);
+    navigate('/');
+    dispatch(closeModal());
+  }
+
+  const signInExistingUser = (userEmail: string, userPassword: string) => {
+    const auth = getAuth();
+
+    signInWithEmailAndPassword(auth, userEmail, userPassword)
+      .then(({user}) => {
+        dispatch(setUser({
+          email: user.email,
+          token: user.refreshToken,
+          id: user.uid
+        }));
+      })
+      .catch((error) => {
+        console.error(error.code, error.message);
+        setFormError(false);
+      });
+  }
 
   return (
     <form action="#" className={ styles.userForm } onSubmit={ signInHandler }>
-
-<div className={styles.userForm__item}>
+      <div className={styles.userForm__item}>
         { (email.isDirty && !email.isValid) && 
           <span 
             className={ styles.userForm__errorInfo  } 
@@ -67,7 +86,6 @@ const SignIn: React.FC = () => {
           }
         />
       </div>
-
 
       <div className={ styles.userForm__item }>
         { (password.isDirty && !password.isValid) && 
@@ -110,7 +128,14 @@ const SignIn: React.FC = () => {
 
       { formError && <div className={ styles.userForm__formError }>Incorrect login or password!</div> }
       <Button text='Sign In' additionalClasses={ styles.userForm__submit }/>
-      <a href="#" className={ styles.userForm__help } onClick={ forgotHandler }>Forgot your password?</a> 
+
+      <a 
+        href="#" 
+        className={ styles.userForm__help } 
+        onClick={ (event) => event.preventDefault() }
+        >
+          Forgot your password?
+      </a> 
 
       <p>
         Don&lsquo;t have an account?&nbsp;

@@ -69,7 +69,6 @@ const SignUp: React.FC = () => {
 
   return (
     <form action="#" className={ styles.userForm } onSubmit={ signUpHandler }>
-
       <div className={ styles.userForm__item }>
         { (name.isDirty && !name.isValid) && 
           <span 
