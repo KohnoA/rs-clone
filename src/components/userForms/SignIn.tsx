@@ -1,20 +1,19 @@
 import { useInput } from '../../hooks/useInput';
-import { Validations } from '../../constants/constants'; 
+import { Validations, ModalContent } from '../../constants/constants'; 
 import styles from './userForms.module.scss';
 import Button from '../Button/Button';
 import { useState } from 'react';
+import { useAppDispatch } from '../../hooks/reduxHooks';
+import { openModal } from '../../store/slices/modalSlice';
 
-interface SignInProp {
-  changeForm: () => void
-}
-
-const SignIn: React.FC<SignInProp> = ({ changeForm }: SignInProp) => {
+const SignIn: React.FC = () => {
   const [formError, setFormError] = useState<boolean>(false);
   const email = useInput('', Validations.email);
   const password = useInput('', Validations.password);
   const [passwordInfo, setPasswordInfo] = useState<boolean>(false);
   const [emailInfo, setEmailInfo] = useState<boolean>(false);
   const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
+  const dispatch = useAppDispatch();
 
   const signInHandler = (event: React.FormEvent) => {
     event.preventDefault();
@@ -31,7 +30,7 @@ const SignIn: React.FC<SignInProp> = ({ changeForm }: SignInProp) => {
 
   const changeFormHandler = (event: React.MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
-    changeForm();
+    dispatch(openModal({content: ModalContent.signUp}));
   }
 
   const forgotHandler = (event: React.MouseEvent<HTMLAnchorElement>) => event.preventDefault();

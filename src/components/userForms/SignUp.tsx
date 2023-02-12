@@ -1,18 +1,15 @@
 import { useInput } from '../../hooks/useInput';
-import { Validations } from '../../constants/constants';
+import { Validations, ModalContent } from '../../constants/constants';
 import styles from './userForms.module.scss';
 import Button from '../Button/Button';
 import { useState, useEffect } from 'react';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { useAppDispatch } from '../../hooks/reduxHooks';
 import { setUser } from '../../store/slices/userSlice';
-// import { redirect, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { openModal, closeModal } from '../../store/slices/modalSlice';
 
-interface SignUpProp {
-  changeForm: () => void
-}
-
-const SignUp: React.FC<SignUpProp> = ({ changeForm }: SignUpProp) => {
+const SignUp: React.FC = () => {
   const name = useInput('', Validations.name);
   const email = useInput('', Validations.email);
   const password = useInput('', Validations.password);
@@ -26,7 +23,7 @@ const SignUp: React.FC<SignUpProp> = ({ changeForm }: SignUpProp) => {
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState<boolean>(false);
   const [formError, setFormError] = useState<boolean>(false);
   const dispatch = useAppDispatch();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (
@@ -39,7 +36,7 @@ const SignUp: React.FC<SignUpProp> = ({ changeForm }: SignUpProp) => {
 
   const changeFormHandler = (event: React.MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
-    changeForm();
+    dispatch(openModal({content: ModalContent.signIn}));
   }
 
   const signUpHandler = (event: React.FormEvent) => {
@@ -50,21 +47,10 @@ const SignUp: React.FC<SignUpProp> = ({ changeForm }: SignUpProp) => {
       return;
     }
 
-    console.log(`name - ${name.value}`);
-    console.log(`email - ${email.value}`);
-    console.log(`password - ${password.value}`);
-    console.log(`confirmPassword - ${confirmPassword.value}`);
-
     signUpNewUser(email.value.toLowerCase(), password.value.toLowerCase());
     setFormError(false);
-
-    // navigate('/', {replace: true});
-    // redirect('/');
-
-    name.clear();
-    email.clear();
-    password.clear();
-    confirmPassword.clear();
+    navigate('/');
+    dispatch(closeModal());
   }
 
   const signUpNewUser = (userEmail: string, userPassword: string) => {

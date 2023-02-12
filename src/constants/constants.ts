@@ -10,3 +10,8 @@ export const enum Validations {
   password = 'password',
   name = 'name'
 }
+
+export const enum ModalContent {
+  signIn = 'Sign In',
+  signUp = 'Sign Up'
+}
