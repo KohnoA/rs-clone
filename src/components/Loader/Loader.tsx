@@ -1,8 +1,7 @@
-import React from 'react';
 import loader from '../../assets/icons/loader.gif'
 import styles from './Loader.module.scss'
 
-const Loader = () => {
+const Loader: React.FC = () => {
     return (
         <div className={styles.loader}>
             <img className={styles.loaderImg} src={loader} alt="loader" />
