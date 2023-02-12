@@ -1,13 +1,13 @@
 import { FetchBaseQueryError } from '@reduxjs/toolkit/dist/query';
 import { useState } from 'react';
-import { array } from 'yargs';
+// import { array } from 'yargs';
 import { foodAPI } from '../sevices/foodService';
 
 
 export const Example = () => {
     const [session, setSession] = useState(0);
     const { data: foodApi, error, isLoading, refetch } = foodAPI.useFetchAllFoodQuery(session);
-    const { data: recipes, error: errorRecipes, isLoading: isLoadingRecipes } = foodAPI.useFetchRecipesStartQuery('');
+    const { data: recipes, } = foodAPI.useFetchRecipesStartQuery(''); // error: errorRecipes, isLoading: isLoadingRecipes
     console.log(recipes);
 
     return (
