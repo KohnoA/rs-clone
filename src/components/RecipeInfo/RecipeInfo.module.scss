@@ -1,0 +1,50 @@
+.recipeInfo {
+    justify-items: stretch;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    &__header {
+        margin-bottom: 2em;
+    }
+
+    &__wrapper {
+
+    }
+
+    &__img {
+
+    }
+
+    &__headerWrapper {
+
+    }
+}
+
+.recipeInfoPart{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 2em;
+}
+
+.ingredients {
+
+}
+
+.nutrients {
+    
+}
+
+.characteristics {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 60%;
+}
