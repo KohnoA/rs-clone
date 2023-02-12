@@ -1,5 +1,6 @@
 export interface IRecipesData {
     recipe: {
+          uri: string;
           label: string;
           image: string;
           dishType: string;
@@ -14,15 +15,17 @@ export interface IRecipes {
 }
 
 export interface IRecipeInfo {
-    label: string;
-    image: string;
-    cuisineType: string;
-    calories: number;
-    totalWeight: number;
-    mealType: string;
-    ingredientLines: string[];
-    ingredients: [{
-        text: string;
+    label?: string;
+    image?: string;
+    cuisineType?: string[];
+    calories?: number;
+    dietLabels?: string[]
+    healthLabels?: string[]
+    totalTime?:number;
+    totalWeight?: number;
+    mealType?: string[];
+    ingredientLines?: string[];
+    ingredients?: [{
         quantity: number;
         measure: string;
         food: string;
@@ -30,39 +33,27 @@ export interface IRecipeInfo {
         foodCategory: string;
         image: string;
     }],
-    totalNutrients?: {
-        ENERC_KCAL: {
-            label: string;
-            quantity: number;
-            unit: string;
-        },
-        FAT: {
-            label: string;
-            quantity: number;
-            unit: string;
-        },
-        CHOCDF: {
-            label: string;
-            quantity: number;
-            unit: string;
-        },
-        SUGAR: {
-            label: string;
-            quantity: number;
-            unit: string;
-        },
-        CHOLE: {
-            label: string;
-            quantity: number;
-            unit: string;
-        },
-        PROCNT: {
-            label: string;
-            quantity: number;
-            unit: string;
-        }
+    digest?: [{
+        label: string,
+        total: number,
+        unit: string,
+    }]
+}
 
-    }
+export interface IRecipeInfoItem {
+    response: IRecipeInfo;
+    header: string;
+    value: string;
+    section: string;
+}
+
+export interface IRecipeFavorite {
+    cuisineType?: string;
+    image?: string;
+    dishType?: string;
+    calories?: number;
+    label?: string;
+    uri?: string;
 }
 
 export interface IFilters {
@@ -77,4 +68,16 @@ export interface IFilters {
         item5: string;
         item6?: string;
     }
+}
+
+export interface IRecipeCard {
+    route?: string;
+    id?: string;
+    header?: string;
+    title?: string;
+    image?: string;
+    type?: string;
+    typeIcon?: string;
+    kcalIcon?: string;
+    kcal?: number;
 }
