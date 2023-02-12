@@ -4,28 +4,41 @@ import RecipeService from '../../../components/API/RecipeService';
 import { useFetching } from '../../../hooks/useFetching';
 import Loader from '../../../components/Loader/Loader';
 import { URLS } from '../../../constants';
-import { IRecipesData } from '../../../types/types';
+import { IRecipeInfo } from '../../../types/types';
+import RecipeInfo from '../../../components/RecipeInfo/RecipeInfo';
+import { API_KEY_RECIPE, ID_RECIPE } from '../../../constants/foodApi';
+import styles from './RecipePage.module.scss'
 
 const RecipePage: React.FC = () => {
     const params = useParams()
-    const [recipes, setRecipes] = useState<IRecipesData[]>([])
+    const [recipes, setRecipes] = useState<IRecipeInfo>({})
 
     const [fetching, isLoading, error] = useFetching(async() => {
-        const response = await RecipeService.getRecipes(`${URLS.recipe}${params.id}`)
-        setRecipes(response.hits)
-    })
+        const response = await RecipeService.getRecipes(`${URLS.recipe}${params.id}?type=public&app_id=${ID_RECIPE}&app_key=${API_KEY_RECIPE}`)
+        setRecipes(response.recipe)
+        })
 
     useEffect(() => {
         fetching()
     }, [])
 
     return (
-        <div>
+        <div className={styles.recipeInfo__wrapper}>
+        {error && 
+        <div style={{margin:'2em'}}><h1>Error has occured. {error}</h1></div>}  
         {isLoading
             ? <Loader/>
-            :   <div><h1>Вы перешли на страницу с ID = {} </h1>
-                {/* <h3>{recipes.map((recipe, i) => <RecipeInfo key={i} calories={+recipe.recipe.calories}/>)}</h3> */}
-                </div>            
+            : <RecipeInfo
+                label={recipes.label}
+                image={recipes.image}
+                calories={recipes.calories}
+                ingredientLines={recipes.ingredientLines}
+                digest={recipes.digest}
+                dietLabels={recipes.dietLabels}
+                healthLabels={recipes.healthLabels}
+                cuisineType={recipes.cuisineType}
+                mealType={recipes.mealType}
+            />
         }
         </div>
     );
