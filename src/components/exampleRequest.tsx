@@ -1,11 +1,14 @@
 import { FetchBaseQueryError } from '@reduxjs/toolkit/dist/query';
 import { useState } from 'react';
+import { array } from 'yargs';
 import { foodAPI } from '../sevices/foodService';
 
 
 export const Example = () => {
     const [session, setSession] = useState(0);
     const { data: foodApi, error, isLoading, refetch } = foodAPI.useFetchAllFoodQuery(session);
+    const { data: recipes, error: errorRecipes, isLoading: isLoadingRecipes } = foodAPI.useFetchRecipesStartQuery('');
+    console.log(recipes);
 
     return (
         <div> Example (you can find it: ./components/exampleRequest.tsx; PS: это маскимальное количество данных с одного запроса):

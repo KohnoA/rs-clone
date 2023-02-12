@@ -1,28 +1,57 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
-import { DOMAIN, ID, API_KEY, FOOD, NUTRIENTS } from '../constants/foodApi';
+import * as API from '../constants/foodApi';
 import { IFoodApi } from '../models/IFood';
+import { IRecipes } from '../models/IRecipes';
 
 export const foodAPI = createApi({
   reducerPath: 'foodAPI',
-  baseQuery: fetchBaseQuery({ baseUrl: `${DOMAIN}` }),
+  baseQuery: fetchBaseQuery({ baseUrl: `${API.DOMAIN}` }),
   endpoints: (build) => ({
 
     fetchAllFood: build.query<IFoodApi, number>({
-      query: (session?: number) => ({
-        url: `/${FOOD}`,
+      query: (session?) => ({
+        url: `/${API.FOOD}`,
         params: {
             session: session,
-            ['app_id']: ID,
-            ['app_key']: API_KEY,
+            ['app_id']: API.ID_FOOD,
+            ['app_key']: API.API_KEY_FOOD,
         },
       }),
     }),
 
-    fetchNutrientsFood: build.mutation({
-      query: () => ({
-        url: `/${NUTRIENTS}`,
-      }),
+    // fetchNutrientsFood: build.mutation({
+    //   query: () => ({
+    //     url: `/${NUTRIENTS}`,
+    //   }),
+    // }),
+
+    fetchRecipesStart: build.query<IRecipes, string>({
+        query: () => ({
+            url: `/${API.RECIPES}`,
+            params: {
+                type: API.TYPE,
+                ['app_id']: API.ID_RECIPES,
+                ['app_key']: API.API_KEY_RECIPES,
+                imageSize: API.IMAGE_SIZE,
+                random: true,
+            },
+        }),
     }),
+
+    fetchRecipesWithParams: build.query<IRecipes, string>({
+        query: (diet) => ({
+            url: `/${API.RECIPES}`,
+            params: {
+                type: API.TYPE,
+                ['app_id']: API.ID_RECIPES,
+                ['app_key']: API.API_KEY_RECIPES,
+                imageSize: API.IMAGE_SIZE,
+                diet: diet,
+            },
+        }),
+    }),
+
+    // fetchRecipes:
 
   }),
 });

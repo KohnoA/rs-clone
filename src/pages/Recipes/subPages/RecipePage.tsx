@@ -6,7 +6,7 @@ import Loader from '../../../components/Loader/Loader';
 import { URLS } from '../../../constants';
 import { IRecipeInfo } from '../../../types/types';
 import RecipeInfo from '../../../components/RecipeInfo/RecipeInfo';
-import { API_KEY_RECIPE, ID_RECIPE } from '../../../constants/foodApi';
+import { API_KEY_RECIPES, ID_RECIPES } from '../../../constants/foodApi';
 import styles from './RecipePage.module.scss'
 
 const RecipePage: React.FC = () => {
@@ -14,7 +14,7 @@ const RecipePage: React.FC = () => {
     const [recipes, setRecipes] = useState<IRecipeInfo>({})
 
     const [fetching, isLoading, error] = useFetching(async() => {
-        const response = await RecipeService.getRecipes(`${URLS.recipe}${params.id}?type=public&app_id=${ID_RECIPE}&app_key=${API_KEY_RECIPE}`)
+        const response = await RecipeService.getRecipes(`${URLS.recipe}${params.id}?type=public&app_id=${ID_RECIPES}&app_key=${API_KEY_RECIPES}`)
         setRecipes(response.recipe)
         })
 
