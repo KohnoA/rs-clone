@@ -7,8 +7,11 @@ import Main from '../pages/Main/Main';
 import Recipes from '../pages/Recipes/Recipes';
 import RecipePage from '../pages/Recipes/subPages/RecipePage';
 import { URLS } from '../constants';
+import FavoritePage from '../pages/Favorite/FavoritePage';
 
 const AppRouter = () => {
+<FavoritePage />
+
     return (
         <Routes>
         <Route path='*' element={ <PageNotFound /> } />
@@ -18,6 +21,8 @@ const AppRouter = () => {
         <Route path='/constructor' element={ <Constructor /> } />
         <Route path='/articles' element={ <Articles /> } />
         <Route path='/about' element={ <AboutUs /> } />
+        <Route path='/favorite' element={<FavoritePage />} />
+        <Route path='/favorite/:id' element={ <RecipePage/>} />
       </Routes>
     );
 };
