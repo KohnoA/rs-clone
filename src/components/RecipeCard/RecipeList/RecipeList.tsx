@@ -9,6 +9,7 @@ import iconType from '../../../assets/icons/food.svg'
 import kcalIcon from '../../../assets/icons/kcal.svg'
 import styles from '../../../pages/Recipes/pageRecipes.module.scss'
 import { useLocation } from 'react-router-dom';
+// import { foodAPI } from '../../../sevices/foodService';
 
 const RecipeList: React.FC<IRecipes> = ({url}: IRecipes) => {
 
@@ -16,6 +17,7 @@ const RecipeList: React.FC<IRecipes> = ({url}: IRecipes) => {
     const [query, setQuery] = useState<string>('')
     const [nextPage, setNextPage] = useState<string>('')
     const [isPaginationLoad, setIsPaginationLoad] = useState<boolean>(false)
+    // const variable = foodAPI.use;
   
     const lastElement = useRef<HTMLDivElement | null>(null)
     const observer = useRef<IntersectionObserver | null>(null)
@@ -34,6 +36,12 @@ const RecipeList: React.FC<IRecipes> = ({url}: IRecipes) => {
             const response = await RecipeService.getRecipes(`${url}`)
             setNextPage(response._links.next.href)
             setRecipes([...recipes, ...response.hits])
+    }
+
+    const extractUri = (i: number): string => {
+            const mainLink = recipes[i].recipe.uri
+            const uri = mainLink.slice(mainLink.indexOf('_') + 1)
+            return(uri)
     }
 
     const params = useLocation();
@@ -71,8 +79,9 @@ const RecipeList: React.FC<IRecipes> = ({url}: IRecipes) => {
               <div className={styles.recipesWrapper}>
                     {recipes.map((recipe, i) => 
                           <RecipeCard  
+                          route='recipes'
                           key={i}
-                          id={String(i)}
+                          id={extractUri(i)}
                           header={recipe.recipe.cuisineType}
                           image={recipe.recipe.image}
                           type={recipe.recipe.dishType}
