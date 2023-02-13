@@ -36,25 +36,27 @@ const SignIn: React.FC = () => {
     signInExistingUser(email.value.toLowerCase(), password.value.toLowerCase());
   }
 
-  const signInExistingUser = (userEmail: string, userPassword: string) => {
+  const signInExistingUser = async (userEmail: string, userPassword: string) => {
     const auth = getAuth();
 
-    signInWithEmailAndPassword(auth, userEmail, userPassword)
-      .then(({user}) => {
-        dispatch(setUser({
-          email: user.email,
-          token: user.refreshToken,
-          id: user.uid
-        }));
+    try {
+      const {user} = await signInWithEmailAndPassword(auth, userEmail, userPassword);
+      
+      dispatch(setUser({
+        email: user.email,
+        token: user.refreshToken,
+        id: user.uid,
+        name: user.displayName
+      }));
 
-        navigate('/');
-        dispatch(closeModal());
-      })
-      .catch((error) => {
-        console.error(error.code, error.message);
+      navigate('/');
+      dispatch(closeModal());
 
-        setFormError(AuthErrorsMessage.notFound);
-      });
+    } catch(error) {
+      if (error instanceof Error) console.error(error.message);
+
+      setFormError(AuthErrorsMessage.notFound);
+    }
   }
 
   return (

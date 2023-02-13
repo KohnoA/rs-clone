@@ -3,7 +3,7 @@ import { Validations, ModalContent, AuthErrorsMessage } from '../../constants/co
 import styles from './userForms.module.scss';
 import Button from '../Button/Button';
 import { useState, useEffect } from 'react';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { useAppDispatch } from '../../hooks/reduxHooks';
 import { setUser } from '../../store/slices/userSlice';
 import { useNavigate } from 'react-router-dom';
@@ -48,28 +48,31 @@ const SignUp: React.FC = () => {
     }
 
     setFormError('');
-    signUpNewUser(email.value.toLowerCase(), password.value.toLowerCase());
+    signUpNewUser(email.value.toLowerCase(), password.value.toLowerCase(), name.value);
   }
 
-  const signUpNewUser = (userEmail: string, userPassword: string) => {
+  const signUpNewUser = async (userEmail: string, userPassword: string, userName: string) => {
     const auth = getAuth();
 
-    createUserWithEmailAndPassword(auth, userEmail, userPassword)
-      .then(({user}) => {
-        dispatch(setUser({
-          email: user.email,
-          token: user.refreshToken,
-          id: user.uid
-        }));
+    try {
+      const {user} = await createUserWithEmailAndPassword(auth, userEmail, userPassword);
+      await updateProfile(user, {displayName: userName});
 
-        navigate('/');
-        dispatch(closeModal());
-      })
-      .catch((error) => {
-        console.error(error.code, error.message);
+      dispatch(setUser({
+        email: user.email,
+        token: user.refreshToken,
+        id: user.uid,
+        name: user.displayName,
+      }));
 
-        setFormError(AuthErrorsMessage.isExist);
-      });
+      navigate('/');
+      dispatch(closeModal());
+
+    } catch(error) {
+      if (error instanceof Error) console.error(error.message);
+
+      setFormError(AuthErrorsMessage.isExist);
+    }
   }
 
   return (

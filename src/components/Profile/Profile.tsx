@@ -2,9 +2,11 @@ import styles from './Profile.module.scss';
 import { useState } from 'react';
 import { useAppDispatch } from '../../hooks/reduxHooks';
 import { removeUser } from '../../store/slices/userSlice';
+import { useAuth } from '../../hooks/useAuth';
 
 const Profile: React.FC = () => {
   const [select, setSelect] = useState<boolean>(false);
+  const {name} = useAuth();
   const dispatch = useAppDispatch();
 
   const logOutHandler = () => {
@@ -20,7 +22,7 @@ const Profile: React.FC = () => {
       className={ select ? `${styles.profile} ${styles.profile__active}` : styles.profile }
       onClick={ () => setSelect((prev) => !prev) }
     >
-      Hello, User!
+      Hi, { name }!
       <span className={ styles.profile__image }></span>
 
       { select && 
