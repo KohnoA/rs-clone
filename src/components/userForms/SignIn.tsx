@@ -1,5 +1,5 @@
 import { useInput } from '../../hooks/useInput';
-import { Validations, ModalContent } from '../../constants/constants'; 
+import { Validations, ModalContent, AuthErrorsMessage } from '../../constants/constants'; 
 import styles from './userForms.module.scss';
 import Button from '../Button/Button';
 import { useState } from 'react';
@@ -10,7 +10,7 @@ import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { setUser } from '../../store/slices/userSlice';
 
 const SignIn: React.FC = () => {
-  const [formError, setFormError] = useState<boolean>(false);
+  const [formError, setFormError] = useState<string | AuthErrorsMessage>('');
   const email = useInput('', Validations.email);
   const password = useInput('', Validations.password);
   const [passwordInfo, setPasswordInfo] = useState<boolean>(false);
@@ -28,14 +28,12 @@ const SignIn: React.FC = () => {
     event.preventDefault();
 
     if (!email.isValid || !password.isValid) {
-      setFormError(true);
+      setFormError(AuthErrorsMessage.invalidFields);
       return;
     }
 
+    setFormError('');
     signInExistingUser(email.value.toLowerCase(), password.value.toLowerCase());
-    setFormError(false);
-    navigate('/');
-    dispatch(closeModal());
   }
 
   const signInExistingUser = (userEmail: string, userPassword: string) => {
@@ -48,10 +46,14 @@ const SignIn: React.FC = () => {
           token: user.refreshToken,
           id: user.uid
         }));
+
+        navigate('/');
+        dispatch(closeModal());
       })
       .catch((error) => {
         console.error(error.code, error.message);
-        setFormError(false);
+
+        setFormError(AuthErrorsMessage.notFound);
       });
   }
 
@@ -65,9 +67,7 @@ const SignIn: React.FC = () => {
             onMouseOut={ () => setEmailInfo(false) }
           >
             { emailInfo &&
-              <span 
-                className={ styles.userForm__errorInfo_message }
-              >
+              <span className={ styles.userForm__errorInfo_message }>
                 The email address must contain the &ldquo;@&ldquo; symbol. &ldquo;{email.value}&ldquo; address is missing &ldquo;@&ldquo; character.
               </span>
             }
@@ -95,9 +95,7 @@ const SignIn: React.FC = () => {
           onMouseOut={ () => setPasswordInfo(false) }
           >
             { passwordInfo &&
-              <span 
-                className={ styles.userForm__errorInfo_message }
-              >
+              <span className={ styles.userForm__errorInfo_message }>
                 The name must be at least 6 and not more than 15 characters!
               </span>
             }
@@ -126,7 +124,7 @@ const SignIn: React.FC = () => {
         </span>
       </div>
 
-      { formError && <div className={ styles.userForm__formError }>Incorrect login or password!</div> }
+      { formError && <div className={ styles.userForm__formError }>{ formError }</div> }
       <Button text='Sign In' additionalClasses={ styles.userForm__submit }/>
 
       <a 

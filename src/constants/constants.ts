@@ -15,3 +15,9 @@ export const enum ModalContent {
   signIn = 'Sign In',
   signUp = 'Sign Up'
 }
+
+export const enum AuthErrorsMessage {
+  invalidFields = 'Invalid form fields',
+  notFound = 'Incorrect login or password!',
+  isExist = 'User with this email is already registered'
+}

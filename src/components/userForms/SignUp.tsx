@@ -1,5 +1,5 @@
 import { useInput } from '../../hooks/useInput';
-import { Validations, ModalContent } from '../../constants/constants';
+import { Validations, ModalContent, AuthErrorsMessage } from '../../constants/constants';
 import styles from './userForms.module.scss';
 import Button from '../Button/Button';
 import { useState, useEffect } from 'react';
@@ -21,7 +21,7 @@ const SignUp: React.FC = () => {
   const [passwordsMatchError, setPasswordsMatchError] = useState<boolean>(false);
   const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState<boolean>(false);
-  const [formError, setFormError] = useState<boolean>(false);
+  const [formError, setFormError] = useState<string | AuthErrorsMessage>('');
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -43,14 +43,12 @@ const SignUp: React.FC = () => {
     event.preventDefault();
 
     if (!email.isValid || !password.isValid || !name.isValid || passwordsMatchError) {
-      setFormError(true);
+      setFormError(AuthErrorsMessage.invalidFields);
       return;
     }
 
+    setFormError('');
     signUpNewUser(email.value.toLowerCase(), password.value.toLowerCase());
-    setFormError(false);
-    navigate('/');
-    dispatch(closeModal());
   }
 
   const signUpNewUser = (userEmail: string, userPassword: string) => {
@@ -63,8 +61,15 @@ const SignUp: React.FC = () => {
           token: user.refreshToken,
           id: user.uid
         }));
+
+        navigate('/');
+        dispatch(closeModal());
       })
-      .catch((error) => console.error(error.code, error.message));
+      .catch((error) => {
+        console.error(error.code, error.message);
+
+        setFormError(AuthErrorsMessage.isExist);
+      });
   }
 
   return (
@@ -77,9 +82,7 @@ const SignUp: React.FC = () => {
             onMouseOut={ () => setNameInfo(false) }
           >
             { nameInfo &&
-              <span 
-                className={ styles.userForm__errorInfo_message }
-              >
+              <span className={ styles.userForm__errorInfo_message }>
                 The name must be at least 3 and not more than 16 characters!
               </span>
             }
@@ -107,9 +110,7 @@ const SignUp: React.FC = () => {
             onMouseOut={ () => setEmailInfo(false) }
           >
             { emailInfo &&
-              <span 
-                className={ styles.userForm__errorInfo_message }
-              >
+              <span className={ styles.userForm__errorInfo_message }>
                 The email address must contain the &ldquo;@&ldquo; symbol. &ldquo;{email.value}&ldquo; address is missing &ldquo;@&ldquo; character.
               </span>
             }
@@ -137,9 +138,7 @@ const SignUp: React.FC = () => {
           onMouseOut={ () => setPasswordInfo(false) }
           >
             { passwordInfo &&
-              <span 
-                className={ styles.userForm__errorInfo_message }
-              >
+              <span className={ styles.userForm__errorInfo_message }>
                 The name must be at least 6 and not more than 15 characters!
               </span>
             }
@@ -176,9 +175,7 @@ const SignUp: React.FC = () => {
           onMouseOut={ () => setConfirmPasswordInfo(false) }
           >
             { confirmPasswordInfo &&
-              <span 
-                className={ styles.userForm__errorInfo_message }
-              >
+              <span className={ styles.userForm__errorInfo_message }>
                 The fields, password and confirm password must match. And must be at least 6 and not more than 15 characters!
               </span>
             }
@@ -207,7 +204,7 @@ const SignUp: React.FC = () => {
         </span>
       </div>
 
-      { formError && <div className={ styles.userForm__formError }>Incorrect form fields!</div> }
+      { formError && <div className={ styles.userForm__formError }>{ formError }</div> }
       <Button text='Sign Up' additionalClasses={ styles.userForm__submit }/>
 
       <p>
