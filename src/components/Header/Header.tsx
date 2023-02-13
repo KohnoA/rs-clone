@@ -6,6 +6,7 @@ import Button from '../Button/Button';
 import Modal from '../Modal/Modal';
 import SignIn from '../userForms/SignIn';
 import SignUp from '../userForms/SignUp';
+import Profile from '../Profile/Profile';
 import { openModal } from '../../store/slices/modalSlice';
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
 import { ModalContent } from '../../constants/constants';
@@ -34,7 +35,7 @@ const Header: React.FC = () => {
       <button className={ styles.header__add }>+</button>
 
       { !isAuth && <Button text="Sign In" onClick={ openSignInModal } /> }
-      { isAuth && <Button text="Profile" /> }
+      { isAuth && <Profile /> }
 
       { isOpen &&  
         <Modal title={ content }>
