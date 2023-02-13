@@ -7,8 +7,25 @@ import Articles from './pages/Articles/Articles';
 import AboutUs from './pages/AboutUs/AboutUs';
 import PageNotFound from './pages/404/404';
 import { Example } from './components/exampleRequest';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { useAppDispatch } from './hooks/reduxHooks';
+import { setUser } from './store/slices/userSlice';
 
 function App() {
+  const auth = getAuth();
+  const dispatch = useAppDispatch();
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      dispatch(setUser({
+        email: user.email,
+        token: user.refreshToken,
+        id: user.uid,
+        name: user.displayName,
+      }));
+    }
+  });
+  
   return (
     <>
       <Header />

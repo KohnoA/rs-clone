@@ -3,14 +3,23 @@ import { useState } from 'react';
 import { useAppDispatch } from '../../hooks/reduxHooks';
 import { removeUser } from '../../store/slices/userSlice';
 import { useAuth } from '../../hooks/useAuth';
+import { getAuth, signOut } from 'firebase/auth';
 
 const Profile: React.FC = () => {
   const [select, setSelect] = useState<boolean>(false);
   const {name} = useAuth();
   const dispatch = useAppDispatch();
 
-  const logOutHandler = () => {
-    dispatch(removeUser());
+  const logOutHandler = async () => {
+    const auth = getAuth();
+
+    try {
+      await signOut(auth);
+      dispatch(removeUser());
+
+    } catch (error) {
+      if (error instanceof Error) console.error(error.message);
+    }
   }
 
   const myRecipesHandler = () => console.log('Go to my recipes');
@@ -20,7 +29,8 @@ const Profile: React.FC = () => {
   return (
     <div 
       className={ select ? `${styles.profile} ${styles.profile__active}` : styles.profile }
-      onClick={ () => setSelect((prev) => !prev) }
+      onMouseOver={ () => setSelect(true) }
+      onMouseOut={ () => setSelect(false) }
     >
       Hi, { name }!
       <span className={ styles.profile__image }></span>

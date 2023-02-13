@@ -68,7 +68,7 @@ const SignUp: React.FC = () => {
       navigate('/');
       dispatch(closeModal());
 
-    } catch(error) {
+    } catch (error) {
       if (error instanceof Error) console.error(error.message);
 
       setFormError(AuthErrorsMessage.isExist);
