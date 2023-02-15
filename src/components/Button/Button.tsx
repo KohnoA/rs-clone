@@ -6,7 +6,7 @@ interface IButton {
   onClick?: () => void
 };
 
-const Button: React.FC<IButton> = ({ text, additionalClasses, onClick }: IButton) => {
+const Button: React.FC<IButton> = ({ text, additionalClasses, onClick }) => {
   return (
     <button className={ `${styles.button} ${additionalClasses}` } onClick={ onClick }> { text } </button>
   );

@@ -1,45 +1,67 @@
 import { useInput } from '../../hooks/useInput';
-import { Validations } from '../../constants/constants'; 
+import { Validations, ModalContent, AuthErrorsMessage } from '../../constants/constants'; 
 import styles from './userForms.module.scss';
 import Button from '../Button/Button';
 import { useState } from 'react';
+import { useAppDispatch } from '../../hooks/reduxHooks';
+import { openModal, closeModal } from '../../store/slices/modalSlice';
+import { useNavigate } from 'react-router-dom';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { setUser } from '../../store/slices/userSlice';
 
-interface SignInProp {
-  changeForm: () => void
-}
-
-const SignIn: React.FC<SignInProp> = ({ changeForm }: SignInProp) => {
-  const [formError, setFormError] = useState<boolean>(false);
+const SignIn: React.FC = () => {
+  const [formError, setFormError] = useState<string | AuthErrorsMessage>('');
   const email = useInput('', Validations.email);
   const password = useInput('', Validations.password);
   const [passwordInfo, setPasswordInfo] = useState<boolean>(false);
   const [emailInfo, setEmailInfo] = useState<boolean>(false);
   const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const changeFormHandler = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    dispatch(openModal({content: ModalContent.signUp}));
+  }
 
   const signInHandler = (event: React.FormEvent) => {
     event.preventDefault();
 
-    if (!email.isValid || !password.isValid) return;
+    if (!email.isValid || !password.isValid) {
+      setFormError(AuthErrorsMessage.invalidFields);
+      return;
+    }
 
-    console.log(`email - ${email.value}`);
-    console.log(`password - ${password.value}`);
-
-    email.clear();
-    password.clear();
-    setFormError(true);
+    setFormError('');
+    signInExistingUser(email.value.toLowerCase(), password.value.toLowerCase());
   }
 
-  const changeFormHandler = (event: React.MouseEvent<HTMLAnchorElement>) => {
-    event.preventDefault();
-    changeForm();
-  }
+  const signInExistingUser = async (userEmail: string, userPassword: string) => {
+    const auth = getAuth();
 
-  const forgotHandler = (event: React.MouseEvent<HTMLAnchorElement>) => event.preventDefault();
+    try {
+      const {user} = await signInWithEmailAndPassword(auth, userEmail, userPassword);
+      
+      dispatch(setUser({
+        email: user.email,
+        token: user.refreshToken,
+        id: user.uid,
+        name: user.displayName
+      }));
+
+      navigate('/');
+      dispatch(closeModal());
+
+    } catch (error) {
+      if (error instanceof Error) console.error(error.message);
+
+      setFormError(AuthErrorsMessage.notFound);
+    }
+  }
 
   return (
     <form action="#" className={ styles.userForm } onSubmit={ signInHandler }>
-
-<div className={styles.userForm__item}>
+      <div className={styles.userForm__item}>
         { (email.isDirty && !email.isValid) && 
           <span 
             className={ styles.userForm__errorInfo  } 
@@ -47,9 +69,7 @@ const SignIn: React.FC<SignInProp> = ({ changeForm }: SignInProp) => {
             onMouseOut={ () => setEmailInfo(false) }
           >
             { emailInfo &&
-              <span 
-                className={ styles.userForm__errorInfo_message }
-              >
+              <span className={ styles.userForm__errorInfo_message }>
                 The email address must contain the &ldquo;@&ldquo; symbol. &ldquo;{email.value}&ldquo; address is missing &ldquo;@&ldquo; character.
               </span>
             }
@@ -69,7 +89,6 @@ const SignIn: React.FC<SignInProp> = ({ changeForm }: SignInProp) => {
         />
       </div>
 
-
       <div className={ styles.userForm__item }>
         { (password.isDirty && !password.isValid) && 
           <span 
@@ -78,10 +97,8 @@ const SignIn: React.FC<SignInProp> = ({ changeForm }: SignInProp) => {
           onMouseOut={ () => setPasswordInfo(false) }
           >
             { passwordInfo &&
-              <span 
-                className={ styles.userForm__errorInfo_message }
-              >
-                The name must be at least 4 and not more than 15 characters!
+              <span className={ styles.userForm__errorInfo_message }>
+                The name must be at least 6 and not more than 15 characters!
               </span>
             }
           </span>
@@ -109,9 +126,16 @@ const SignIn: React.FC<SignInProp> = ({ changeForm }: SignInProp) => {
         </span>
       </div>
 
-      { formError && <div className={ styles.userForm__formError }>Incorrect login or password!</div> }
+      { formError && <div className={ styles.userForm__formError }>{ formError }</div> }
       <Button text='Sign In' additionalClasses={ styles.userForm__submit }/>
-      <a href="#" className={ styles.userForm__help } onClick={ forgotHandler }>Forgot your password?</a> 
+
+      <a 
+        href="#" 
+        className={ styles.userForm__help } 
+        onClick={ (event) => event.preventDefault() }
+        >
+          Forgot your password?
+      </a> 
 
       <p>
         Don&lsquo;t have an account?&nbsp;

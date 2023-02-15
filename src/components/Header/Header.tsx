@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import styles from './Header.module.scss';
 import Navigation from '../Navigation/Navigation';
 import Search from '../Search/Search';
@@ -7,19 +6,22 @@ import Button from '../Button/Button';
 import Modal from '../Modal/Modal';
 import SignIn from '../userForms/SignIn';
 import SignUp from '../userForms/SignUp';
-
-const enum UserForms {
-  signIn = 'Sign In',
-  signUp = 'Sign Up'
-}
+import Profile from '../Profile/Profile';
+import { openModal } from '../../store/slices/modalSlice';
+import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
+import { ModalContent } from '../../constants/constants';
+import { useAuth } from '../../hooks/useAuth';
 
 const Header: React.FC = () => {
-  const [modal, setModal] = useState<boolean>(false);
-  const [form, setForm] = useState<UserForms>(UserForms.signIn);
+  const {isOpen, content} = useAppSelector(state => state.modal);
+  const {isAuth} = useAuth();
+  const dispatch = useAppDispatch();
 
-  const closeModalHandler = () => {
-    setModal(false);
-    setForm(UserForms.signIn);
+  const openSignInModal = () => {
+    dispatch(openModal({
+      isOpen: true,
+      content: ModalContent.signIn
+    }));
   }
 
   return (
@@ -31,12 +33,14 @@ const Header: React.FC = () => {
       <Navigation />
 
       <button className={ styles.header__add }>+</button>
-      <Button text="Sign In" onClick={ () => setModal(true) } />
 
-      { modal &&  
-        <Modal title={ form } closeModal={ closeModalHandler }>
-          { form === UserForms.signIn && <SignIn changeForm={ () => setForm(UserForms.signUp) } /> }
-          { form === UserForms.signUp && <SignUp changeForm={ () => setForm(UserForms.signIn) } /> }
+      { !isAuth && <Button text="Sign In" onClick={ openSignInModal } /> }
+      { isAuth && <Profile /> }
+
+      { isOpen &&  
+        <Modal title={ content }>
+          { content === ModalContent.signIn && <SignIn /> }
+          { content === ModalContent.signUp && <SignUp /> }
         </Modal>
       }
     </header>

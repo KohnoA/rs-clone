@@ -1,14 +1,15 @@
 import { useInput } from '../../hooks/useInput';
-import { Validations } from '../../constants/constants';
+import { Validations, ModalContent, AuthErrorsMessage } from '../../constants/constants';
 import styles from './userForms.module.scss';
 import Button from '../Button/Button';
 import { useState, useEffect } from 'react';
+import { getAuth, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { useAppDispatch } from '../../hooks/reduxHooks';
+import { setUser } from '../../store/slices/userSlice';
+import { useNavigate } from 'react-router-dom';
+import { openModal, closeModal } from '../../store/slices/modalSlice';
 
-interface SignUpProp {
-  changeForm: () => void
-}
-
-const SignUp: React.FC<SignUpProp> = ({ changeForm }: SignUpProp) => {
+const SignUp: React.FC = () => {
   const name = useInput('', Validations.name);
   const email = useInput('', Validations.email);
   const password = useInput('', Validations.password);
@@ -20,6 +21,9 @@ const SignUp: React.FC<SignUpProp> = ({ changeForm }: SignUpProp) => {
   const [passwordsMatchError, setPasswordsMatchError] = useState<boolean>(false);
   const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState<boolean>(false);
+  const [formError, setFormError] = useState<string | AuthErrorsMessage>('');
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (
@@ -29,32 +33,50 @@ const SignUp: React.FC<SignUpProp> = ({ changeForm }: SignUpProp) => {
     else setPasswordsMatchError(false);
     
   }, [confirmPassword.value, password.value, confirmPassword.isDirty, confirmPassword.isValid]);
-  
+
+  const changeFormHandler = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    dispatch(openModal({content: ModalContent.signIn}));
+  }
 
   const signUpHandler = (event: React.FormEvent) => {
     event.preventDefault();
 
-    if (!email.isValid || !password.isValid) return;
+    if (!email.isValid || !password.isValid || !name.isValid || passwordsMatchError) {
+      setFormError(AuthErrorsMessage.invalidFields);
+      return;
+    }
 
-    console.log(`name - ${name.value}`);
-    console.log(`email - ${email.value}`);
-    console.log(`password - ${password.value}`);
-    console.log(`confirmPassword - ${confirmPassword.value}`);
-
-    name.clear();
-    email.clear();
-    password.clear();
-    confirmPassword.clear();
+    setFormError('');
+    signUpNewUser(email.value.toLowerCase(), password.value.toLowerCase(), name.value);
   }
 
-  const changeFormHandler = (event: React.MouseEvent<HTMLAnchorElement>) => {
-    event.preventDefault();
-    changeForm();
+  const signUpNewUser = async (userEmail: string, userPassword: string, userName: string) => {
+    const auth = getAuth();
+
+    try {
+      const {user} = await createUserWithEmailAndPassword(auth, userEmail, userPassword);
+      await updateProfile(user, {displayName: userName});
+
+      dispatch(setUser({
+        email: user.email,
+        token: user.refreshToken,
+        id: user.uid,
+        name: user.displayName,
+      }));
+
+      navigate('/');
+      dispatch(closeModal());
+
+    } catch (error) {
+      if (error instanceof Error) console.error(error.message);
+
+      setFormError(AuthErrorsMessage.isExist);
+    }
   }
 
   return (
     <form action="#" className={ styles.userForm } onSubmit={ signUpHandler }>
-
       <div className={ styles.userForm__item }>
         { (name.isDirty && !name.isValid) && 
           <span 
@@ -63,9 +85,7 @@ const SignUp: React.FC<SignUpProp> = ({ changeForm }: SignUpProp) => {
             onMouseOut={ () => setNameInfo(false) }
           >
             { nameInfo &&
-              <span 
-                className={ styles.userForm__errorInfo_message }
-              >
+              <span className={ styles.userForm__errorInfo_message }>
                 The name must be at least 3 and not more than 16 characters!
               </span>
             }
@@ -93,9 +113,7 @@ const SignUp: React.FC<SignUpProp> = ({ changeForm }: SignUpProp) => {
             onMouseOut={ () => setEmailInfo(false) }
           >
             { emailInfo &&
-              <span 
-                className={ styles.userForm__errorInfo_message }
-              >
+              <span className={ styles.userForm__errorInfo_message }>
                 The email address must contain the &ldquo;@&ldquo; symbol. &ldquo;{email.value}&ldquo; address is missing &ldquo;@&ldquo; character.
               </span>
             }
@@ -123,10 +141,8 @@ const SignUp: React.FC<SignUpProp> = ({ changeForm }: SignUpProp) => {
           onMouseOut={ () => setPasswordInfo(false) }
           >
             { passwordInfo &&
-              <span 
-                className={ styles.userForm__errorInfo_message }
-              >
-                The name must be at least 4 and not more than 15 characters!
+              <span className={ styles.userForm__errorInfo_message }>
+                The name must be at least 6 and not more than 15 characters!
               </span>
             }
           </span>
@@ -162,10 +178,8 @@ const SignUp: React.FC<SignUpProp> = ({ changeForm }: SignUpProp) => {
           onMouseOut={ () => setConfirmPasswordInfo(false) }
           >
             { confirmPasswordInfo &&
-              <span 
-                className={ styles.userForm__errorInfo_message }
-              >
-                The fields, password and confirm password must match. And must be at least 4 and not more than 15 characters!
+              <span className={ styles.userForm__errorInfo_message }>
+                The fields, password and confirm password must match. And must be at least 6 and not more than 15 characters!
               </span>
             }
           </span>
@@ -193,6 +207,7 @@ const SignUp: React.FC<SignUpProp> = ({ changeForm }: SignUpProp) => {
         </span>
       </div>
 
+      { formError && <div className={ styles.userForm__formError }>{ formError }</div> }
       <Button text='Sign Up' additionalClasses={ styles.userForm__submit }/>
 
       <p>
