@@ -3,20 +3,41 @@ import axios from 'axios';
 import Button from '../../components/Button/Button';
 import { useState } from 'react';
 
-const NUTRITION_ANALYSIS_APP_ID = 'app_id=c1373a30';
-const NUTRITION_ANALYSIS_APP_KEY = 'app_key=df20c251f90c957e7829cc43301294f5';
+const NUTRITION_ANALYSIS_APP_ID = 'app_id=c1373a30'; // env
+const NUTRITION_ANALYSIS_APP_KEY = 'app_key=df20c251f90c957e7829cc43301294f5'; // env
 const NUTRITION_ANALYSIS_BASE_REQUEST = 'https://api.edamam.com/api/nutrition-data';
 const NUTRITION_ANALYSIS_TYPE_REQUEST = 'nutrition-type=cooking';
 
 const Calculater: React.FC = () => {
   const [info, setInfo] = useState<boolean>(false);
+  const [value, setValue] = useState<string>('');
+  const [isEmpty, setIsEmpty] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
-  const testApi = async () => {
-    const response = await axios.get(`${NUTRITION_ANALYSIS_BASE_REQUEST}?${NUTRITION_ANALYSIS_APP_ID}&${NUTRITION_ANALYSIS_APP_KEY}&${NUTRITION_ANALYSIS_TYPE_REQUEST}&ingr=1%20cup%20rice`);
-    const data = response.data;
-    console.log(data);
+  const analizeHandler = () => {
+    if (!value) {
+      setIsEmpty(true);
 
-    setInfo(prev => !prev);
+      return;
+    }
+
+    setLoading(true);
+    dataRequest();
+  }
+
+  const dataRequest = async () => {
+    try {
+      const urlValue = encodeURI(`ingr=${value}`);
+      const response = await axios.get(`${NUTRITION_ANALYSIS_BASE_REQUEST}?${NUTRITION_ANALYSIS_APP_ID}&${NUTRITION_ANALYSIS_APP_KEY}&${NUTRITION_ANALYSIS_TYPE_REQUEST}&${urlValue}`);
+      const data = response.data;
+  
+      console.log(data);
+      setInfo(prev => !prev);
+      setLoading(false);
+
+    } catch (error) {
+      if (error instanceof Error) console.error(error.message);
+    }
   }
 
   return (
@@ -32,15 +53,29 @@ const Calculater: React.FC = () => {
           etc. Enter each ingredient on a new line.
         </p>
 
-        <div className={ styles.wrapper2Columns }>
-          <div className={ styles.controls }>
-            <textarea className={ styles.textarea } rows={ 10 } placeholder='1 cup rice' />
+        { loading 
+          ? <div className={ styles.loading }></div>
+          : <div className={ styles.wrapper2Columns }>
+              <div className={ styles.controls }>
+                <p className={ `${styles.error} ${isEmpty ? styles.errorShow : ''}` }>
+                  Please fill in the field!
+                </p>
 
-            <Button text='Analize' onClick={ testApi } />
-          </div>
+                <textarea 
+                  className={ styles.textarea } 
+                  rows={ 10 } 
+                  placeholder='1 cup rice...'
+                  value={ value }
+                  onChange={ (event) => setValue(event.target.value) }
+                  onFocus={ () => setIsEmpty(false) }
+                />
 
-          { info && <div>Check</div> }
-        </div>
+                <Button text='Analize' onClick={ analizeHandler } />
+              </div>
+
+              { info && <div>Analitics data</div> }
+            </div>
+        }
       </div>
     </div>
   )
