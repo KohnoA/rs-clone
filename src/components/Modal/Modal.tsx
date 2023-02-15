@@ -8,7 +8,7 @@ interface IModalProps {
   children: React.ReactNode,
 }
 
-const Modal: React.FC<IModalProps> = ({ title, children }: IModalProps) => {
+const Modal: React.FC<IModalProps> = ({ title, children }) => {
   const dispatch = useAppDispatch();
 
   return (

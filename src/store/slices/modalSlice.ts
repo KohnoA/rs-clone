@@ -1,10 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { ModalContent } from '../../constants/constants';
-
-interface IModalContext {
-  isOpen: boolean,
-  content: ModalContent | null,
-}
+import { IModalContext } from '../../types/types';
 
 const initialState: IModalContext = {
   isOpen: false,
