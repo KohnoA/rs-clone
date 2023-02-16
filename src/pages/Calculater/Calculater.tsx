@@ -2,48 +2,61 @@ import styles from './Calculater.module.scss';
 import axios from 'axios';
 import Button from '../../components/Button/Button';
 import { useState } from 'react';
-
-const NUTRITION_ANALYSIS_APP_ID = 'app_id=c1373a30'; // env
-const NUTRITION_ANALYSIS_APP_KEY = 'app_key=df20c251f90c957e7829cc43301294f5'; // env
-const NUTRITION_ANALYSIS_BASE_REQUEST = 'https://api.edamam.com/api/nutrition-data';
-const NUTRITION_ANALYSIS_TYPE_REQUEST = 'nutrition-type=cooking';
+import { INutritionFactsData } from '../../types/types';
+import { NUTRITION_ANALYSIS_APP_ID, NUTRITION_ANALYSIS_APP_KEY, NUTRITION_ANALYSIS_BASE_REQUEST } from '../../constants/constants';
+import Facts from './components/Facts/Facts';
 
 const Calculater: React.FC = () => {
   const [info, setInfo] = useState<boolean>(false);
   const [value, setValue] = useState<string>('');
   const [isEmpty, setIsEmpty] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
+  const [nutritionFactsData, setNutritionFactsData] = useState<null | INutritionFactsData>(null);
 
   const analizeHandler = () => {
     if (!value) {
       setIsEmpty(true);
-
+      
       return;
     }
-
+    
     setLoading(true);
-    dataRequest();
+    requestData();
   }
 
-  const dataRequest = async () => {
+  const requestData = async () => {
     try {
-      const urlValue = encodeURI(`ingr=${value}`);
-      const response = await axios.get(`${NUTRITION_ANALYSIS_BASE_REQUEST}?${NUTRITION_ANALYSIS_APP_ID}&${NUTRITION_ANALYSIS_APP_KEY}&${NUTRITION_ANALYSIS_TYPE_REQUEST}&${urlValue}`);
-      const data = response.data;
+      const {data} = await axios.post(
+        `${NUTRITION_ANALYSIS_BASE_REQUEST}?app_id=${NUTRITION_ANALYSIS_APP_ID}&app_key=${NUTRITION_ANALYSIS_APP_KEY}`, 
+        JSON.stringify({
+          title: 'recipe',
+          ingr: value.split('\r')
+        }), 
+        { 
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }
+      );
   
-      console.log(data);
-      setInfo(prev => !prev);
-      setLoading(false);
+      setNutritionFactsData(data);
+      setInfo(true);
 
     } catch (error) {
       if (error instanceof Error) console.error(error.message);
+
+    } finally {
+      setLoading(false);
     }
   }
 
+  const newRecipe = () => {
+    setValue('');
+    setInfo(false);
+  }
+
   return (
-    <div
-      className={ `container page ${styles.calculater}` }
-    >
+    <div className={ `container page ${styles.calculater}` }>
       <h2 className={ styles.title }>Calculater</h2>
 
       <div className={ styles.wrapper }>
@@ -70,10 +83,11 @@ const Calculater: React.FC = () => {
                   onFocus={ () => setIsEmpty(false) }
                 />
 
-                <Button text='Analize' onClick={ analizeHandler } />
+                { !info && <Button text='Analize' onClick={ analizeHandler } /> }
+                { info && <Button text='New recipe' onClick={ newRecipe } /> }
               </div>
 
-              { info && <div>Analitics data</div> }
+              { (info && nutritionFactsData) && <Facts data={ nutritionFactsData } /> }
             </div>
         }
       </div>

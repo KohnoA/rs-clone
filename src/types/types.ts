@@ -20,3 +20,7 @@ export interface IUserState {
   id: string | null,
   name: string | null,
 }
+
+export interface INutritionFactsData {
+  calories: number,
+}
