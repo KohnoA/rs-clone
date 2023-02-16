@@ -10,13 +10,19 @@ export interface IRecipesData {
     }
 }
 
+export interface IRecupesSearch {
+    hits: IRecipesData[];
+}
+
 export interface IRecipes {
     url: string;
 }
 
 export interface IRecipeInfo {
+    dishType?: string;
     label?: string;
-    image?: string;
+    image: string;
+    header?: string[];
     cuisineType?: string[];
     calories?: number;
     dietLabels?: string[]
@@ -75,7 +81,7 @@ export interface IRecipeCard {
     id?: string;
     header?: string;
     title?: string;
-    image?: string;
+    image: string;
     type?: string;
     typeIcon?: string;
     kcalIcon?: string;
