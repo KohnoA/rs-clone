@@ -9,6 +9,7 @@ import iconType from '../../../assets/icons/food.svg'
 import kcalIcon from '../../../assets/icons/kcal.svg'
 import styles from '../../../pages/Recipes/pageRecipes.module.scss'
 import { useLocation } from 'react-router-dom';
+import LazyLoader from '../../Loader/LazyLoader/LazyLoader';
 // import { foodAPI } from '../../../sevices/foodService';
 
 const RecipeList: React.FC<IRecipes> = ({url}: IRecipes) => {
@@ -90,9 +91,12 @@ const RecipeList: React.FC<IRecipes> = ({url}: IRecipes) => {
                           kcal={Math.round(Number(recipe.recipe.calories))}
                           title={recipe.recipe.label}
                     />)}
-                    {isPaginationLoad && <Loader/>}
                   <div ref={lastElement}></div>
+                  
               </div>
+              <div></div>
+              {isPaginationLoad && <div className={styles.paginationLoader}><Loader/></div>}
+
       </div>
 
     );
