@@ -11,16 +11,16 @@
         margin-bottom: 2em;
     }
 
-    &__wrapper {
-
-    }
-
     &__img {
 
     }
 
     &__headerWrapper {
 
+    }
+
+    ul {
+        list-style: none;
     }
 }
 
@@ -35,6 +35,9 @@
 
 .ingredients {
 
+    &__header {
+        font-size: 2em;
+    }
 }
 
 .nutrients {
@@ -47,4 +50,10 @@
     align-items: flex-start;
     justify-content: space-between;
     width: 60%;
+}
+
+.typesWrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
