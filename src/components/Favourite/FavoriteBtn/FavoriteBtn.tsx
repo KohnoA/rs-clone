@@ -1,45 +1,34 @@
-import {useState, createContext, useContext} from 'react';
+import {useState, createContext, useMemo, useContext, useCallback, MouseEvent as ReactMouseEvent} from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Context } from 'vm';
+import { getIsFavorite } from '../../../store/selectors/favoriteSelectors';
+import { favoriteSlice } from '../../../store/slices/favoriteSlice';
+import { RootState } from '../../../store/store';
 import styles from './FavoriteBtn.module.scss'
+
+interface IFavoriteBtnProps {
+    cardId: string;
+}
 
 export const FavoriteArrContext = createContext<Context>([])
 
-const FavouriteBtn = () => {
-    const favArr = useContext<Context>(FavoriteArrContext)
-    const [color, setColor] = useState('#E0E0E0')
-    const [isClick, setIsClick] = useState(false)
+const FavouriteBtn = ({cardId}: IFavoriteBtnProps) => {
+    const dispatch = useDispatch()
 
-    const changeColor = (): void => {
-        setIsClick(!isClick)
+    const isChecked = useSelector((state: RootState) => getIsFavorite(state, cardId))
+    const color = useMemo(() => isChecked ? '#ff4040' : '#E0E0E0', [isChecked])
 
-            if(!isClick) {
-                setColor('#ff4040')
-            } else {
-                setColor('#E0E0E0')
-        }
-    }
-    
-    const getFavotire = (event: EventTarget) => {
-        if(event instanceof Element) { 
-        const recipe = event.closest('div')?.parentNode as HTMLElement
-            if (isClick) {
-                const index = favArr.indexOf(recipe.id)
-                favArr.splice(index, 1)
-                console.log(favArr)
-            } else {
-                favArr.push(recipe.id)
-                console.log(favArr)
-            }
-        }        
-    }
+    const toggleFavorite = useCallback(
+        (event: ReactMouseEvent<HTMLButtonElement>) => {
+            event.stopPropagation()
+
+            dispatch(favoriteSlice.actions.toggleFavorite(cardId))
+        },
+        [cardId]
+    )
     
     return (
-       <button onClick={(event) => {
-        event.stopPropagation()
-        changeColor()
-        if(!event.target) return
-        getFavotire(event.target)
-       }} className={styles.favourite__btn}>
+       <button onClick={toggleFavorite} className={styles.favourite__btn}>
             <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
              width="1280.000000pt" height="1189.000000pt" viewBox="0 0 1280.000000 1189.000000"
              preserveAspectRatio="xMidYMid meet">
