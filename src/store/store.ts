@@ -1,14 +1,19 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import { foodAPI } from '../sevices/foodService';
+import { foodAPI } from '../sevices/foodService.api';
+import { favoriteSlice } from './slices/favoriteSlice';
+import { searchSlice } from './slices/searchSlice';
 
 // all reducers in one combine reducer
 const rootReducer = combineReducers({
     [foodAPI.reducerPath]: foodAPI.reducer,
+    favorite: favoriteSlice.reducer,
+    search: searchSlice.reducer
 });
 
 // initialize store with reducer and adding middleware
 export const setupStore = () => {
   return configureStore({
+    devTools: true,
     reducer: rootReducer,
     middleware: (getDefaultMiddleware) => {
       return getDefaultMiddleware().concat(foodAPI.middleware);
