@@ -3,7 +3,7 @@ interface IInfoItem {
     response: string[] | undefined;
 }
 
-const RecipeInfoItem: React.FC<IInfoItem> = ({header, response}: IInfoItem) => {
+const RecipeInfoItem: React.FC<IInfoItem> = ({header}: IInfoItem) => {
     return (
         <div>
             <h3>{header}</h3>
