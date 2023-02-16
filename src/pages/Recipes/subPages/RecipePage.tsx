@@ -21,7 +21,7 @@ const RecipePage: React.FC = () => {
     useEffect(() => {
         fetching()
     }, [])
-
+console.log(recipes)
     return (
         <div className={styles.recipeInfo__wrapper}>
         {error && 
