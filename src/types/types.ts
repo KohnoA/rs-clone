@@ -24,7 +24,13 @@ export interface IUserState {
 export interface INutritionFactsData {
   calories: number,
   totalNutrients: ITotalNutrients,
-  totalDaily: ITotalNutrients
+  totalDaily: ITotalNutrients,
+  ingredients: [
+    {
+      parsed: [IIngredients],
+      text: string
+    }
+  ]
 }
 
 export interface ITotalNutrients {
@@ -41,10 +47,19 @@ export interface ITotalNutrients {
   FE: ITotalNutrientsItem,
   K: ITotalNutrientsItem,
   FATRN: ITotalNutrientsItem,
+  ENERC_KCAL: ITotalNutrientsItem
 }
 
 export interface ITotalNutrientsItem {
   label: string,
   quantity: number,
   unit: string
+}
+
+export interface IIngredients {
+  quantity: number,
+  measure: string,
+  food: string,
+  weight: number,
+  nutrients: ITotalNutrients
 }

@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { INutritionFactsData } from '../../types/types';
 import { NUTRITION_ANALYSIS_APP_ID, NUTRITION_ANALYSIS_APP_KEY, NUTRITION_ANALYSIS_BASE_REQUEST } from '../../constants/constants';
 import Facts from './components/Facts/Facts';
+import Ingredients from './components/Ingredients/Ingredients';
 
 const Calculator: React.FC = () => {
   const [info, setInfo] = useState<boolean>(false);
@@ -76,12 +77,14 @@ const Calculator: React.FC = () => {
 
                 <textarea 
                   className={ styles.textarea } 
-                  rows={ 10 } 
+                  rows={ 12 } 
                   placeholder='1 cup rice...'
                   value={ value }
                   onChange={ (event) => setValue(event.target.value) }
                   onFocus={ () => setIsEmpty(false) }
                 />
+
+                { (info && nutritionFactsData) && <Ingredients data={ nutritionFactsData } /> }
 
                 <div>
                   <Button text='Analize' onClick={ analizeHandler } />
@@ -89,13 +92,7 @@ const Calculator: React.FC = () => {
                 </div>
               </div>
 
-              { (info && nutritionFactsData) && 
-                <Facts 
-                  calories={ nutritionFactsData.calories } 
-                  totalNutrients={ nutritionFactsData.totalNutrients }
-                  totalDaily={ nutritionFactsData.totalDaily }
-                /> 
-              }
+              { (info && nutritionFactsData) && <Facts data={ nutritionFactsData } /> }
             </div>
         }
       </div>
