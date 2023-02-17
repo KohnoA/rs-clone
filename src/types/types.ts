@@ -23,4 +23,27 @@ export interface IUserState {
 
 export interface INutritionFactsData {
   calories: number,
+  totalNutrients: ITotalNutrients,
+}
+
+export interface ITotalNutrients {
+  FAT: ITotalNutrientsItem,
+  FASAT: ITotalNutrientsItem,
+  CHOLE: ITotalNutrientsItem,
+  NA: ITotalNutrientsItem,
+  CHOCDF: ITotalNutrientsItem,
+  FIBTG: ITotalNutrientsItem,
+  SUGAR: ITotalNutrientsItem,
+  PROCNT: ITotalNutrientsItem,
+  VITD: ITotalNutrientsItem,
+  CA: ITotalNutrientsItem,
+  FE: ITotalNutrientsItem,
+  K: ITotalNutrientsItem,
+  FATRN: ITotalNutrientsItem,
+}
+
+export interface ITotalNutrientsItem {
+  label: string,
+  quantity: number,
+  unit: string
 }

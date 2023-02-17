@@ -83,11 +83,18 @@ const Calculator: React.FC = () => {
                   onFocus={ () => setIsEmpty(false) }
                 />
 
-                { !info && <Button text='Analize' onClick={ analizeHandler } /> }
-                { info && <Button text='New recipe' onClick={ newRecipe } /> }
+                <div>
+                  <Button text='Analize' onClick={ analizeHandler } />
+                  { info && <Button text='New recipe' onClick={ newRecipe } /> }
+                </div>
               </div>
 
-              { (info && nutritionFactsData) && <Facts data={ nutritionFactsData } /> }
+              { (info && nutritionFactsData) && 
+                <Facts 
+                  calories={ nutritionFactsData.calories } 
+                  totalNutrients={ nutritionFactsData.totalNutrients }
+                /> 
+              }
             </div>
         }
       </div>

@@ -14,9 +14,14 @@
   justify-content: space-between;
 }
 
-.borderTop {
+.infoItem {
+  margin-bottom: 8px;
   padding-top: 8px;
   border-top: 1px solid #cccccc8e;
+}
+
+.infoItemNest {
+  margin-left: 20px;
 }
 
 .title {
@@ -50,13 +55,14 @@
 }
 
 .dailyValue {
-  margin-bottom: 3px;
+  margin-bottom: 5px;
   font-size: .6rem;
   font-weight: 700;
   text-align: right;
 }
 
 .outro {
+  margin-top: 42px;
   font-size: .6rem;
   text-align: center;
 }
