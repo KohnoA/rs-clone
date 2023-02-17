@@ -3,6 +3,8 @@ import Navigation from '../Navigation/Navigation';
 import Search from '../Search/Search';
 import Logo from '../Logo/Logo';
 import Button from '../Button/Button';
+import { useSelector } from 'react-redux';
+import { getSearchList } from '../../store/selectors/searchSelectors';
 import Modal from '../Modal/Modal';
 import SignIn from '../userForms/SignIn';
 import SignUp from '../userForms/SignUp';
@@ -13,6 +15,9 @@ import { ModalContent } from '../../constants/constants';
 import { useAuth } from '../../hooks/useAuth';
 
 const Header: React.FC = () => {
+
+  const search = useSelector(getSearchList)
+
   const {isOpen, content} = useAppSelector(state => state.modal);
   const {isAuth} = useAuth();
   const dispatch = useAppDispatch();
@@ -29,7 +34,7 @@ const Header: React.FC = () => {
       className={ `container ${styles.header}` }
     >
       <Logo />
-      <Search />
+      <Search request={search} />
       <Navigation />
 
       <button className={ styles.header__add }>+</button>
