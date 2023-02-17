@@ -16,7 +16,6 @@ const RecipeCard: React.FC<IRecipeCard> = ({route, id, header, title, image, typ
                 <FavouriteBtn cardId={id!}/>
             </div>
             <LazyLoader src={image} alt='recipe image' />
-                {/* <img className={styles.card__img} src={image} alt='recipe image'/> */}
                 <div className={styles.cardParams__wrapper}>
                     <div className={styles.cardParams__item}>
                     <img className={styles.cardParams__img} src={typeIcon} />
