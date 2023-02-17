@@ -2,11 +2,7 @@
 import { FetchBaseQueryError } from '@reduxjs/toolkit/dist/query';
 import { useState } from 'react';
 // import { array } from 'yargs';
-<<<<<<< HEAD
 import { foodAPI } from '../sevices/foodService.api';
-=======
-import { foodAPI } from '../sevices/foodService';
->>>>>>> 4b288f03306da722acefbcbfd4f8353b0c8a8d14
 
 
 export const Example = () => {
