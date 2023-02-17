@@ -1,4 +1,4 @@
-import {useState, createContext, useMemo, useContext, useCallback, MouseEvent as ReactMouseEvent} from 'react';
+import { createContext, useMemo, useCallback, MouseEvent as ReactMouseEvent} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Context } from 'vm';
 import { getIsFavorite } from '../../../store/selectors/favoriteSelectors';
