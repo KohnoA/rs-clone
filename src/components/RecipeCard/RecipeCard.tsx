@@ -12,7 +12,7 @@ const RecipeCard: React.FC<IRecipeCard> = ({route, id, header, title, image, typ
         <div onClick={() => router(`/${route}/${id}`)} id={id} className={styles.card}>
             <div className={styles.card__headerPanel}>
                 <h3 className={styles.card__header}>{header}</h3>
-                <FavouriteBtn cardId={id}/>
+                <FavouriteBtn cardId={id!}/>
             </div>
             <LazyLoader src={image} alt='recipe image' />
                 {/* <img className={styles.card__img} src={image} alt='recipe image'/> */}
