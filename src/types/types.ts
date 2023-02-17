@@ -24,6 +24,7 @@ export interface IUserState {
 export interface INutritionFactsData {
   calories: number,
   totalNutrients: ITotalNutrients,
+  totalDaily: ITotalNutrients
 }
 
 export interface ITotalNutrients {

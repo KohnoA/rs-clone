@@ -4,14 +4,11 @@ import { INutritionFactsData, ITotalNutrientsItem } from '../../../../types/type
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface FactsProps extends INutritionFactsData {}
 
-const Facts: React.FC<FactsProps> = ({ calories, totalNutrients }) => {
-  console.log(calories);
-  console.log(totalNutrients);
-
+const Facts: React.FC<FactsProps> = ({ calories, totalNutrients, totalDaily }) => {
   const setNutritionInfo = (nutritionItem: ITotalNutrientsItem) => {
     if (!nutritionItem) return '-';
 
-    const quantity = nutritionItem.quantity.toFixed(1);
+    const quantity = Math.round(nutritionItem.quantity);
     const unit = nutritionItem.unit;
 
     return `${quantity} ${unit}`;
@@ -35,17 +32,17 @@ const Facts: React.FC<FactsProps> = ({ calories, totalNutrients }) => {
           <b>Total Fat </b> 
           { setNutritionInfo(totalNutrients?.FAT) }
         </span>
-        <b>28%</b>
+        <b>{ setNutritionInfo(totalDaily?.FAT) }</b>
       </div>
 
       <div className={ `${styles.spaceBetween} ${styles.infoItem} ${styles.infoItemNest}` }>
         <span>Saturated Fat { setNutritionInfo(totalNutrients?.FASAT) }</span>
-        <b>10%</b>
+        <b>{ setNutritionInfo(totalDaily?.FASAT) }</b>
       </div>
 
       <div className={ `${styles.spaceBetween} ${styles.infoItem} ${styles.infoItemNest}` }>
         <span>Trans Fat { setNutritionInfo(totalNutrients?.FATRN) }</span>
-        <b></b>
+        <b>{ setNutritionInfo(totalDaily?.FATRN) }</b>
       </div>
 
       <div className={ `${styles.spaceBetween} ${styles.infoItem}` }>
@@ -53,7 +50,7 @@ const Facts: React.FC<FactsProps> = ({ calories, totalNutrients }) => {
           <b>Cholesterol </b>
           { setNutritionInfo(totalNutrients?.CHOLE) }
         </span>
-        <b>0%</b>
+        <b>{ setNutritionInfo(totalDaily?.CHOLE) }</b>
       </div>
 
       <div className={ `${styles.spaceBetween} ${styles.infoItem}` }>
@@ -61,7 +58,7 @@ const Facts: React.FC<FactsProps> = ({ calories, totalNutrients }) => {
           <b>Sodium </b>
           { setNutritionInfo(totalNutrients?.NA) }
         </span>
-        <b>3%</b>
+        <b>{ setNutritionInfo(totalDaily?.NA) }</b>
       </div>
 
       <div className={ `${styles.spaceBetween} ${styles.infoItem}` }>
@@ -69,23 +66,21 @@ const Facts: React.FC<FactsProps> = ({ calories, totalNutrients }) => {
           <b>Total Carbohydrate </b>
           { setNutritionInfo(totalNutrients?.CHOCDF) }
         </span>
-        <b>111%</b>
+        <b>{ setNutritionInfo(totalDaily?.CHOCDF) }</b>
       </div>
 
       <div className={ `${styles.spaceBetween} ${styles.infoItem} ${styles.infoItemNest}` }>
         <span>Dietary Fiber { setNutritionInfo(totalNutrients?.FIBTG) }</span>
-        <b>138%</b>
+        <b>{ setNutritionInfo(totalDaily?.FIBTG) }</b>
       </div>
 
       <div className={ `${styles.spaceBetween} ${styles.infoItem} ${styles.infoItemNest}` }>
         <span>Total Sugars { setNutritionInfo(totalNutrients?.SUGAR) }</span>
-        <b></b>
+        <b>{ setNutritionInfo(totalDaily?.SUGAR) }</b>
       </div>
 
-      {/* !!!!!!!!!!!!!!!!!!! */}
       <div className={ `${styles.spaceBetween} ${styles.infoItem} ${styles.infoItemNest}` }>
         <span>Includes - Added Sugars</span>
-        <b></b>
       </div>
 
       <div className={ `${styles.spaceBetween} ${styles.infoItem}` }>
@@ -93,27 +88,27 @@ const Facts: React.FC<FactsProps> = ({ calories, totalNutrients }) => {
           <b>Protein </b>
           { setNutritionInfo(totalNutrients?.PROCNT) }
         </span>
-        <b>142%</b>
+        <b>{ setNutritionInfo(totalDaily?.PROCNT) }</b>
       </div>
 
       <div className={ `${styles.spaceBetween} ${styles.infoItem}` }>
         <span>Vitamin D { setNutritionInfo(totalNutrients?.VITD) }</span>
-        <b>0%</b>
+        <b>{ setNutritionInfo(totalDaily?.VITD) }</b>
       </div>
 
       <div className={ `${styles.spaceBetween} ${styles.infoItem}` }>
         <span>Calcium D { setNutritionInfo(totalNutrients?.CA) }</span>
-        <b>18%</b>
+        <b>{ setNutritionInfo(totalDaily?.CA) }</b>
       </div>
 
       <div className={ `${styles.spaceBetween} ${styles.infoItem}` }>
         <span>Iron { setNutritionInfo(totalNutrients?.FE) }</span>
-        <b>77%</b>
+        <b>{ setNutritionInfo(totalDaily?.FE) }</b>
       </div>
 
       <div className={ `${styles.spaceBetween} ${styles.infoItem}` }>
         <span>Potassium { setNutritionInfo(totalNutrients?.K) }</span>
-        <b>47%</b>
+        <b>{ setNutritionInfo(totalDaily?.K) }</b>
       </div>
 
       <p className={ styles.outro }>*Percent Daily Values are based on a 2000 calorie diet</p>

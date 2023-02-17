@@ -93,6 +93,7 @@ const Calculator: React.FC = () => {
                 <Facts 
                   calories={ nutritionFactsData.calories } 
                   totalNutrients={ nutritionFactsData.totalNutrients }
+                  totalDaily={ nutritionFactsData.totalDaily }
                 /> 
               }
             </div>
