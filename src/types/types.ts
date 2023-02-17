@@ -1,3 +1,5 @@
+import { ModalContent } from '../constants/constants';
+
 export interface IRecipesData {
     recipe: {
           uri: string;
@@ -89,6 +91,24 @@ export interface IRecipeCard {
     kcal?: number;
 }
 
-export interface IEmptyObject {
-    key?: string;
+
+export interface IUseInput {
+  value: string,
+  isValid: boolean,
+  isDirty: boolean,
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
+  onBlur: () => void,
+  clear: () => void
+}
+
+export interface IModalContext {
+  isOpen: boolean,
+  content: ModalContent | null,
+}
+
+export interface IUserState {
+  email: string | null,
+  token: string | null,
+  id: string | null,
+  name: string | null,
 }

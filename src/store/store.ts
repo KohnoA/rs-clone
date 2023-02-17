@@ -2,15 +2,17 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { foodAPI } from '../sevices/foodService.api';
 import { favoriteSlice } from './slices/favoriteSlice';
 import { searchSlice } from './slices/searchSlice';
+import userReducer from './slices/userSlice';
+import modalReducer from './slices/modalSlice';
 
-// all reducers in one combine reducer
 const rootReducer = combineReducers({
     [foodAPI.reducerPath]: foodAPI.reducer,
     favorite: favoriteSlice.reducer,
-    search: searchSlice.reducer
+    search: searchSlice.reducer,
+    user: userReducer,
+    modal: modalReducer,
 });
 
-// initialize store with reducer and adding middleware
 export const setupStore = () => {
   return configureStore({
     devTools: true,
@@ -21,6 +23,6 @@ export const setupStore = () => {
   });
 };
 
-export type RootState = ReturnType<typeof rootReducer>; // use in typed Selector, path: ../hooks/redux.ts
-type AppStore = ReturnType<typeof setupStore>; // 0
-export type AppDispatch = AppStore['dispatch']; // use in typed dispatch, path: ../hooks/redux.ts
+export type RootState = ReturnType<typeof rootReducer>;
+type AppStore = ReturnType<typeof setupStore>;
+export type AppDispatch = AppStore['dispatch'];

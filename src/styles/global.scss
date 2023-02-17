@@ -7,13 +7,6 @@
   box-sizing: border-box;
 }
 
-a, a:visited{
-    text-decoration: none;
-    color: black;
-}
-
-a:focus,a:active{outline: none;}
-
 html {
   scroll-behavior: smooth;
   font-size: 16px;
@@ -46,5 +39,5 @@ body {
 .container {
   max-width: 1400px;
   margin: 0 auto;
-  padding-inline: 15px;
+  padding: 0 15px;
 }
