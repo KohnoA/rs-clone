@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { useNavigate } from 'react-router-dom';
 import { IRecipeCard } from '../../types/types';
 import FavouriteBtn from '../Favourite/FavoriteBtn/FavoriteBtn';
