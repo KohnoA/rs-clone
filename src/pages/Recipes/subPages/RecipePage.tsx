@@ -29,6 +29,7 @@ console.log(recipes)
         {isLoading
             ? <Loader/>
             : <RecipeInfo
+                id={params.id}
                 label={recipes.label}
                 image={recipes.image}
                 calories={recipes.calories}
