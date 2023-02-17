@@ -19,9 +19,10 @@ export interface IRecipes {
 }
 
 export interface IRecipeInfo {
+    id?: string;
     dishType?: string;
     label?: string;
-    image: string;
+    image?: string;
     header?: string[];
     cuisineType?: string[];
     calories?: number;
@@ -81,9 +82,13 @@ export interface IRecipeCard {
     id?: string;
     header?: string;
     title?: string;
-    image: string;
+    image?: string;
     type?: string;
     typeIcon?: string;
     kcalIcon?: string;
     kcal?: number;
+}
+
+export interface IEmptyObject {
+    key?: string;
 }
