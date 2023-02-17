@@ -6,7 +6,6 @@ import Constructor from './pages/Constructor/Constructor';
 import Articles from './pages/Articles/Articles';
 import AboutUs from './pages/AboutUs/AboutUs';
 import PageNotFound from './pages/404/404';
-import { Example } from './components/exampleRequest';
 
 function App() {
   return (
@@ -20,8 +19,6 @@ function App() {
         <Route path='/articles' element={ <Articles /> } />
         <Route path='/about' element={ <AboutUs /> } />
       </Routes>
-      {}
-      <Example/>
 
       <Footer />
     </>

@@ -19,12 +19,6 @@ export const foodAPI = createApi({
       }),
     }),
 
-    // fetchNutrientsFood: build.mutation({
-    //   query: () => ({
-    //     url: `/${NUTRIENTS}`,
-    //   }),
-    // }),
-
     fetchRecipesStart: build.query<IRecipes, string>({
         query: () => ({
             url: `/${API.RECIPES}`,

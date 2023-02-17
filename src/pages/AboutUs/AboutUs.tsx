@@ -1,4 +1,4 @@
-import { Title } from '../../components/title/title';
+import { Title } from '../../components/Title/title';
 import image from '../../assets/images/person-avatar-placeholder.png';
 import { ImageBlock } from '../../components/image-block/image-block';
 import { GITHUB_ACCOUNTS } from '../../constants/constants';
@@ -11,7 +11,7 @@ const ANOTHER = ['Developed the front-end of the project: made layouts of most o
 const AboutUs: React.FC = () => {
   return (
     <div className="container page about-page">
-      <Title>About Us</Title>
+      <Title text='About Us'/>
       {NAME.map((_, i) => {
         return <ImageBlock
                     key={i}
