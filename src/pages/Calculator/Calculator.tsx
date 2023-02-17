@@ -3,25 +3,33 @@ import axios from 'axios';
 import Button from '../../components/Button/Button';
 import { useState } from 'react';
 import { INutritionFactsData } from '../../types/types';
-import { NUTRITION_ANALYSIS_APP_ID, NUTRITION_ANALYSIS_APP_KEY, NUTRITION_ANALYSIS_BASE_REQUEST } from '../../constants/constants';
+import { CalculatorErrorMessage, NUTRITION_ANALYSIS_APP_ID, NUTRITION_ANALYSIS_APP_KEY, NUTRITION_ANALYSIS_BASE_REQUEST } from '../../constants/constants';
 import Facts from './components/Facts/Facts';
 import Ingredients from './components/Ingredients/Ingredients';
 
 const Calculator: React.FC = () => {
   const [info, setInfo] = useState<boolean>(false);
   const [value, setValue] = useState<string>('');
-  const [isEmpty, setIsEmpty] = useState<boolean>(false);
+  const [prevValue, setPrevValue] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<CalculatorErrorMessage>(CalculatorErrorMessage.none);
   const [nutritionFactsData, setNutritionFactsData] = useState<null | INutritionFactsData>(null);
 
   const analizeHandler = () => {
     if (!value) {
-      setIsEmpty(true);
+      setError(CalculatorErrorMessage.empty);
       
+      return;
+    }
+
+    if (value === prevValue) {
+      setError(CalculatorErrorMessage.duplicateRequest);
+
       return;
     }
     
     setLoading(true);
+    setPrevValue(value);
     requestData();
   }
 
@@ -45,6 +53,7 @@ const Calculator: React.FC = () => {
 
     } catch (error) {
       if (error instanceof Error) console.error(error.message);
+      setError(CalculatorErrorMessage.requestError);
 
     } finally {
       setLoading(false);
@@ -71,8 +80,8 @@ const Calculator: React.FC = () => {
           ? <div className={ styles.loading }></div>
           : <div className={ styles.wrapper2Columns }>
               <div className={ styles.controls }>
-                <p className={ `${styles.error} ${isEmpty ? styles.errorShow : ''}` }>
-                  Please fill in the field!
+                <p className={ `${styles.error} ${error ? styles.errorShow : ''}` }>
+                  { error }
                 </p>
 
                 <textarea 
@@ -81,7 +90,7 @@ const Calculator: React.FC = () => {
                   placeholder='1 cup rice...'
                   value={ value }
                   onChange={ (event) => setValue(event.target.value) }
-                  onFocus={ () => setIsEmpty(false) }
+                  onFocus={ () => setError(CalculatorErrorMessage.none) }
                 />
 
                 { (info && nutritionFactsData) && <Ingredients data={ nutritionFactsData } /> }

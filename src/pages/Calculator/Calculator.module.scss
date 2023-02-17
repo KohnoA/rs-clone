@@ -32,6 +32,8 @@
 
 .selectText {
   color: $appColorActive;
+  font-weight: 700;
+  font-style: italic;
 }
 
 .wrapper2Columns {
@@ -65,9 +67,11 @@
 }
 
 .error {
+  min-height: 20px;
   visibility: hidden;
   margin-bottom: 10px;
   color: red;
+  text-align: center;
 }
 
 .errorShow {
