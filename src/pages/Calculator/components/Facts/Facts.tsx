@@ -21,11 +21,11 @@ const Facts: React.FC<FactsProps> = ({ data }) => {
 
       <p className={ styles.dailyValue }>% Daily Value*</p>
 
-      <div className={ styles.spaceBetween }>
-        <span><span className={ styles.highlight }>Total Fat</span> 18.3 g</span>
-        <span className={ styles.highlight }>28%</span>
+      <div className={ `${styles.spaceBetween} ${styles.borderTop}` }>
+        <span><b>Total Fat</b> 18.3 g</span>
+        <b>28%</b>
       </div>
-      
+
       <p className={ styles.outro }>*Percent Daily Values are based on a 2000 calorie diet</p>
     </div> 
   );

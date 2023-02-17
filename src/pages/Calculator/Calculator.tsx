@@ -1,4 +1,4 @@
-import styles from './Calculater.module.scss';
+import styles from './Calculator.module.scss';
 import axios from 'axios';
 import Button from '../../components/Button/Button';
 import { useState } from 'react';
@@ -6,7 +6,7 @@ import { INutritionFactsData } from '../../types/types';
 import { NUTRITION_ANALYSIS_APP_ID, NUTRITION_ANALYSIS_APP_KEY, NUTRITION_ANALYSIS_BASE_REQUEST } from '../../constants/constants';
 import Facts from './components/Facts/Facts';
 
-const Calculater: React.FC = () => {
+const Calculator: React.FC = () => {
   const [info, setInfo] = useState<boolean>(false);
   const [value, setValue] = useState<string>('');
   const [isEmpty, setIsEmpty] = useState<boolean>(false);
@@ -30,7 +30,7 @@ const Calculater: React.FC = () => {
         `${NUTRITION_ANALYSIS_BASE_REQUEST}?app_id=${NUTRITION_ANALYSIS_APP_ID}&app_key=${NUTRITION_ANALYSIS_APP_KEY}`, 
         JSON.stringify({
           title: 'recipe',
-          ingr: value.split('\r')
+          ingr: value.split('\n')
         }), 
         { 
           headers: {
@@ -57,7 +57,7 @@ const Calculater: React.FC = () => {
 
   return (
     <div className={ `container page ${styles.calculater}` }>
-      <h2 className={ styles.title }>Calculater</h2>
+      <h2 className={ styles.title }>Calculator</h2>
 
       <div className={ styles.wrapper }>
         <p className={ styles.description }>
@@ -95,4 +95,4 @@ const Calculater: React.FC = () => {
   )
 }
 
-export default Calculater;
+export default Calculator;

@@ -3,7 +3,7 @@ import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import Recipes from './pages/Recipes/Recipes';
 import Constructor from './pages/Constructor/Constructor';
-import Calculater from './pages/Calculater/Calculater';
+import Calculator from './pages/Calculator/Calculator';
 import AboutUs from './pages/AboutUs/AboutUs';
 import PageNotFound from './pages/404/404';
 // import { Example } from './components/exampleRequest';
@@ -34,7 +34,7 @@ function App() {
         <Route path='*' element={ <PageNotFound /> } />
         <Route path='/' element={ <Recipes /> } />
         <Route path='/constructor' element={ <Constructor /> } />
-        <Route path='/calculater' element={ <Calculater /> } />
+        <Route path='/calculator' element={ <Calculator /> } />
         <Route path='/about' element={ <AboutUs /> } />
       </Routes>
 
