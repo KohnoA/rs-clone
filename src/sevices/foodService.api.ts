@@ -1,7 +1,8 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import * as API from '../constants/foodApi';
 import { IFoodApi } from '../models/IFood';
 import { IRecipes } from '../models/IRecipes';
+import { IRecupesSearch } from '../types/types';
 
 export const foodAPI = createApi({
   reducerPath: 'foodAPI',
@@ -45,7 +46,19 @@ export const foodAPI = createApi({
         }),
     }),
 
-    // fetchRecipes:
+    fetchRecipes: build.query<IRecupesSearch, string>({
+      query:(recipe: string) => ({
+        url: `/${API.RECIPES}`,
+        params: {
+          type: API.TYPE,
+          q: recipe,
+          ['app_id']: API.ID_RECIPES,
+          ['app_key']: API.API_KEY_RECIPES,
+        },
+      }),
+    }),
 
   }),
 });
+
+export const {useFetchAllFoodQuery, useFetchRecipesQuery, useFetchRecipesStartQuery, useFetchRecipesWithParamsQuery} = foodAPI

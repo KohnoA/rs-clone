@@ -2,13 +2,23 @@ export interface IRecipes {
     from: number,
     to: number,
     count: number,
-    links: {},
+    links: {
+        next: {
+            href: string;
+            title: string;
+        }
+    },
     hints: IRecipe[],
 }
 
 interface IRecipe {
     recipe: IRecipeData,
-    links: {},
+    links: {
+        self: {
+            href: string;
+            title: string;
+        }
+    },
 }
 
 interface IRecipeData {
@@ -30,8 +40,8 @@ interface IRecipeData {
     cuisineType: string[],
     mealType: string[],
     dishType: string[],
-    totalNutrients: {},
-    totalDaily: {},
+    totalNutrients: ITotalNutrientsItem,
+    totalDaily: ITotalDailiItem,
     digest: [],
 
 }
@@ -57,4 +67,76 @@ interface Ingredients {
     foodCategory: string,
     foodId: string,
     image: string | null,
+}
+
+interface ITotalNutrientsDesc {
+    label: string;
+    quantity: number;
+    unit: string;
+}
+
+interface ITotalNutrientsItem {
+        ENERC_KCAL:ITotalNutrientsDesc;
+        FAT:ITotalNutrientsDesc;
+        FASAT:ITotalNutrientsDesc;
+        FATRN:ITotalNutrientsDesc;
+        FAMS:ITotalNutrientsDesc;
+        FAPU:ITotalNutrientsDesc;
+        CHOCDF:ITotalNutrientsDesc;
+        CHOCDF_net:ITotalNutrientsDesc;
+        FIBTG:ITotalNutrientsDesc;
+        SUGAR:ITotalNutrientsDesc;
+        SUGAR_added:ITotalNutrientsDesc;
+        PROCNT:ITotalNutrientsDesc;
+        CHOLE:ITotalNutrientsDesc;
+        NA:ITotalNutrientsDesc;
+        CA:ITotalNutrientsDesc;
+        MG:ITotalNutrientsDesc;
+        K:ITotalNutrientsDesc;
+        FE:ITotalNutrientsDesc;
+        ZN:ITotalNutrientsDesc;
+        P:ITotalNutrientsDesc;
+        VITA_RAE:ITotalNutrientsDesc;
+        VITC:ITotalNutrientsDesc;
+        THIA:ITotalNutrientsDesc;
+        RIBF:ITotalNutrientsDesc;
+        NIA:ITotalNutrientsDesc;
+        VITB6A:ITotalNutrientsDesc;
+        FOLDFE:ITotalNutrientsDesc;
+        FOLFD:ITotalNutrientsDesc;
+        FOLAC:ITotalNutrientsDesc;
+        VITB12:ITotalNutrientsDesc;
+        VITD:ITotalNutrientsDesc;
+        TOCPHA:ITotalNutrientsDesc;
+        VITK1:ITotalNutrientsDesc;
+        Sugar_alcohol:ITotalNutrientsDesc;
+        WATER:ITotalNutrientsDesc;
+}
+
+interface ITotalDailiItem {
+        ENERC_KCAL:ITotalNutrientsDesc;
+        FAT:ITotalNutrientsDesc;
+        FASAT:ITotalNutrientsDesc;
+        CHOCDF:ITotalNutrientsDesc;
+        FIBTG:ITotalNutrientsDesc;
+        PROCNT:ITotalNutrientsDesc;
+        CHOLE:ITotalNutrientsDesc;
+        NA:ITotalNutrientsDesc;
+        CA:ITotalNutrientsDesc;
+        MG:ITotalNutrientsDesc;
+        K:ITotalNutrientsDesc;
+        FE:ITotalNutrientsDesc;
+        ZN:ITotalNutrientsDesc;
+        P:ITotalNutrientsDesc;
+        VITA_RAE:ITotalNutrientsDesc;
+        VITC:ITotalNutrientsDesc;
+        THIA:ITotalNutrientsDesc;
+        RIBF:ITotalNutrientsDesc;
+        NIA:ITotalNutrientsDesc;
+        VITB6A:ITotalNutrientsDesc;
+        FOLDFE:ITotalNutrientsDesc;
+        VITB12:ITotalNutrientsDesc;
+        VITD:ITotalNutrientsDesc;
+        TOCPHA:ITotalNutrientsDesc;
+        VITK1:ITotalNutrientsDesc;
 }

@@ -5,6 +5,7 @@ import './styles/global.scss';
 import App from './App';
 import { Provider } from 'react-redux';
 import { setupStore } from './store/store';
+import './firebase';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -13,11 +14,11 @@ const root = ReactDOM.createRoot(
 const store = setupStore();
 
 root.render(
-  <BrowserRouter>
-    <React.StrictMode>
+  <React.StrictMode>
+    <BrowserRouter>
       <Provider store={store}>
         <App />
       </Provider>
-    </React.StrictMode>
-  </BrowserRouter>
+    </BrowserRouter>
+  </React.StrictMode>
 );

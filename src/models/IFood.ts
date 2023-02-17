@@ -1,9 +1,15 @@
+
 // Complete food interface from api
 export interface IFoodApi {
     hints: IFoodMeasures[],
     parsed: [],
     text: string,
-    links: {},
+    links: {
+        next: {
+            href: string;
+            title: string;
+        }
+    },
 }
 
 interface IFoodMeasures {

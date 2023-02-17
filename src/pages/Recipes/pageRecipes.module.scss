@@ -1,0 +1,23 @@
+
+.pageRecipes {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
+
+.recipesWrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2em;
+    padding: 2em;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+.paginationLoader {
+    position: relative;
+    top: -25%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 3em;
+}

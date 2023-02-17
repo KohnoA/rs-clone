@@ -1,0 +1,79 @@
+@import '../../styles/variables.scss';
+
+.profile {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  padding: 3px 15px;
+  transition: .2s;
+
+  background-color: $secondAppColor;
+  border-radius: 15px;
+
+  &:hover {
+    cursor: pointer;
+    opacity: .7;
+  }
+
+  &:active {
+    opacity: .6;
+  }
+
+  &__image {
+    width: 32px;
+    height: 32px;
+
+    margin-left: 15px;
+
+    background-image: url('../../assets/icons/user.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
+  &__select {
+    position: absolute;
+
+    top: 38px;
+    right: 0;
+
+    width: 100%;
+    padding: 0 15px 10px 15px;
+
+    background-color: $secondAppColor;
+    border-radius: 0 0 15px 15px;
+  }
+
+  &__item {
+    margin-bottom: 5px;
+    transition: .2s;
+
+    &:first-child {
+      padding-top: 10px;
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &:hover {
+      cursor: pointer;
+      color: rgba(0, 0, 0, 0.4);
+    }
+  }
+
+  &__active {
+    border-radius: 15px 15px 0 0;
+
+    &:hover {
+      opacity: initial;
+    }
+  
+    &:active {
+      opacity: initial;
+    }
+  }
+}
