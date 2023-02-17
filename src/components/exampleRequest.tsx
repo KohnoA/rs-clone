@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { FetchBaseQueryError } from '@reduxjs/toolkit/dist/query';
 import { useState } from 'react';
-import { array } from 'yargs';
+// import { array } from 'yargs';
 import { foodAPI } from '../sevices/foodService.api';
 
 
