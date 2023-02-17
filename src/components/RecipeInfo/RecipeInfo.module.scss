@@ -28,7 +28,7 @@
         border-radius: 10px;
         display: flex;
         flex-direction: column;
-        align-items: start;
+        align-items: flex-start;
         gap: 1em;
         box-shadow: 0 0 15px 2px $appColorHover;
         width: 100%;
@@ -89,7 +89,7 @@
 .infoWrapper {
     display: flex;
     flex-direction: column;
-    align-items: start;
+    align-items: flex-start;
     height: max-content;
     gap: 4em;
     position: relative;
