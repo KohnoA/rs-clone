@@ -1,14 +1,14 @@
-import { useState, useEffect, useCallback, MouseEvent as ReactMouseEvent } from 'react';
+import { useState, useCallback, MouseEvent as ReactMouseEvent } from 'react';
 import useDebounce from '../../hooks/useDebounce';
 import { useFetchRecipesQuery } from '../../sevices/foodService.api';
 import RecipeCard from '../RecipeCard/RecipeCard';
 import styles from './Search.module.scss';
 import kcalIcon from '../../assets/icons/kcal.svg'
 import iconType from '../../assets/icons/food.svg'
-import { IRecipesData, IRecipeInfo } from '../../types/types';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
-import { getSearchList } from '../../store/selectors/searchSelectors';
+import { IRecipesData } from '../../types/types';
+import { useDispatch } from 'react-redux';
+// import { RootState } from '../../store/store';
+// import { getSearchList } from '../../store/selectors/searchSelectors';
 import { searchSlice } from '../../store/slices/searchSlice';
 
 interface ISearch {
@@ -20,6 +20,7 @@ const Search: React.FC<ISearch> = ({request}: ISearch) => {
   const [searchList, setSearchList] = useState(false)
   const debounced = useDebounce(value)
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const {isLoading, isError, data} = useFetchRecipesQuery(debounced, {
     skip: debounced.length < 3
   })
