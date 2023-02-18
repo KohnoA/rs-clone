@@ -1,0 +1,26 @@
+.favourite__btn {
+    border: none;
+    background-color: transparent;
+    cursor: cell;
+    position: absolute;
+    top: 22%;
+    right: 5%;
+    width: 35px;
+    height: 35px;
+
+    * {
+        width: 35px;
+        height: 35px;
+    }
+
+    g {
+        background-color: #E0E0E0;
+    }
+}
+
+.favourite__btn_active {
+    
+    g {
+        background-color: darkred;
+    }
+}
