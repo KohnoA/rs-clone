@@ -112,3 +112,46 @@ export interface IUserState {
   id: string | null,
   name: string | null,
 }
+
+export interface INutritionFactsData {
+  calories: number,
+  totalNutrients: ITotalNutrients,
+  totalDaily: ITotalNutrients,
+  ingredients: [
+    {
+      parsed: [IIngredients],
+      text: string
+    }
+  ]
+}
+
+export interface ITotalNutrients {
+  FAT: ITotalNutrientsItem,
+  FASAT: ITotalNutrientsItem,
+  CHOLE: ITotalNutrientsItem,
+  NA: ITotalNutrientsItem,
+  CHOCDF: ITotalNutrientsItem,
+  FIBTG: ITotalNutrientsItem,
+  SUGAR: ITotalNutrientsItem,
+  PROCNT: ITotalNutrientsItem,
+  VITD: ITotalNutrientsItem,
+  CA: ITotalNutrientsItem,
+  FE: ITotalNutrientsItem,
+  K: ITotalNutrientsItem,
+  FATRN: ITotalNutrientsItem,
+  ENERC_KCAL: ITotalNutrientsItem
+}
+
+export interface ITotalNutrientsItem {
+  label: string,
+  quantity: number,
+  unit: string
+}
+
+export interface IIngredients {
+  quantity: number,
+  measure: string,
+  food: string,
+  weight: number,
+  nutrients: ITotalNutrients
+}
