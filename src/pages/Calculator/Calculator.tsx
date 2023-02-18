@@ -70,11 +70,13 @@ const Calculator: React.FC = () => {
       <h2 className={ styles.title }>Calculator</h2>
 
       <div className={ styles.wrapper }>
-        <p className={ styles.description }>
+        <div className={ styles.description }>
+          This is an IEAT-calculator. After specifying the ingredients,&nbsp;
+          it will analyze them and show you the total calories, as well as other useful information.&nbsp;
           Enter an ingredient list list for what you are cooking, like&nbsp;
           <span className={ styles.selectText }>&ldquo;1 cup rice, 10 oz chickpeas&ldquo;</span>, 
           etc. Enter each ingredient on a new line.
-        </p>
+        </div>
 
         { loading 
           ? <div className={ styles.loading }></div>
