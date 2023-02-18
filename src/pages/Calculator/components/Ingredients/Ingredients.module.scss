@@ -10,6 +10,7 @@
   box-shadow: 1px 3px 8px 2px #ddd;
   overflow: hidden;
   border-collapse: collapse;
+  outline: 1px solid #ccc;
 
   th {
     background-color: $appColor;
@@ -23,7 +24,7 @@
   }
 
   tr {
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #ccc;
 
     &:last-child {
       border-bottom: none;
