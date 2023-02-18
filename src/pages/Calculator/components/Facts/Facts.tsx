@@ -66,7 +66,7 @@ const Facts: React.FC<FactsProps> = ({ data }) => {
 
       <div className={ `${styles.spaceBetween} ${styles.infoItem}` }>
         <span>
-          <b>Total Carbohydrate: </b>
+          <b>Carbohydrate: </b>
           { setNutritionInfo(totalNutrients?.CHOCDF) }
         </span>
         <b>{ setNutritionInfo(totalDaily?.CHOCDF, true) }</b>
