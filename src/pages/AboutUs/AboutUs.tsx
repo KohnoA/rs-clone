@@ -1,4 +1,4 @@
-import { Title } from '../../components/title/title';
+import { Title } from '../../components/Title/Title';
 import image from '../../assets/images/person-avatar-placeholder.png';
 import { ImageBlock } from '../../components/image-block/image-block';
 import { GITHUB_ACCOUNTS } from '../../constants/constants';
