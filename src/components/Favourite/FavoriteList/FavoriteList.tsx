@@ -17,11 +17,10 @@ const FavoriteList: React.FC<IRecipes> = ({url}: IRecipes) => {
         setRecipes(response.recipe)
     })
 
-    
     useEffect(() => {
         fetchingRecipes()
     }, [])
-    
+
     const id = useMemo(() => {
         const mainLink = recipes.uri
         if (!mainLink) return
@@ -33,23 +32,22 @@ const FavoriteList: React.FC<IRecipes> = ({url}: IRecipes) => {
 
     return (
         <div className={styles.favoritePage__wrapper}>
-        {errorRecipes && 
-            <div className={styles.wrapperCard}><h1>Error has occured. {errorRecipes}</h1></div>}
-            {isRecipesLoading &&
-                   <LoaderFav/>}
-                   {}
-                          <RecipeCard  
-                          route='favorite'
-                          key={1}                          
-                          id={id}
-                          header={recipes.cuisineType}
-                          image={recipes.image}
-                          type={recipes.dishType}
-                          typeIcon={iconType}
-                          kcalIcon={kcalIcon}
-                          kcal={Math.round(Number(recipes.calories))}
-                          title={recipes.label}
-                    />
+        {errorRecipes &&
+          <div className={styles.wrapperCard}><h1>Error has occured. {errorRecipes}</h1></div>}
+          {isRecipesLoading &&
+          <LoaderFav/>}
+            <RecipeCard
+               route='favorite'
+               key={1}
+               id={id}
+               header={recipes.cuisineType}
+               image={recipes.image}
+               type={recipes.dishType}
+               typeIcon={iconType}
+               kcalIcon={kcalIcon}
+               kcal={Math.round(Number(recipes.calories))}
+               title={recipes.label}
+            />
         </div>
     );
 };

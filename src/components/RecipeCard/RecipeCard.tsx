@@ -8,7 +8,7 @@ import styles from './RecipeCard.module.scss'
 const RecipeCard: React.FC<IRecipeCard> = ({route, id, header, title, image, type = 'happy meal', typeIcon, kcalIcon, kcal}: IRecipeCard) => {
 
     const router = useNavigate()
-  
+
     return (
         <div onClick={() => router(`/${route}/${id}`)} id={id} className={styles.card}>
             <div className={styles.card__headerPanel}>

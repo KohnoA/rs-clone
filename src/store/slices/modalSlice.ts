@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IModalContext } from '../../types/types';
 
 const initialState: IModalContext = {
@@ -6,11 +6,11 @@ const initialState: IModalContext = {
   content: null,
 };
 
-const modalSlice = createSlice({
+export const modalSlice = createSlice({
   name: 'modal',
   initialState,
   reducers: {
-    openModal(state, action) {
+    openModal(state, action: PayloadAction<any>) {
       state.isOpen = true;
       state.content = action.payload.content;
     },

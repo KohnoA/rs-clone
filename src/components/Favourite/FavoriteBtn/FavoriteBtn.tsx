@@ -1,8 +1,10 @@
-import { createContext, useMemo, useCallback, MouseEvent as ReactMouseEvent} from 'react';
+import { useMemo, useCallback, MouseEvent as ReactMouseEvent} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Context } from 'vm';
+import { ModalContent } from '../../../constants/constants';
+import { useAuth } from '../../../hooks/useAuth';
 import { getIsFavorite } from '../../../store/selectors/favoriteSelectors';
 import { favoriteSlice } from '../../../store/slices/favoriteSlice';
+import { openModal } from '../../../store/slices/modalSlice';
 import { RootState } from '../../../store/store';
 import styles from './FavoriteBtn.module.scss'
 
@@ -10,25 +12,43 @@ interface IFavoriteBtnProps {
     cardId: string;
 }
 
-export const FavoriteArrContext = createContext<Context>([])
-
 const FavouriteBtn = ({cardId}: IFavoriteBtnProps) => {
     const dispatch = useDispatch()
-
-    const isChecked = useSelector((state: RootState) => getIsFavorite(state, cardId))
-    const color = useMemo(() => isChecked ? '#ff4040' : '#E0E0E0', [isChecked])
+    const {isAuth} = useAuth()
 
     const toggleFavorite = useCallback(
-        (event: ReactMouseEvent<HTMLButtonElement>) => {
-            event.stopPropagation()
-
+        () => {
             dispatch(favoriteSlice.actions.toggleFavorite(cardId))
         },
         [cardId]
     )
-    
+
+    const checkAuthForFavorite = (event: ReactMouseEvent<HTMLButtonElement>) => {
+        event.stopPropagation()
+
+        if(!isAuth) {
+        dispatch(openModal({
+          isOpen: true,
+          content: ModalContent.signIn,
+        }))
+        }  else {
+            toggleFavorite()
+        }
+      }
+
+      let isChecked: boolean
+      let color: string
+
+      if(isAuth) {
+         isChecked = useSelector((state: RootState) => getIsFavorite(state, cardId))
+         color = useMemo(() => isChecked ? '#ff4040' : '#E0E0E0', [isChecked])
+    } else {
+        isChecked = useSelector(() => false)
+        color = useMemo(() => '#E0E0E0', [isChecked])
+    }
+
     return (
-       <button onClick={toggleFavorite} className={styles.favourite__btn}>
+       <button onClick={checkAuthForFavorite} className={styles.favourite__btn}>
             <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
              width="1280.000000pt" height="1189.000000pt" viewBox="0 0 1280.000000 1189.000000"
              preserveAspectRatio="xMidYMid meet">
