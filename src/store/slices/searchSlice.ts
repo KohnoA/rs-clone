@@ -1,24 +1,29 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface ISearchState {
-    searchList: string;
+    search: string;
+    isEditing: boolean;
 }
 
-const initialState = (): ISearchState => {
-    const searchList = '';
-    return {searchList}
+const initialState: ISearchState = {
+    search: '',
+    isEditing: false,
 }
 
 export const searchSlice = createSlice({
     name: 'searchSlice',
     initialState: initialState,
     reducers: {
-        searchRecipe(state, action: PayloadAction<string>) {
-            let list = state.searchList;
-            const request = action.payload
-
-            list = `${request}`
-            console.log(list)
+        setSearch(state, action: PayloadAction<string>) {
+           state.search = action.payload
+           state.isEditing = true
+        },
+        setIsEditing(state, action: PayloadAction<boolean>) {
+            state.isEditing = action.payload
+        },
+        resetSearch(state) {
+            state.search = ''
+            state.isEditing = false
         }
     }
 })
