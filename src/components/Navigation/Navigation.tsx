@@ -5,7 +5,7 @@ const Navigation: React.FC = () => {
   return (
     <nav className={ styles.navigation }>
       <Link to="/constructor" className={ styles.navigation__item }>Constructor</Link>
-      <Link to="/articles" className={ styles.navigation__item }>Articles</Link>
+      <Link to="/calculator" className={ styles.navigation__item }>Calculator</Link>
       <Link to="/about" className={ styles.navigation__item }>About Us</Link>
     </nav>
   );

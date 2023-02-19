@@ -1,0 +1,33 @@
+@import '../../../../styles/variables.scss'; 
+
+.table {
+  width: 100%;
+  margin-bottom: 30px;
+  padding: 15px;
+
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 1px 3px 8px 2px #ddd;
+  overflow: hidden;
+  border-collapse: collapse;
+  outline: 1px solid #ccc;
+
+  th {
+    background-color: $appColor;
+  }
+
+  td, th {
+    padding: 10px 8px;
+    margin-bottom: 5px;
+
+    text-align: center;
+  }
+
+  tr {
+    border-bottom: 1px solid #ccc;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+}
