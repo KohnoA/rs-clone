@@ -15,7 +15,6 @@ const RecipeInfo: React.FC<IRecipeInfo> = ({...props}: IRecipeInfo) => {
                  <h1 className={styles.recipeInfo__header}>{props.label}</h1>
                 <FavouriteBtn cardId={props.id!}/>
                </div>
-                {/* <img className={styles.recipeInfo__img} src={props.image} alt="recipe" /> */}
             <LazyLoader className={styles.recipeImg} src={props.image} alt='recipe image' />
             </div>
             <div className={styles.infoWrapper}>
@@ -25,7 +24,7 @@ const RecipeInfo: React.FC<IRecipeInfo> = ({...props}: IRecipeInfo) => {
                 {props.ingredientLines?.map((line, i) => <li key={i}>{line}</li>)}
             </ul>
         </div>
-            <div className={styles.typesWrapper}> 
+            <div className={styles.typesWrapper}>
                  <div>
                     <h3>Diet labels</h3>
                     <ul>
@@ -48,8 +47,8 @@ const RecipeInfo: React.FC<IRecipeInfo> = ({...props}: IRecipeInfo) => {
             </div>
         </div>
         <div className={styles.recipeInfoPart}>
-       
-        
+
+
                 {/* <RecipeInfoItem
                     header='Health labels'
                     response={props.healthLabels}
@@ -76,7 +75,7 @@ const RecipeInfo: React.FC<IRecipeInfo> = ({...props}: IRecipeInfo) => {
                 <h3>Nutrients</h3>
                 <ul>
                 <li>Calories {(props.calories)?.toFixed(2)+' kcal'}</li>
-                    {props.digest?.map((elem, i) => 
+                    {props.digest?.map((elem, i) =>
                     <li key={i}>
                         <span>{elem.label} </span>
                         <span>{(elem.total).toFixed(2)} </span>
