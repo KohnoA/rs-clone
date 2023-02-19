@@ -1,35 +1,43 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import RecipeService from '../../../components/API/RecipeService';
 import { useFetching } from '../../../hooks/useFetching';
 import Loader from '../../../components/Loader/Loader';
-import { URLS } from '../../../constants';
 import { IRecipeInfo } from '../../../types/types';
 import RecipeInfo from '../../../components/RecipeInfo/RecipeInfo';
-import { API_KEY_RECIPES, ID_RECIPES } from '../../../constants/foodApi';
 import styles from './RecipePage.module.scss'
+import * as API from '../../../constants/foodApi'
 
 const RecipePage: React.FC = () => {
-    const params = useParams()
+    const location = useParams()
     const [recipes, setRecipes] = useState<IRecipeInfo>({})
 
+    const url = useMemo(() => {
+        const params = new URLSearchParams('')
+        params.set('type', API.TYPE)
+        params.set('app_id', API.ID_RECIPES)
+        params.set('app_key', API.API_KEY_RECIPES)
+
+        return `${API.DOMAIN}/${API.RECIPES}/${location.id}?${String(params)}`
+    }, [] )
+
     const [fetching, isLoading, error] = useFetching(async() => {
-        const response = await RecipeService.getRecipes(`${URLS.recipe}${params.id}?type=public&app_id=${ID_RECIPES}&app_key=${API_KEY_RECIPES}`)
+        const response = await RecipeService.getRecipes(url)
         setRecipes(response.recipe)
         })
 
     useEffect(() => {
         fetching()
     }, [])
-console.log(recipes)
+
     return (
         <div className={styles.recipeInfo__wrapper}>
-        {error && 
-        <div style={{margin:'2em'}}><h1>Error has occured. {error}</h1></div>}  
+        {error &&
+        <div style={{margin:'2em'}}><h1>Error has occured. {error}</h1></div>}
         {isLoading
             ? <Loader/>
             : <RecipeInfo
-                id={params.id}
+                id={location.id}
                 label={recipes.label}
                 image={recipes.image}
                 calories={recipes.calories}
