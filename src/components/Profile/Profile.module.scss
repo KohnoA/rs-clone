@@ -76,4 +76,15 @@
       opacity: initial;
     }
   }
+
+  &__link {
+    color: black;
+    text-decoration: none;
+    transition: .2s;
+
+    &:hover {
+      cursor: pointer;
+      color: rgba(0, 0, 0, 0.4);
+    }
+  }
 }
