@@ -5,10 +5,10 @@ export const useFetching = (callback: () => void) => {
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState('')
 
-    const fetching = async (...args: string[]) => {
+    const fetching = async () => {
         try {
             setIsLoading(true)
-            await callback(...args as [])
+            await callback()
         } catch (err: unknown) {
             if(!(err instanceof AxiosError)) return 
             let message: string = err.message

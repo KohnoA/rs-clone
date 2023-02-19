@@ -66,5 +66,3 @@ export const foodAPI = createApi({
 
   }),
 });
-
-export const {useFetchAllFoodQuery, useFetchRecipesQuery, useFetchRecipesStartQuery, useFetchRecipesWithParamsQuery} = foodAPI

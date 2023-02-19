@@ -4,7 +4,7 @@ interface IState {
     favoriteList: string[];
 }
 
-const FAV_LIST_KEY = 'favorite-list'
+const FAV_LIST_KEY = 'fav-list'
 const initialState = (): IState => {
     const serializedList = localStorage.getItem(FAV_LIST_KEY) ?? '[]'
     const favoriteList: string[] = JSON.parse(serializedList)

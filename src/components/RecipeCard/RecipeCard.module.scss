@@ -5,10 +5,11 @@
     flex-direction: column;
     align-items: center;
     border-radius: 10px;
-    background-color: white;   
+    background-color: white;
     box-shadow: 0 0 10px 5px #ffe5a1;
     transition: 0.3s;
     cursor: pointer;
+    max-height: 500px;
 
     &:hover {
         transform: scale(1.03);
