@@ -1,3 +1,5 @@
+import { ILifeChange } from "../../types/types";
+
 export interface IGender {
   value: string,
   text: string,
@@ -47,3 +49,5 @@ export interface ICountCalories {
   male: CountCalories,
   female: CountCalories,
 }
+
+export type CountNutrients = (cal: string) => ILifeChange;

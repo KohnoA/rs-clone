@@ -18,7 +18,6 @@ export const searchSlice = createSlice({
             const request = action.payload
 
             list = `${request}`
-            console.log(list)
         }
     }
 })

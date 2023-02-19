@@ -19,11 +19,11 @@ const LazyLoader: React.FC<ILazyLoader> = (props: ILazyLoader) => {
         imgRef.current.onload = () => setIsLoading(false)
       }
     }, [])
-    
+
     return (
         <div className={styles.loader__wrapper}>
             {isLoading && <LoaderFav/>}
-           <img className={className} ref={imgRef} src={src} alt={alt}/> 
+           <img className={className} ref={imgRef} src={src} alt={alt}/>
         </div>
     );
 };

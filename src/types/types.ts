@@ -112,3 +112,9 @@ export interface IUserState {
   id: string | null,
   name: string | null,
 }
+
+export interface ILifeChange {
+  fats: number,
+  carbohydrates: number,
+  rolls: number,
+}

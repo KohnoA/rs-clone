@@ -34,17 +34,30 @@ export const foodAPI = createApi({
     }),
 
     fetchRecipesWithParams: build.query<IRecipes, string>({
-        query: (diet) => ({
+        query: (type) => ({
             url: `/${API.RECIPES}`,
             params: {
                 type: API.TYPE,
                 ['app_id']: API.ID_RECIPES,
                 ['app_key']: API.API_KEY_RECIPES,
                 imageSize: API.IMAGE_SIZE,
-                diet: diet,
+                mealType: type,
             },
         }),
     }),
+
+    fetchRecipesWithParamsRandom: build.query<IRecipes, string>({
+      query: (type) => ({
+          url: `/${API.RECIPES}`,
+          params: {
+              type: API.TYPE,
+              ['app_id']: API.ID_RECIPES,
+              ['app_key']: API.API_KEY_RECIPES,
+              random: true,
+              mealType: type,
+          },
+      }),
+  }),
 
     fetchRecipes: build.query<IRecupesSearch, string>({
       query:(recipe: string) => ({

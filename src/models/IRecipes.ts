@@ -8,10 +8,10 @@ export interface IRecipes {
             title: string;
         }
     },
-    hints: IRecipe[],
+    hits: IRecipe[],
 }
 
-interface IRecipe {
+export interface IRecipe {
     recipe: IRecipeData,
     links: {
         self: {

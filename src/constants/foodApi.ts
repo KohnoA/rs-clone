@@ -13,3 +13,4 @@ export const TYPE = 'public';
 export const IMAGE_SIZE = 'REGULAR';
 export const ID_RECIPES = '7e3bd218';
 export const API_KEY_RECIPES = 'c984c0db6f24715dbed35ba4812c946f';
+export const IMAGE_SIZE_THUMBNAIL = 'THUMBNAIL';

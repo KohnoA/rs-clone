@@ -3,16 +3,18 @@ import { FormRowRadio } from './FormItems/FormRowRadio';
 import { InitialStateText, HandleChangeInput, HandleChangeSelect, RemoveOrCountState, ICountCalories } from '../FormTypes';
 import { FormRowSelect } from './FormItems/FormRowSelect';
 import { FormRowText } from './FormItems/FormRowText';
-import { GENDERS, GOALS, initialStateRadio, TEXTS, initialStateText, initialStateSelect, countCalories, KFA } from '../ConstantsForm';
+import { GENDERS, GOALS, initialStateRadio, TEXTS, initialStateText, initialStateSelect, countCalories, KFA, countNutrientsPercent } from '../ConstantsForm';
 import { useStateCustom } from '../../../utils/utils';
-import { Title } from '../../Title/title';
+import { Title } from '../../Title/Title';
+import { ILifeChange } from '../../../types/types';
 
 
 interface IProps {
-  stateFn: React.Dispatch<React.SetStateAction<number>>;
+  stateFn: React.Dispatch<React.SetStateAction<number>>,
+  nutrientsFn: React.Dispatch<React.SetStateAction<ILifeChange>>,
 }
 
-export const CaloriesForm: React.FC<IProps> = ({stateFn}: IProps) => {
+export const CaloriesForm: React.FC<IProps> = ({stateFn, nutrientsFn}: IProps) => {
   const [radioInfo, setRadioInfo] = useStateCustom('radioInfo', initialStateRadio);
   const [textInfo, setTextInfo] = useStateCustom('textInfo', initialStateText);
   const [selectInfo, setSelectInfo] = useStateCustom('selectInfo', initialStateSelect);
@@ -43,8 +45,9 @@ export const CaloriesForm: React.FC<IProps> = ({stateFn}: IProps) => {
     e.preventDefault();
     const counter = countCalories[radioInfo.gender as keyof ICountCalories];
     const calories = counter(textInfo.weight, textInfo.height, textInfo.age, KFA[selectInfo]);
-    sessionStorage.clear();
     stateFn(calories);
+    sessionStorage.clear();
+    nutrientsFn(countNutrientsPercent(radioInfo.goal));
   }
 
   return (

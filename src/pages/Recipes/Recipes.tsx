@@ -5,7 +5,7 @@ import { getSearchList } from '../../store/selectors/searchSelectors'
 
 const Recipes: React.FC<IRecipes> = ({url}: IRecipes) => {
   const search = useSelector(getSearchList)
-    
+
   return (
     <div className="container page">
       <h1>Recipes</h1>
@@ -18,5 +18,3 @@ const Recipes: React.FC<IRecipes> = ({url}: IRecipes) => {
 }
 
 export default Recipes
-
-

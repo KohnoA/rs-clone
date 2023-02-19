@@ -1,4 +1,5 @@
-import { CountCalories, ICountCalories } from './FormTypes';
+import { ILifeChange } from '../../types/types';
+import { CountCalories, CountNutrients, ICountCalories } from './FormTypes';
 
 const MALE = {
   value: 'male',
@@ -84,6 +85,10 @@ export const KFA = [1, 1.2, 1.375, 1.55, 1.725, 1.9];
 
 export const SELECT_OPTIONS = ['Ваш образ жизни', 'Малоактивный образ жизни (мало или совсем нет занятий спортом)', 'Легкая активность (несложные упражнения / спорт 1–3 дня в неделю)', 'Умеренная активность (умеренные упражнения / спорт 3-5 раз в неделю)', 'Активный (тяжелые упражнения / спорт 6-7 почти ежедневно)', 'Повышенная активность (очень тяжелые упражнения / спорт и физическая работа)'];
 
-// Для похудения: 30-35% белки, 30-35% жиры, 30-40% углеводы;
-// Для поддержания веса: 25-35% белки, 25-35% жиры, 40-50% углеводы;
-// Для набора массы: 35-40% белки, 15-25% жиры, 40-60% углеводы.
+export const countNutrientsPercent: CountNutrients = (state: string) => {
+  const GOALS = ['loss', 'gain', 'keep'];
+
+  return state === GOALS[0] ? { fats: 30, carbohydrates: 35, rolls: 35 }
+    : state === GOALS[1] ? { fats: 25, carbohydrates: 45, rolls: 30 }
+    : { fats: 15, carbohydrates: 50, rolls: 35 }
+}
