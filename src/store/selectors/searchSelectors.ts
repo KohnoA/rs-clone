@@ -1,5 +1,5 @@
 import { RootState } from '../store'
 
-export const getSearchList = (state: RootState) => {
-    return state.search.searchList
+export const getSearchList = (state: RootState): [string, boolean] => {
+    return [state.search.search, state.search.isEditing]
 }

@@ -9,7 +9,6 @@ export const Example = () => {
     const [session, setSession] = useState(0);
     const { data: foodApi, error, isLoading, refetch } = foodAPI.useFetchAllFoodQuery(session);
     const { data: recipes, } = foodAPI.useFetchRecipesStartQuery(''); // error: errorRecipes, isLoading: isLoadingRecipes
-    console.log(recipes);
 
     return (
         <div> Example (you can find it: ./components/exampleRequest.tsx; PS: это маскимальное количество данных с одного запроса):

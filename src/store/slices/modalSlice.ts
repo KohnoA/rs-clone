@@ -6,7 +6,7 @@ const initialState: IModalContext = {
   content: null,
 };
 
-const modalSlice = createSlice({
+export const modalSlice = createSlice({
   name: 'modal',
   initialState,
   reducers: {

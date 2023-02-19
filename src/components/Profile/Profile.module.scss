@@ -11,14 +11,10 @@
 
   background-color: $secondAppColor;
   border-radius: 15px;
+  outline: 1px solid #ccc;
 
   &:hover {
     cursor: pointer;
-    opacity: .7;
-  }
-
-  &:active {
-    opacity: .6;
   }
 
   &__image {
@@ -40,20 +36,34 @@
     right: 0;
 
     width: 100%;
-    padding: 0 15px 10px 15px;
+    padding: 0 15px 0px 15px;
+    
+    color: $secondAppColor;
 
     background-color: $secondAppColor;
     border-radius: 0 0 15px 15px;
+    outline: 1px solid #ccc;
+    pointer-events: none;
+    opacity: 0;
+    transition: .2s;
+  }
+
+  &__select_active {
+    color: black;
+    pointer-events: all;
+    opacity: 1;
+    padding: 0 15px 15px 15px;
+
+    .profile__item {
+      &:first-child {
+        padding-top: 10px;
+      }
+    }
   }
 
   &__item {
     margin-bottom: 5px;
     transition: .2s;
-
-    &:first-child {
-      padding-top: 10px;
-      border-top: 1px solid rgba(0, 0, 0, 0.1);
-    }
 
     &:last-child {
       margin-bottom: 0;
@@ -67,13 +77,16 @@
 
   &__active {
     border-radius: 15px 15px 0 0;
+  }
+
+  &__link {
+    color: black;
+    text-decoration: none;
+    transition: .2s;
 
     &:hover {
-      opacity: initial;
-    }
-  
-    &:active {
-      opacity: initial;
+      cursor: pointer;
+      color: rgba(0, 0, 0, 0.4);
     }
   }
 }
