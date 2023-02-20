@@ -21,9 +21,12 @@ const FavoritePage = () => {
         <div className={styles.favoritePage}>
             <h1>Favorite recipes</h1>
         <div className={styles.favoritePage__wrapper}>
+        <div className={styles.cardWrapper}>
+
             {favArr.length > 0
             ? favArr.map((id: string) =>  <FavoriteList key={id} url={url(id)}/> )
             : <h1>There is no favorite recipes yet.</h1>}
+        </div>
         </div>
         </div>
     );
