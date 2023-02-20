@@ -50,6 +50,7 @@ const RecipeList: React.FC = () => {
 
     useEffect(() => {
       fetchingRecipes()
+      console.log(errorRecipes)
     }, [url, search, isEditingSearch])
 
     const lastElement = useRef<HTMLDivElement | null>(null)
@@ -93,11 +94,13 @@ const RecipeList: React.FC = () => {
   return (
     <div className={styles.pageRecipes}>
       <RecipeFilter/>
-      {errorRecipes && <div style={{margin:'2em'}}><h1>Error has occured. {errorRecipes}</h1></div>}
+      <div className={styles.cardWrapper}>
       {isRecipesLoading
         ? <Loader/>
-        : (
-          <div className={styles.recipesWrapper}>
+        : recipes.length === 0
+          ? <div style={{margin:'2em'}}><h1>Error has occured. Maybe it`s too many requests. Please, try later.</h1></div>
+          :
+            <div className={styles.recipesWrapper}>
             {recipes.map((recipe, i) => (
               <RecipeCard
                 route='recipes'
@@ -114,10 +117,14 @@ const RecipeList: React.FC = () => {
             ))}
             <div ref={lastElement}></div>
           </div>
-        )
+
       }
-      <div/>
+
+
+      </div>
+      <div className={styles.devider}/>
       {isPaginationLoad && <div className={styles.paginationLoader}><Loader/></div>}
+
     </div>
   );
 };
