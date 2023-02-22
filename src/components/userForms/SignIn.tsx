@@ -1,5 +1,5 @@
 import { useInput } from '../../hooks/useInput';
-import { Validations, ModalContent, AuthErrorsMessage } from '../../constants/constants'; 
+import { Validations, ModalContent, AuthErrorsMessage } from '../../constants/constants';
 import styles from './userForms.module.scss';
 import Button from '../Button/Button';
 import { useState } from 'react';
@@ -41,7 +41,7 @@ const SignIn: React.FC = () => {
 
     try {
       const {user} = await signInWithEmailAndPassword(auth, userEmail, userPassword);
-      
+
       dispatch(setUser({
         email: user.email,
         token: user.refreshToken,
@@ -51,6 +51,8 @@ const SignIn: React.FC = () => {
 
       navigate('/');
       dispatch(closeModal());
+      localStorage.setItem('login', `${user.email}`)
+      location.reload()
 
     } catch (error) {
       if (error instanceof Error) console.error(error.message);
@@ -62,9 +64,9 @@ const SignIn: React.FC = () => {
   return (
     <form action="#" className={ styles.userForm } onSubmit={ signInHandler }>
       <div className={styles.userForm__item}>
-        { (email.isDirty && !email.isValid) && 
-          <span 
-            className={ styles.userForm__errorInfo  } 
+        { (email.isDirty && !email.isValid) &&
+          <span
+            className={ styles.userForm__errorInfo  }
             onMouseOver={ () => setEmailInfo(true) }
             onMouseOut={ () => setEmailInfo(false) }
           >
@@ -75,24 +77,24 @@ const SignIn: React.FC = () => {
             }
           </span>
         }
-        <input 
+        <input
           type="email"
           placeholder='E-mail'
           value={ email.value }
           onChange={ email.onChange }
           onBlur={ email.onBlur }
-          className={ 
+          className={
             (email.isDirty && !email.isValid)
               ? `${styles.userForm__input} ${styles.userForm__inputError}`
-              : styles.userForm__input 
+              : styles.userForm__input
           }
         />
       </div>
 
       <div className={ styles.userForm__item }>
-        { (password.isDirty && !password.isValid) && 
-          <span 
-          className={ styles.userForm__errorInfo  } 
+        { (password.isDirty && !password.isValid) &&
+          <span
+          className={ styles.userForm__errorInfo  }
           onMouseOver={ () => setPasswordInfo(true) }
           onMouseOut={ () => setPasswordInfo(false) }
           >
@@ -103,24 +105,24 @@ const SignIn: React.FC = () => {
             }
           </span>
         }
-        <input 
+        <input
           type={ passwordVisible ? 'text' : 'password' }
           placeholder='Password'
           value={ password.value }
           onChange={ password.onChange }
           onBlur={ password.onBlur }
-          className={ 
+          className={
             (password.isDirty && !password.isValid)
               ? `${styles.userForm__input} ${styles.userForm__inputError}`
-              : styles.userForm__input 
+              : styles.userForm__input
           }
         />
-        <span 
-          className={ 
+        <span
+          className={
             passwordVisible
               ? `${styles.userForm__password} ${styles.userForm__pasVisible}`
               : `${styles.userForm__password} ${styles.userForm__pasUnvisible}`
-          } 
+          }
           onClick={ () => setPasswordVisible((prev) => !prev) }
         >
         </span>
@@ -129,18 +131,18 @@ const SignIn: React.FC = () => {
       { formError && <div className={ styles.userForm__formError }>{ formError }</div> }
       <Button text='Sign In' additionalClasses={ styles.userForm__submit }/>
 
-      <a 
-        href="#" 
-        className={ styles.userForm__help } 
+      <a
+        href="#"
+        className={ styles.userForm__help }
         onClick={ (event) => event.preventDefault() }
         >
           Forgot your password?
-      </a> 
+      </a>
 
       <p>
         Don&lsquo;t have an account?&nbsp;
         <a
-          className={ styles.userForm__change } 
+          className={ styles.userForm__change }
           href="#"
           onClick={ changeFormHandler }
         >

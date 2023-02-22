@@ -4,19 +4,31 @@ import { useAppDispatch } from '../../hooks/reduxHooks';
 import { removeUser } from '../../store/slices/userSlice';
 import { useAuth } from '../../hooks/useAuth';
 import { getAuth, signOut } from 'firebase/auth';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { openModal } from '../../store/slices/modalSlice';
+import { ModalContent } from '../../constants/constants';
 
 const Profile: React.FC = () => {
   const [select, setSelect] = useState<boolean>(false);
   const {name} = useAuth();
   const dispatch = useAppDispatch();
 
+  const navigate = useNavigate();
+  const openSignInModal = () => {
+    dispatch(openModal({
+      isOpen: true,
+      content: ModalContent.signIn,
+    }))
+  }
+
   const logOutHandler = async () => {
     const auth = getAuth();
 
     try {
       await signOut(auth);
-      dispatch(removeUser());
+        navigate('/')
+        openSignInModal()
+        dispatch(removeUser());
 
     } catch (error) {
       if (error instanceof Error) console.error(error.message);
