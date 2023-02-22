@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
+import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import PageNotFound from '../pages/404/404';
 import AboutUs from '../pages/AboutUs/AboutUs';
 import Constructor from '../pages/Constructor/Constructor';
@@ -8,17 +8,15 @@ import FavoritePage from '../pages/Favorite/FavoritePage';
 import { getAuth, onAuthStateChanged } from '@firebase/auth';
 import { useAppDispatch } from '../hooks/reduxHooks';
 import { setUser } from '../store/slices/userSlice';
-import { useAuth } from '../hooks/useAuth';
-import  { openModal } from '../store/slices/modalSlice';
-import { ModalContent } from '../constants/constants';
 import Calculator from '../pages/Calculator/Calculator';
+import { useAuth } from '../hooks/useAuth';
+import { useEffect } from 'react';
 
 const AppRouter = () => {
 const auth = getAuth();
 const dispatch = useAppDispatch();
-const {isAuth} = useAuth();
-
-const location = useLocation()
+const {isAuth} = useAuth()
+const navigate = useNavigate()
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
@@ -31,17 +29,13 @@ onAuthStateChanged(auth, (user) => {
   }
 });
 
-const openSignInModal = () => {
-  dispatch(openModal({
-    isOpen: true,
-    content: ModalContent.signIn,
-  }))
-}
+const location = useLocation()
 
- if(!isAuth && location.pathname === '/favorite') {
-    openSignInModal()
+useEffect(() => {
+  if(!isAuth && location.pathname === '/favorite') {
+    navigate('/')
   }
-
+}, [location.pathname])
 
     return (
         <Routes>
@@ -52,10 +46,7 @@ const openSignInModal = () => {
         <Route path='/favorite/:id' element={ <RecipePage/>} />
         <Route path='/constructor' element={ <Constructor /> } />
         <Route path='/about' element={ <AboutUs /> } />
-        {isAuth
-          ? <Route path='/favorite' element={<FavoritePage />} />
-          : <Route path='/favorite' element={<Navigate to="/" replace />} />
-        }
+        <Route path='/favorite' element={<FavoritePage />} />
         <Route path='/calculator' element={ <Calculator /> } />
       </Routes>
     );
