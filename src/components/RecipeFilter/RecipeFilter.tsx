@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { RecipeFiltersData } from '../../constants';
+import Button from '../Button/Button';
 import FilterItem from './FilterItem/FilterItem';
 import styles from './RecipeFilter.module.scss'
 
@@ -41,8 +42,16 @@ const RecipeFilter: React.FC = () => {
             <div className={styles.header__wrapper}>
               <h2 className={styles.filter__header}>Category</h2>
               <div className={styles.navBtn__wrapper}>
-                    <button onClick={upSlide} className={styles.sliderBtn}>↑</button>
-                    <button onClick={downSlide} className={styles.sliderBtn}> ↓</button>
+                <Button
+                  text='↑'
+                  additionalClasses={styles.sliderBtn}
+                  onClick={upSlide}
+                />
+                <Button
+                  text='↓'
+                  additionalClasses={styles.sliderBtn}
+                  onClick={downSlide}
+                />
               </div>
             </div>
               <ul className={styles.filterList}>
