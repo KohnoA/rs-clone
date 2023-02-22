@@ -12,12 +12,14 @@ import { useLocation } from 'react-router-dom';
 import * as API from '../../../constants/foodApi';
 import { useSelector } from 'react-redux';
 import { getSearchList } from '../../../store/selectors/searchSelectors';
+import Button from '../../Button/Button'
 
 const RecipeList: React.FC = () => {
 
     const [recipes, setRecipes] = useState<IRecipesData[]>([])
     const [nextPage, setNextPage] = useState<string>('')
     const [isPaginationLoad, setIsPaginationLoad] = useState<boolean>(false)
+    const [visible, setVisible] = useState<boolean>(false)
 
     const location = useLocation();
     const [search, isEditingSearch] = useSelector(getSearchList)
@@ -37,7 +39,7 @@ const RecipeList: React.FC = () => {
 
     }, [location.search, search, isEditingSearch])
 
-    const [fetchingRecipes, isRecipesLoading, errorRecipes] = useFetching(async() => {
+    const [fetchingRecipes, isRecipesLoading] = useFetching(async() => {
 
       if(isEditingSearch) {
         return
@@ -90,14 +92,37 @@ const RecipeList: React.FC = () => {
       return(uri)
     }
 
+    const scrollUp = () => {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+      });
+
+      setVisible(false)
+    }
+
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY || document.documentElement.scrollTop
+      scrollY < 1800 ? setVisible(false) : setVisible(true)
+    })
+
   return (
     <div className={styles.pageRecipes}>
+      <div className={styles.filterWrapper}>
       <RecipeFilter/>
-      {errorRecipes && <div style={{margin:'2em'}}><h1>Error has occured. {errorRecipes}</h1></div>}
+      <Button
+        text='To Begin'
+        additionalClasses={`${styles.upBtn} ${visible ? styles.upBtn__visible : ''}`}
+        onClick={scrollUp}
+      />
+      </div>
       {isRecipesLoading
         ? <Loader/>
-        : (
-          <div className={styles.recipesWrapper}>
+        : recipes.length === 0
+          ? <div style={{margin:'2em'}}><h1>Error has occured. Maybe it`s too many requests. Please, try later.</h1></div>
+          :
+            <div className={styles.recipesWrapper}>
             {recipes.map((recipe, i) => (
               <RecipeCard
                 route='recipes'
@@ -114,9 +139,9 @@ const RecipeList: React.FC = () => {
             ))}
             <div ref={lastElement}></div>
           </div>
-        )
+
       }
-      <div/>
+      <div className={styles.devider}/>
       {isPaginationLoad && <div className={styles.paginationLoader}><Loader/></div>}
     </div>
   );

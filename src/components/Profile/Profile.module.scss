@@ -12,6 +12,7 @@
   background-color: $secondAppColor;
   border-radius: 15px;
   outline: 1px solid #ccc;
+  z-index: 6;
 
   &:hover {
     cursor: pointer;
@@ -37,7 +38,7 @@
 
     width: 100%;
     padding: 0 15px 0px 15px;
-    
+
     color: $secondAppColor;
 
     background-color: $secondAppColor;
