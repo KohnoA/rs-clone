@@ -1,8 +1,8 @@
 @import  '../../styles/variables.scss';
 
 .filter{
-    margin-top: 2em;
-    padding: 1em 2em 0;
+    margin: 2em 0;
+    padding: 1em 2em;
     border-radius: 10px;
     background-color: $appColor;
     height: min-content;
@@ -99,25 +99,8 @@
     margin: .1rem 0;
     width: 30px;
     height: 30px;
-
-    font: inherit;
-    font-weight: 500;
-    color: white;
-
-    background-color: $buttonColor;
-    border: none;
-    border-radius: 50%;
-    transition: .2s;
-
-    &:hover {
-      cursor: pointer;
-      color: black;
-      background-color: $appColorHover;
-    }
-
-    &:active {
-      background-color: $appColorActive;
-    }
+    padding: 0;
+    font-size: 20px;
 }
 
 .slider__wrapper {
