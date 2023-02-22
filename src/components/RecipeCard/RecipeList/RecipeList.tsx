@@ -39,7 +39,7 @@ const RecipeList: React.FC = () => {
 
     }, [location.search, search, isEditingSearch])
 
-    const [fetchingRecipes, isRecipesLoading, errorRecipes] = useFetching(async() => {
+    const [fetchingRecipes, isRecipesLoading] = useFetching(async() => {
 
       if(isEditingSearch) {
         return
