@@ -6,7 +6,6 @@ import { useEffect, useMemo, useState } from 'react';
 import iconType from '../../../assets/icons/food.svg'
 import kcalIcon from '../../../assets/icons/kcal.svg'
 import LoaderFav from '../../Loader/LoaderFav/LoaderFav';
-import styles from './FavoriteList.module.scss';
 
 
 const FavoriteList: React.FC<IRecipes> = ({url}: IRecipes) => {
