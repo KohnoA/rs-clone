@@ -31,8 +31,7 @@ const FavoriteList: React.FC<IRecipes> = ({url}: IRecipes) => {
     if(!id) return null
 
     return (
-        <div className={styles.favoritePage__wrapper}>
-        {isRecipesLoading
+      <>  {isRecipesLoading
             ? <LoaderFav/>
             : Object.keys(recipes).length === 0
                 ? <div style={{margin:'2em'}}><h1>Error has occured. Maybe it`s too many requests. Please, try later.</h1></div>
@@ -49,7 +48,7 @@ const FavoriteList: React.FC<IRecipes> = ({url}: IRecipes) => {
                      title={recipes.label}
                   />
           }
-            </div>
+        </>
     );
 };
 
