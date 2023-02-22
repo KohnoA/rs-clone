@@ -17,6 +17,7 @@ const AppRouter = () => {
 const auth = getAuth();
 const dispatch = useAppDispatch();
 const {isAuth} = useAuth();
+
 const location = useLocation()
 
 onAuthStateChanged(auth, (user) => {
@@ -37,9 +38,10 @@ const openSignInModal = () => {
   }))
 }
 
-if(!isAuth && location.pathname === '/favorite') {
-  openSignInModal()
-}
+ if(!isAuth && location.pathname === '/favorite') {
+    openSignInModal()
+  }
+
 
     return (
         <Routes>
