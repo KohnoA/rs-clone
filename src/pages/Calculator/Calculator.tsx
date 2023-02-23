@@ -10,7 +10,6 @@ import Ingredients from './components/Ingredients/Ingredients';
 const Calculator: React.FC = () => {
   const [info, setInfo] = useState<boolean>(false);
   const [value, setValue] = useState<string>('');
-  const [prevValue, setPrevValue] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<CalculatorErrorMessage>(CalculatorErrorMessage.none);
   const [nutritionFactsData, setNutritionFactsData] = useState<null | INutritionFactsData>(null);
@@ -21,15 +20,8 @@ const Calculator: React.FC = () => {
       
       return;
     }
-
-    if (value === prevValue) {
-      setError(CalculatorErrorMessage.duplicateRequest);
-
-      return;
-    }
     
     setLoading(true);
-    setPrevValue(value);
     requestData();
   }
 
@@ -97,10 +89,8 @@ const Calculator: React.FC = () => {
 
                 { (info && nutritionFactsData) && <Ingredients data={ nutritionFactsData } /> }
 
-                <div>
-                  <Button text='Analize' onClick={ analizeHandler } />
-                  { info && <Button text='New recipe' onClick={ newRecipe } /> }
-                </div>
+                { !info && <Button text='Analize' onClick={ analizeHandler } /> }
+                { info && <Button text='New recipe' onClick={ newRecipe } /> }
               </div>
 
               { (info && nutritionFactsData) && <Facts data={ nutritionFactsData } /> }
