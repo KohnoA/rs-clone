@@ -1,4 +1,3 @@
-import { ILifeChange } from '../../types/types';
 import { CountCalories, CountNutrients, ICountCalories } from './FormTypes';
 
 const MALE = {
@@ -92,3 +91,21 @@ export const countNutrientsPercent: CountNutrients = (state: string) => {
     : state === GOALS[1] ? { fats: 25, carbohydrates: 45, rolls: 30 }
     : { fats: 15, carbohydrates: 50, rolls: 35 }
 }
+
+export const MIL_TIPE = ['breakfast', 'lunch', 'dinner', 'snack'];
+export const CURRENT_CALORIES = {
+  breakfast: { mod: true, cal: 0.25 },
+  dinner:  { mod: true, cal: 0.40 },
+  lunch:  { mod: true, cal: 0.25 },
+  snack:  { mod: false, cal: 0.25 },
+}
+
+export const getCurrentCaloriesOfMilType = (calories: number, type: string) => {
+  type T = keyof typeof CURRENT_CALORIES;
+
+  if (CURRENT_CALORIES[type as T].mod) {
+    return `+${Math.ceil(calories * (CURRENT_CALORIES[type as T].cal - 0.05))}-${Math.ceil(calories * CURRENT_CALORIES[type as T].cal)}`;
+  }
+
+  return `+${calories * CURRENT_CALORIES[type as T].cal}`;
+};

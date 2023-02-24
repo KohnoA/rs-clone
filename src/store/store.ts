@@ -1,5 +1,5 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import { foodAPI } from '../sevices/foodService.api';
+import { foodAPI } from './sevices/foodService.api';
 import { favoriteSlice } from './slices/favoriteSlice';
 import { searchSlice } from './slices/searchSlice';
 import userReducer from './slices/userSlice';

@@ -1,8 +1,13 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import * as API from '../constants/foodApi';
-import { IFoodApi } from '../models/IFood';
-import { IRecipes } from '../models/IRecipes';
-import { IRecupesSearch } from '../types/types';
+import * as API from '../../constants/foodApi';
+import { IFoodApi } from '../../models/IFood';
+import { IRecipes } from '../../models/IRecipes';
+import { IRecupesSearch } from '../../types/types';
+
+export interface IType {
+  type: string,
+  calories: string,
+}
 
 export const foodAPI = createApi({
   reducerPath: 'foodAPI',
@@ -46,8 +51,8 @@ export const foodAPI = createApi({
         }),
     }),
 
-    fetchRecipesWithParamsRandom: build.query<IRecipes, string>({
-      query: (type) => ({
+    fetchRecipesWithParamsRandom: build.query<IRecipes, IType>({
+      query: ({type, calories}) => ({
           url: `/${API.RECIPES}`,
           params: {
               type: API.TYPE,
@@ -55,6 +60,7 @@ export const foodAPI = createApi({
               ['app_key']: API.API_KEY_RECIPES,
               random: true,
               mealType: type,
+              calories: calories,
           },
       }),
   }),
