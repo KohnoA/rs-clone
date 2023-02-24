@@ -23,7 +23,7 @@ const FilterItem: React.FC<IFilterItem> = ({id, query, header, item1, item2, ite
    const location = useLocation()
 
     return (
-        <div>
+        <div className={styles.slider__wrapper} id={String(id)}>
             <div className={styles.filter__subheaderWrapper}>
             <h3 className={styles.filter__subheader}>
                 {header}

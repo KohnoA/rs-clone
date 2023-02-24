@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface IState {
     favoriteList: string[];
 }
 
-const FAV_LIST_KEY = 'fav-list'
+const FAV_LIST_KEY = localStorage.getItem('login')!
 const initialState = (): IState => {
     const serializedList = localStorage.getItem(FAV_LIST_KEY) ?? '[]'
     const favoriteList: string[] = JSON.parse(serializedList)
@@ -30,6 +31,6 @@ export const favoriteSlice = createSlice({
 
             const serializedList = JSON.stringify(list)
             localStorage.setItem(FAV_LIST_KEY, serializedList)
-        } 
+        }
     }
 })
