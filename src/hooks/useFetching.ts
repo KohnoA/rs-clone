@@ -10,11 +10,12 @@ export const useFetching = (callback: () => void) => {
             setIsLoading(true)
             await callback()
         } catch (err: unknown) {
-            if(!(err instanceof AxiosError)) return 
+            if(!(err instanceof AxiosError)) return
             let message: string = err.message
             if (err.request.status === 0) {
                 message += '. It`s too many requests, please try later.'
             }
+            console.log(err)
             setIsLoading(false)
             setError(message)
         } finally {

@@ -6,27 +6,4 @@
   padding-top: 25px;
   padding-bottom: 25px;
   width: 100%;
-
-  &__add {
-    margin: 0 15px;
-    padding: 0 10px;
-
-    font: inherit;
-    font-size: 2rem;
-    color: black;
-
-    background-color: $appColor;
-    border: 1px solid #ccc;
-    border-radius: 50%;
-    transition: .2s;
-
-    &:hover {
-      cursor: pointer;
-      background-color: $appColorHover;
-    }
-
-    &:active {
-      background-color: $appColorActive;
-    }
-  }
 }

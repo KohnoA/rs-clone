@@ -6,14 +6,15 @@
     align-items: center;
     border-radius: 10px;
     background-color: white;
-    box-shadow: 0 0 10px 5px #ffe5a1;
+    box-shadow: 1px 3px 8px 2px #ddd;
+
     transition: 0.3s;
     cursor: pointer;
-    max-height: 500px;
+    max-height: 485px;
 
     &:hover {
         transform: scale(1.03);
-        box-shadow: 0 0 30px 2px #ffe5a1;
+        box-shadow: 0 0 30px 1px #ffe5a1;
     }
 }
 
@@ -26,6 +27,10 @@
     margin: 1em auto;
     text-align: center;
     text-transform: uppercase;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 60%;
+    overflow: hidden;
 }
 
 .card__img {

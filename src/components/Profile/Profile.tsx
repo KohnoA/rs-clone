@@ -4,26 +4,36 @@ import { useAppDispatch } from '../../hooks/reduxHooks';
 import { removeUser } from '../../store/slices/userSlice';
 import { useAuth } from '../../hooks/useAuth';
 import { getAuth, signOut } from 'firebase/auth';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { openModal } from '../../store/slices/modalSlice';
+import { ModalContent } from '../../constants/constants';
 
 const Profile: React.FC = () => {
   const [select, setSelect] = useState<boolean>(false);
   const {name} = useAuth();
   const dispatch = useAppDispatch();
 
+  const navigate = useNavigate();
+  const openSignInModal = () => {
+    dispatch(openModal({
+      isOpen: true,
+      content: ModalContent.signIn,
+    }))
+  }
+
   const logOutHandler = async () => {
     const auth = getAuth();
 
     try {
       await signOut(auth);
-      dispatch(removeUser());
+        navigate('/')
+        openSignInModal()
+        dispatch(removeUser());
 
     } catch (error) {
       if (error instanceof Error) console.error(error.message);
     }
   }
-
-  const myRecipesHandler = () => console.log('Go to my recipes');
 
   return (
     <div
@@ -34,15 +44,12 @@ const Profile: React.FC = () => {
       Hi, { name ? name : 'User' }!
       <span className={ styles.profile__image }></span>
 
-      { select &&
-        <div className={ `${styles.profile__select} ${select ? styles.profile__select_active : ''}` }>
-          <div className={ styles.profile__item } onClick={ myRecipesHandler }>My recipes</div>
-          <div className={ styles.profile__item }>
-             <Link to="/favorite" className={ styles.profile__link }>Favorite</Link>
-          </div>
-          <div className={ styles.profile__item } onClick={ logOutHandler }>Log out</div>
+      <div className={ `${styles.profile__select} ${select ? styles.profile__select_active : ''}` }>
+        <div className={ styles.profile__item }>
+          <Link to="/favorite" className={ styles.profile__item }>Favorites</Link>
         </div>
-      }
+        <div className={ styles.profile__item } onClick={ logOutHandler }>Log out</div>
+      </div>
     </div>
   );
 }
