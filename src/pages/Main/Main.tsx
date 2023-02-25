@@ -1,7 +1,7 @@
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import RecipeCard from '../../components/RecipeCard/RecipeCard';
-import RecipeList from '../../components/RecipeCard/RecipeList/RecipeList';
+// import RecipeList from '../../components/RecipeCard/RecipeList/RecipeList';
 
 const Main: React.FC = () => {
   // https://www.npmjs.com/package/react-multi-carousel
