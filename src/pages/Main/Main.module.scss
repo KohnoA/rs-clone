@@ -4,17 +4,40 @@
   font-size: 1.5rem;
 }
 
-.carusel {
-  width: 100%;
-  padding: 15px 0;
-}
-
-.carusel_container {
+.carusel_wrapper {
+  position: relative;
   width: 75%;
   margin: 0 auto;
-  margin-bottom: 30px;
 }
 
-.carusel_item {
-  margin: 0 2%;
+.prev_slide, .next_slide {
+  position: absolute;
+  z-index: 1;
+
+  width: 40px;
+  height: 40px;
+
+  top: 50%;
+  transform: translateY(-50%);
+
+  font-size: 3rem;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+  transition: .2s;
+
+  &:hover {
+    opacity: .7;
+  }
+}
+
+.prev_slide {
+  left: -60px;
+  background-image: url('../../assets/icons/arrow_back.svg');
+}
+
+.next_slide {
+  right: -60px;
+  background-image: url('../../assets/icons/arrow_forward.svg');
 }
