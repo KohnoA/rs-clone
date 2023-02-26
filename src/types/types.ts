@@ -143,3 +143,9 @@ export interface IIngredients {
   weight: number,
   nutrients: ITotalNutrients
 }
+
+export interface IMainAppInfo {
+  title: string,
+  subTitle: string,
+  description: string
+}

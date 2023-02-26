@@ -1,3 +1,5 @@
+import { IMainAppInfo } from '../types/types';
+
 export const GITHUB_ACCOUNTS = ['https://github.com/KohnoA', 'https://github.com/Nexuslolz', 'https://github.com/shamkolovich95'];
 export const EMAIL_REG_EXP = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 export const MIN_PASSWORD_LENGTH = 6;
@@ -30,3 +32,21 @@ export const enum CalculatorErrorMessage {
   requestError = 'Processing error, please check your data or try again later',
   none = ''
 }
+
+export const MAIN_APP_INFO: IMainAppInfo[] = [
+  {
+    title: 'Recipes',
+    subTitle: '',
+    description: ''
+  },
+  {
+    title: 'Calculator',
+    subTitle: '',
+    description: ''
+  },
+  {
+    title: 'Generater',
+    subTitle: '',
+    description: ''
+  },
+]

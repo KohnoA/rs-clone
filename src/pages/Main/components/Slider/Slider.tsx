@@ -1,5 +1,6 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper';
+import RecipeCard from '../../../../components/RecipeCard/RecipeCard';
 import 'swiper/scss';
 import 'swiper/scss/navigation';
 import styles from './Slider.module.scss';
@@ -21,15 +22,7 @@ const Slider: React.FC = () => {
         {new Array(10).fill('Button').map((item, index) => {
           return (
             <SwiperSlide key={index}>
-              <div>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id atque necessitatibus eligendi maiores
-                  ipsa sunt dolorem. Deserunt reprehenderit asperiores provident ratione, eos mollitia, perferendis
-                  error numquam quas officia expedita minima odit architecto quo sunt magni dolorum et autem quod
-                  dignissimos!
-                </p>
-                <button>{item}</button>
-              </div>
+              <RecipeCard />
             </SwiperSlide>
           )
         })}

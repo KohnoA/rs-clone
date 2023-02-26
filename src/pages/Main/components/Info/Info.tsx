@@ -1,4 +1,5 @@
 import styles from './Info.module.scss';
+import { MAIN_APP_INFO } from '../../../../constants/constants';
 
 const Info: React.FC = () => {
   return (
@@ -6,23 +7,14 @@ const Info: React.FC = () => {
       <h3 className={ styles.title }>What is IEAT?</h3>
 
       <div className={ styles.wrapper }>
-        <div>
-          <div>Image</div>
-          <div>Sub title</div>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit tempora fugit provident quae, dolorum consequuntur placeat, cum impedit perspiciatis ullam aperiam obcaecati. Deserunt veritatis inventore, modi molestias nemo accusantium repellendus.</p>
-        </div>
+        {MAIN_APP_INFO.map((item, index) => 
+          <div key={ index }>
+            <div className={ styles.sub_title }>{ item.title }</div>
+            <div>{ item.subTitle }</div>
+            <p>{ item.description }</p>
+          </div>
+        )}
 
-        <div>
-          <div>Image</div>
-          <div>Sub title</div>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit tempora fugit provident quae, dolorum consequuntur placeat, cum impedit perspiciatis ullam aperiam obcaecati. Deserunt veritatis inventore, modi molestias nemo accusantium repellendus.</p>
-        </div>
-        
-        <div>
-          <div>Image</div>
-          <div>Sub title</div>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit tempora fugit provident quae, dolorum consequuntur placeat, cum impedit perspiciatis ullam aperiam obcaecati. Deserunt veritatis inventore, modi molestias nemo accusantium repellendus.</p>
-        </div>
       </div>
     </div>
   );
