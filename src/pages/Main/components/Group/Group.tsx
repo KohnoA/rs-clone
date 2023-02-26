@@ -23,7 +23,7 @@ const Group: React.FC<GroupProps> = ({ title, orientationClass }) => {
       </div>
       <div className={ styles.goToButton }>
         <span className={ styles.goToButtonArrow }></span>
-        other recipes
+        Show more
       </div>
     </div>
   );

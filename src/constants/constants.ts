@@ -37,16 +37,19 @@ export const MAIN_APP_INFO: IMainAppInfo[] = [
   {
     title: 'Recipes',
     subTitle: '',
-    description: ''
+    description: '',
+    link: '/',
   },
   {
     title: 'Calculator',
     subTitle: '',
-    description: ''
+    description: 'Our calculator can provide you with useful information about your prescription. By specifying the ingredients, you can easily get information about the total calorie content, the total content of fat, proteins, vitamins, and other related indicators, as well as their percentage of the daily norm.',
+    link: '/calculator',
   },
   {
-    title: 'Generater',
+    title: 'Generator',
     subTitle: '',
-    description: ''
+    description: '',
+    link: '/constructor',
   },
 ]

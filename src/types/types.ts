@@ -147,5 +147,6 @@ export interface IIngredients {
 export interface IMainAppInfo {
   title: string,
   subTitle: string,
-  description: string
+  description: string,
+  link: string
 }

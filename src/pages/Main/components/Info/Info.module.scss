@@ -1,5 +1,10 @@
+@import '../../../../styles/variables.scss';
+
 .component {
-  margin-bottom: 50px;
+  margin: 0 auto;
+  margin-bottom: 70px;
+  padding: 30px 15px;
+  background-color: $appColor;
 }
 
 .title {
@@ -14,7 +19,12 @@
   gap: 50px;
 }
 
-.sub_title {
+.item_component {
+  width: 33%;
+}
+
+.item_title {
   font-size: 1.3rem;
   font-weight: 700;
+  text-align: center;
 }
