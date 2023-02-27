@@ -1,6 +1,15 @@
 import { ModalContent } from '../constants/constants';
 
 export interface IRecipesData {
+    food: {
+      label: string;
+      nutrients: {
+        ENERC_KCAL: string;
+        PROCNT: string;
+        FAT: string;
+        CHOCDF: string;
+      }
+    };
     recipe: {
           uri: string;
           label: string;
@@ -13,7 +22,7 @@ export interface IRecipesData {
 }
 
 export interface IRecupesSearch {
-    hits: IRecipesData[];
+    hints: IRecipesData[];
 }
 
 export interface IRecipes {
