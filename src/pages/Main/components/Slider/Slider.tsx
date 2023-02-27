@@ -13,8 +13,8 @@ import { extractUri } from '../../../../utils/extractUri'
 import { getRecipes } from '../../../../utils/getRecipes'
 
 interface SliderProps {
-  category: MainRequestsQuery,
-  count?: number,
+  category: MainRequestsQuery
+  count?: number
 }
 
 const Slider: React.FC<SliderProps> = ({ category, count = 10 }) => {
