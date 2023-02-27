@@ -28,6 +28,5 @@ export const enum AuthErrorsMessage {
 export const enum CalculatorErrorMessage {
   empty = 'Please fill in the field!',
   requestError = 'Processing error, please check your data or try again later',
-  duplicateRequest = 'Processing error, duplicate request',
   none = ''
 }

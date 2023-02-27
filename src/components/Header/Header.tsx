@@ -33,8 +33,6 @@ const Header: React.FC = () => {
       <Search/>
       <Navigation />
 
-      <button className={ styles.header__add }>+</button>
-
       { !isAuth && <Button text="Sign In" onClick={ openSignInModal } /> }
       { isAuth && <Profile /> }
 
