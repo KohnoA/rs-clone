@@ -13,9 +13,9 @@ import { ModalContent } from '../../constants/constants'
 import { useAuth } from '../../hooks/useAuth'
 
 const Header: React.FC = () => {
-  const { isOpen, content } = useAppSelector((state) => state.modal)
-  const { isAuth } = useAuth()
-  const dispatch = useAppDispatch()
+  const {isOpen, content} = useAppSelector(state => state.modal);
+  const {isAuth} = useAuth();
+  const dispatch = useAppDispatch();
 
   const openSignInModal = () => {
     dispatch(

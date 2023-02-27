@@ -1,9 +1,10 @@
-import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom'
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 import PageNotFound from '../pages/404/404'
 import AboutUs from '../pages/AboutUs/AboutUs'
 import Constructor from '../pages/Constructor/Constructor'
 import Recipes from '../pages/Recipes/Recipes'
 import RecipePage from '../pages/Recipes/subPages/RecipePage'
+import Main from '../pages/Main/Main'
 import { getAuth, onAuthStateChanged } from '@firebase/auth'
 import { useAppDispatch } from '../hooks/reduxHooks'
 import { setUser } from '../store/slices/userSlice'
@@ -42,10 +43,10 @@ const AppRouter = () => {
   return (
     <Routes>
       <Route path='*' element={<PageNotFound />} />
-      <Route path='/' element={<Recipes />} />
+      <Route path='/' element={<Main />} />
       <Route path='/recipes/:id' element={<RecipePage />} />
-      <Route path='/recipes' element={<Navigate to='/' replace />} />
       <Route path='/cabinet/:id' element={<RecipePage />} />
+      <Route path='/recipes' element={<Recipes />} />
       <Route path='/constructor' element={<Constructor />} />
       <Route path='/about' element={<AboutUs />} />
       <Route path='/calculator' element={<Calculator />} />

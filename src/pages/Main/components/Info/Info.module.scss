@@ -1,0 +1,93 @@
+@import '../../../../styles/variables.scss';
+
+.component {
+  margin: 0 auto;
+  margin-bottom: 70px;
+}
+
+.title {
+  margin-bottom: 30px;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  padding: 30px;
+  // background-color: #f4f4f4;
+  background-color: $secondAppColor;
+  border-radius: 15px;
+  box-shadow: 2px 4px 8px 0px rgba(34, 60, 80, 0.2);
+}
+
+.item_component {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 2px 4px 8px 0px rgba(34, 60, 80, 0.2);
+}
+
+.item_title {
+  margin-bottom: 15px;
+
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.item_subTitle {
+  margin-bottom: 15px;
+
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.item_description {
+  flex-grow: 1;
+  margin-bottom: 20px;
+  text-align: justify;
+}
+
+.item_link {
+  align-self: flex-start;
+  padding: 5px;
+  color: black;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: .2s;
+
+  &:hover {
+    opacity: .7;
+
+    .item_linkArrow {
+      transform: translateX(10px) rotate(90deg);
+      opacity: .7;
+    }
+  }
+}
+
+.item_linkArrow {
+  display: inline-block;
+  vertical-align: middle;
+
+  width: 20px;
+  height: 20px;
+
+  background-image: url('../../../../assets/icons/double_arrow_up.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+
+  transform: rotate(90deg);
+  transition: .2s;
+}
+
+.about {
+  grid-column: 2/3;
+  justify-self: center;
+  text-decoration: none;
+}

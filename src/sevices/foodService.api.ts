@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import * as API from '../constants/foodApi';
 import { IFoodApi } from '../models/IFood';
 import { IRecipes } from '../models/IRecipes';
-import { IRecupesSearch } from '../types/types';
+import { IRecipesData, IRecupesSearch } from '../types/types';
 
 export const foodAPI = createApi({
   reducerPath: 'foodAPI',
@@ -20,12 +20,6 @@ export const foodAPI = createApi({
       }),
     }),
 
-    // fetchNutrientsFood: build.mutation({
-    //   query: () => ({
-    //     url: `/${NUTRIENTS}`,
-    //   }),
-    // }),
-
     fetchRecipesStart: build.query<IRecipes, string>({
         query: () => ({
             url: `/${API.RECIPES}`,
@@ -35,6 +29,17 @@ export const foodAPI = createApi({
                 ['app_key']: API.API_KEY_RECIPES,
                 imageSize: API.IMAGE_SIZE,
                 random: true,
+            },
+        }),
+    }),
+
+    fetchFavoriteRecipes: build.query<IRecipesData, string>({
+        query: (id: string) => ({
+            url: `/${API.RECIPES}/${id}`,
+            params: {
+                type: API.TYPE,
+                ['app_id']: API.ID_RECIPES,
+                ['app_key']: API.API_KEY_RECIPES,
             },
         }),
     }),
@@ -78,4 +83,4 @@ export const foodAPI = createApi({
   }),
 });
 
-export const {useFetchIngredientsQuery} = foodAPI
+export const {useFetchFavoriteRecipesQuery , useFetchIngredientsQuery} = foodAPI

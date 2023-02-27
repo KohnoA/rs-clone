@@ -1,5 +1,6 @@
 import styles from './Ingredients.module.scss';
 import { INutritionFactsData } from '../../../../types/types';
+import React from 'react';
 
 interface IngredientsProps {
   data: INutritionFactsData,
@@ -33,4 +34,4 @@ const Ingredients: React.FC<IngredientsProps> = ({ data }) => {
   );
 }
 
-export default Ingredients;
+export default React.memo(Ingredients);

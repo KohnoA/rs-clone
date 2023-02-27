@@ -1,5 +1,6 @@
 import styles from './Facts.module.scss';
 import { INutritionFactsData, ITotalNutrientsItem } from '../../../../types/types';
+import React from 'react';
 
 interface FactsProps {
   data: INutritionFactsData
@@ -119,4 +120,4 @@ const Facts: React.FC<FactsProps> = ({ data }) => {
   );
 }
 
-export default Facts;
+export default React.memo(Facts);
