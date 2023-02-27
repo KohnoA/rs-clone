@@ -1,6 +1,6 @@
 .card {
     width: 100%;
-    max-width: 260px;
+    max-width: 300px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -11,6 +11,7 @@
     transition: 0.3s;
     cursor: pointer;
     max-height: 485px;
+    overflow: hidden;
 
     &:hover {
         transform: scale(1.03);

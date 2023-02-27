@@ -14,9 +14,9 @@ const Main: React.FC = () => {
       <Info />
 
       <h3 className={ styles.title }>Dishes of the day</h3>
-      <Group title='Breakfast' background='red' orientationClass='left' />
-      <Group title='Lanch' background='green' orientationClass='right' />
-      <Group title='Dinner' background='blue' orientationClass='left' />
+      <Group title='Breakfast' background='red' linkGroup='breakfast' orientationClass='left' />
+      <Group title='Lanch' background='green' linkGroup='lanch' orientationClass='right' />
+      <Group title='Dinner' background='blue' linkGroup='dinner' orientationClass='left' />
     </div>
   )
 }

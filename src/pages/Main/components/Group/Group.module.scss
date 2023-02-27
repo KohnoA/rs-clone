@@ -9,6 +9,7 @@
 }
 
 .goToButton {
+  display: block;
   position: absolute;
   z-index: 1;
   order: -1;
@@ -18,9 +19,11 @@
   padding: 15px 10px;
 
   font: inherit;
+  color: black;
   font-size: 1.5rem;
   font-weight: 700;
   text-transform: uppercase;
+  text-decoration: none;
   writing-mode: vertical-rl;
 
   border-radius: 15px;

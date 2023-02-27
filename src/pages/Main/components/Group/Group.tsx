@@ -1,14 +1,16 @@
 import styles from './Group.module.scss';
 import RecipeCard from '../../../../components/RecipeCard/RecipeCard';
+import { Link } from 'react-router-dom';
 
 interface GroupProps {
   title: string,
   background: string,
+  linkGroup: string,
   cardCount?: number,
   orientationClass?: string,
 }
 
-const Group: React.FC<GroupProps> = ({ title, background, cardCount = 6, orientationClass }) => {
+const Group: React.FC<GroupProps> = ({ title, background, linkGroup, cardCount = 6, orientationClass }) => {
   return (
     <div className={ `${styles.component} ${orientationClass ? styles[orientationClass] : ''}` }>
       <div className={ `${styles.recipes} ${styles[background]}` }>
@@ -18,10 +20,10 @@ const Group: React.FC<GroupProps> = ({ title, background, cardCount = 6, orienta
 
         </div>
       </div>
-      <div className={ styles.goToButton }>
+      <Link to={`/?mealType=${linkGroup}`} className={ styles.goToButton }>
         <span className={ styles.goToButtonArrow }></span>
         Show more
-      </div>
+      </Link>
     </div>
   );
 }
