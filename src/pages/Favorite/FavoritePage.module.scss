@@ -4,19 +4,17 @@
   align-items: flex-start;
   justify-content: space-between;
   padding: 2em;
-
-  h1 {
-    margin-left: 2em;
-  }
 }
 
 .favoritePage__wrapper {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  justify-items: start;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-items: flex-start;
   height: 100%;
   min-height: 60vh;
   gap: 3%;
-  margin: 3em auto 10em;
-  width: 90%;
+  margin: 3em 0 10em;
+  width: 98%;
+  row-gap: 2em;
 }
