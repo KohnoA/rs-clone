@@ -64,5 +64,18 @@ export const foodAPI = createApi({
       }),
     }),
 
+    fetchIngredients: build.query<IRecupesSearch, string>({
+      query:(ingr: string) => ({
+        url: `/${API.FOOD}`,
+        params: {
+          ['app_id']: API.ID_FOOD,
+          ['app_key']: API.API_KEY_FOOD,
+          ingr: ingr,
+        },
+      }),
+    }),
+
   }),
 });
+
+export const {useFetchIngredientsQuery} = foodAPI
