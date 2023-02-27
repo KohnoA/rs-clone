@@ -3,8 +3,6 @@
 .component {
   margin: 0 auto;
   margin-bottom: 70px;
-  padding: 30px 15px;
-  background-color: $appColor;
 }
 
 .title {
@@ -14,17 +12,47 @@
 }
 
 .wrapper {
-  display: flex;
-  justify-content: space-around;
-  gap: 50px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  padding: 30px;
+  background-color: #f4f4f4;
+  border-radius: 15px;
+  box-shadow: 2px 4px 8px 0px rgba(34, 60, 80, 0.2);
 }
 
 .item_component {
-  width: 33%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 2px 4px 8px 0px rgba(34, 60, 80, 0.2);
 }
 
 .item_title {
+  margin-bottom: 15px;
+
   font-size: 1.3rem;
   font-weight: 700;
-  text-align: center;
+}
+
+.item_subTitle {
+  margin-bottom: 15px;
+
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.item_description {
+  flex-grow: 1;
+  margin-bottom: 20px;
+  text-align: justify;
+}
+
+.about {
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
 }

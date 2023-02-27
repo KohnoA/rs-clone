@@ -36,20 +36,20 @@ export const enum CalculatorErrorMessage {
 export const MAIN_APP_INFO: IMainAppInfo[] = [
   {
     title: 'Recipes',
-    subTitle: '',
-    description: '',
+    subTitle: 'Want to find info about a recipe?',
+    description: 'Use our recipe database. In it you can find the recipe you are interested in and learn all the useful information about it. The content of proteins, fats, carbohydrates, other nutrients, as well as what you need in order to prepare this dish.',
     link: '/',
   },
   {
     title: 'Calculator',
-    subTitle: '',
-    description: 'Our calculator can provide you with useful information about your prescription. By specifying the ingredients, you can easily get information about the total calorie content, the total content of fat, proteins, vitamins, and other related indicators, as well as their percentage of the daily norm.',
+    subTitle: 'Want to count your total calories?',
+    description: 'Our calculator can provide you with useful information about your recipe. By specifying the ingredients, you can easily get information about the total calorie content, the total content of fat, proteins, vitamins, and other related indicators, as well as their percentage of the daily norm.',
     link: '/calculator',
   },
   {
     title: 'Generator',
-    subTitle: '',
-    description: '',
+    subTitle: 'Want to start eating healthy?',
+    description: 'Take advantage of our power generator. Entering your parameters in the form. The algorithm will select for you the daily calorie intake, as well as offer your diet option for tomorrow\'s lunch and dinner.',
     link: '/constructor',
   },
 ]

@@ -7,12 +7,13 @@ const Main: React.FC = () => {
 
   return (
     <div className='container page'>
-      <h3 className={ styles.title }>Dishes of the day</h3>
+      <h3 className={ styles.title }>Popular recipes</h3>
 
       <Slider />
 
       <Info />
 
+      <h3 className={ styles.title }>Dishes of the day</h3>
       <Group title='Breakfast' orientationClass='left' />
       <Group title='Lanch' orientationClass='right' />
       <Group title='Dinner' orientationClass='left' />
