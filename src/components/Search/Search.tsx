@@ -3,10 +3,12 @@ import styles from './Search.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { searchSlice } from '../../store/slices/searchSlice';
 import { getSearchList } from '../../store/selectors/searchSelectors';
+import { useNavigate } from 'react-router-dom';
 
 const Search: React.FC = () => {
   const dispatch = useDispatch()
   const [searchValue] = useSelector(getSearchList)
+  const navigate = useNavigate()
 
   const setSearchValue = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -15,8 +17,9 @@ const Search: React.FC = () => {
     []
   )
 
-  const submitHandler =  useCallback(
+  const submitHandler = useCallback(
     (event: React.FormEvent) => {
+      navigate('/')
       event.preventDefault();
       dispatch(searchSlice.actions.setIsEditing(false))
     },
@@ -32,7 +35,7 @@ const Search: React.FC = () => {
 
   return (
     <form
-      className={ styles.search }
+      className={styles.search}
       action="#"
       method="GET"
     >
