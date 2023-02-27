@@ -37,7 +37,7 @@ const RecipeList: React.FC = () => {
 
     return `${API.DOMAIN}/${API.RECIPES}?${String(params)}`
   }, [location.search, search, isEditingSearch])
-
+  
   const [fetchingRecipes, isRecipesLoading] = useFetching(async () => {
     if (isEditingSearch) {
       return

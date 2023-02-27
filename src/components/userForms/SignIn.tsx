@@ -18,44 +18,45 @@ const SignIn: React.FC = () => {
   const navigate = useNavigate();
 
   const changeFormHandler = (event: React.MouseEvent<HTMLAnchorElement>) => {
-    event.preventDefault();
-    dispatch(openModal({content: ModalContent.signUp}));
+    event.preventDefault()
+    dispatch(openModal({ content: ModalContent.signUp }))
   }
 
   const signInHandler = (event: React.FormEvent) => {
-    event.preventDefault();
+    event.preventDefault()
 
     if (!email.isValid || !password.isValid) {
-      setFormError(AuthErrorsMessage.invalidFields);
-      return;
+      setFormError(AuthErrorsMessage.invalidFields)
+      return
     }
 
-    setFormError('');
-    signInExistingUser(email.value.toLowerCase(), password.value.toLowerCase());
+    setFormError('')
+    signInExistingUser(email.value.toLowerCase(), password.value.toLowerCase())
   }
 
   const signInExistingUser = async (userEmail: string, userPassword: string) => {
-    const auth = getAuth();
+    const auth = getAuth()
 
     try {
-      const {user} = await signInWithEmailAndPassword(auth, userEmail, userPassword);
+      const { user } = await signInWithEmailAndPassword(auth, userEmail, userPassword)
 
-      dispatch(setUser({
-        email: user.email,
-        token: user.refreshToken,
-        id: user.uid,
-        name: user.displayName
-      }));
+      dispatch(
+        setUser({
+          email: user.email,
+          token: user.refreshToken,
+          id: user.uid,
+          name: user.displayName,
+        }),
+      )
 
-      navigate('/');
-      dispatch(closeModal());
+      navigate('/')
+      dispatch(closeModal())
       localStorage.setItem('login', `${user.email}`)
       location.reload()
-
     } catch (error) {
-      if (error instanceof Error) console.error(error.message);
+      if (error instanceof Error) console.error(error.message)
 
-      setFormError(AuthErrorsMessage.notFound);
+      setFormError(AuthErrorsMessage.notFound)
     }
   }
 
@@ -74,29 +75,21 @@ const SignIn: React.FC = () => {
         isPassword={ true }
       />
 
-      { formError && <div className={ styles.userForm__formError }>{ formError }</div> }
-      <Button text='Sign In' additionalClasses={ styles.userForm__submit }/>
+      {formError && <div className={styles.userForm__formError}>{formError}</div>}
+      <Button text='Sign In' additionalClasses={styles.userForm__submit} />
 
-      <a
-        href="#"
-        className={ styles.userForm__help }
-        onClick={ (event) => event.preventDefault() }
-        >
-          Forgot your password?
+      <a href='#' className={styles.userForm__help} onClick={(event) => event.preventDefault()}>
+        Forgot your password?
       </a>
 
       <p>
         Don&lsquo;t have an account?&nbsp;
-        <a
-          className={ styles.userForm__change }
-          href="#"
-          onClick={ changeFormHandler }
-        >
+        <a className={styles.userForm__change} href='#' onClick={changeFormHandler}>
           Register!
         </a>
       </p>
     </form>
-  );
+  )
 }
 
-export default SignIn;
+export default SignIn

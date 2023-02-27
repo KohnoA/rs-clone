@@ -22,51 +22,52 @@ const SignUp: React.FC = () => {
 
   useEffect(() => {
     if (
-      (confirmPassword.isDirty && !confirmPassword.isValid) || 
+      (confirmPassword.isDirty && !confirmPassword.isValid) ||
       password.value !== confirmPassword.value
-    ) setPasswordsMatchError(true);
-    else setPasswordsMatchError(false);
-    
-  }, [confirmPassword.value, password.value, confirmPassword.isDirty, confirmPassword.isValid]);
+    )
+      setPasswordsMatchError(true)
+    else setPasswordsMatchError(false)
+  }, [confirmPassword.value, password.value, confirmPassword.isDirty, confirmPassword.isValid])
 
   const changeFormHandler = (event: React.MouseEvent<HTMLAnchorElement>) => {
-    event.preventDefault();
-    dispatch(openModal({content: ModalContent.signIn}));
+    event.preventDefault()
+    dispatch(openModal({ content: ModalContent.signIn }))
   }
 
   const signUpHandler = (event: React.FormEvent) => {
-    event.preventDefault();
+    event.preventDefault()
 
     if (!email.isValid || !password.isValid || !name.isValid || passwordsMatchError) {
-      setFormError(AuthErrorsMessage.invalidFields);
-      return;
+      setFormError(AuthErrorsMessage.invalidFields)
+      return
     }
 
-    setFormError('');
-    signUpNewUser(email.value.toLowerCase(), password.value.toLowerCase(), name.value);
+    setFormError('')
+    signUpNewUser(email.value.toLowerCase(), password.value.toLowerCase(), name.value)
   }
 
   const signUpNewUser = async (userEmail: string, userPassword: string, userName: string) => {
-    const auth = getAuth();
+    const auth = getAuth()
 
     try {
-      const {user} = await createUserWithEmailAndPassword(auth, userEmail, userPassword);
-      await updateProfile(user, {displayName: userName});
+      const { user } = await createUserWithEmailAndPassword(auth, userEmail, userPassword)
+      await updateProfile(user, { displayName: userName })
 
-      dispatch(setUser({
-        email: user.email,
-        token: user.refreshToken,
-        id: user.uid,
-        name: user.displayName,
-      }));
+      dispatch(
+        setUser({
+          email: user.email,
+          token: user.refreshToken,
+          id: user.uid,
+          name: user.displayName,
+        }),
+      )
 
-      navigate('/');
-      dispatch(closeModal());
-
+      navigate('/')
+      dispatch(closeModal())
     } catch (error) {
-      if (error instanceof Error) console.error(error.message);
+      if (error instanceof Error) console.error(error.message)
 
-      setFormError(AuthErrorsMessage.isExist);
+      setFormError(AuthErrorsMessage.isExist)
     }
   }
 
@@ -98,21 +99,17 @@ const SignUp: React.FC = () => {
         isPassword={ true }
       />
 
-      { formError && <div className={ styles.userForm__formError }>{ formError }</div> }
-      <Button text='Sign Up' additionalClasses={ styles.userForm__submit }/>
+      {formError && <div className={styles.userForm__formError}>{formError}</div>}
+      <Button text='Sign Up' additionalClasses={styles.userForm__submit} />
 
       <p>
         Already have an account?&nbsp;
-        <a
-          className={ styles.userForm__change } 
-          href="#"
-          onClick={ changeFormHandler }
-        >
+        <a className={styles.userForm__change} href='#' onClick={changeFormHandler}>
           Sign In!
         </a>
       </p>
     </form>
-  );
+  )
 }
 
-export default SignUp;
+export default SignUp

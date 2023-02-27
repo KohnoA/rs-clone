@@ -1,10 +1,10 @@
-import { useEffect, useState, useMemo } from 'react';
-import { useParams } from 'react-router-dom';
-import RecipeService from '../../../components/API/RecipeService';
-import { useFetching } from '../../../hooks/useFetching';
-import Loader from '../../../components/Loader/Loader';
-import { IRecipeInfo } from '../../../types/types';
-import RecipeInfo from '../../../components/RecipeInfo/RecipeInfo';
+import { useEffect, useState, useMemo } from 'react'
+import { useParams } from 'react-router-dom'
+import RecipeService from '../../../components/API/RecipeService'
+import { useFetching } from '../../../hooks/useFetching'
+import Loader from '../../../components/Loader/Loader'
+import { IRecipeInfo } from '../../../types/types'
+import RecipeInfo from '../../../components/RecipeInfo/RecipeInfo'
 import styles from './RecipePage.module.scss'
 import * as API from '../../../constants/foodApi'
 
@@ -37,20 +37,20 @@ const RecipePage: React.FC = () => {
       {isLoading
         ? <Loader />
         : <RecipeInfo
-          id={location.id}
-          label={recipes.label}
-          image={recipes.image}
-          calories={recipes.calories}
-          ingredientLines={recipes.ingredientLines}
-          digest={recipes.digest}
-          dietLabels={recipes.dietLabels}
-          healthLabels={recipes.healthLabels}
-          cuisineType={recipes.cuisineType}
-          mealType={recipes.mealType}
-        />
+            id={location.id}
+            label={recipes.label}
+            image={recipes.image}
+            calories={recipes.calories}
+            ingredientLines={recipes.ingredientLines}
+            digest={recipes.digest}
+            dietLabels={recipes.dietLabels}
+            healthLabels={recipes.healthLabels}
+            cuisineType={recipes.cuisineType}
+            mealType={recipes.mealType}
+          />
       }
     </div>
   );
 };
 
-export default RecipePage;
+export default RecipePage
