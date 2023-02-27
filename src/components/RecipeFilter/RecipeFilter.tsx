@@ -8,26 +8,33 @@ const RecipeFilter: React.FC = () => {
   const [slide, setSlide] = useState(0)
 
   const upFilter = () => {
+     if(slide <= 0) {
+      return
+    }
+
     const item = document.getElementById(`${slide - 1}`) as HTMLDivElement
     item.style.opacity = '1'
   }
   const downFilter = () => {
+    if(slide >= RecipeFiltersData.length - 1) {
+      return
+  }
+
     const item = document.getElementById(`${slide + 1}`) as HTMLDivElement
     item.style.opacity = '1'
   }
 
   const upSlide = () => {
     if(slide <= 0) {
-      return
+        return
     }
     setSlide(slide - 1)
     setTimeout(() => upFilter(), 100)
   }
   const downSlide = () => {
     if(slide >= RecipeFiltersData.length - 1) {
-      return
+        return
     }
-
     setSlide(slide + 1)
     setTimeout(() => downFilter(), 100)
   }
@@ -44,12 +51,12 @@ const RecipeFilter: React.FC = () => {
               <div className={styles.navBtn__wrapper}>
                 <Button
                   text='↑'
-                  additionalClasses={styles.sliderBtn}
+                  additionalClasses={`${styles.sliderBtn} ${slide === 0 ? styles.sliderBtn_last : ''}`}
                   onClick={upSlide}
                 />
                 <Button
                   text='↓'
-                  additionalClasses={styles.sliderBtn}
+                  additionalClasses={`${styles.sliderBtn} ${slide === RecipeFiltersData.length - 1 ? styles.sliderBtn_last : ''}`}
                   onClick={downSlide}
                 />
               </div>
