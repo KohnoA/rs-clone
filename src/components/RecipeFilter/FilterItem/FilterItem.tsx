@@ -28,7 +28,7 @@ const FilterItem: React.FC<IFilterItem> = ({id, query, header, item1, item2, ite
             <h3 className={styles.filter__subheader}>
                 {header}
             </h3>
-                <img className={styles.filterList__img} src={`${iconArr[id]}`} alt="" />
+                <img className={styles.filterList__img} src={`${iconArr[id]}`} alt="icon" />
             </div>
         <ul className={styles.filterSublist}>
             <li className={styles.filterList__item}>
