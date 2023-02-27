@@ -30,3 +30,14 @@
     }
   }
 }
+
+.search__visibiity_hidden {
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.2s;
+}
+.search__visibiity_visible {
+  visibility: visible;
+  opacity: 1;
+  transition: 0.2s;
+}
