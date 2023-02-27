@@ -6,7 +6,7 @@ import { GITHUB_ACCOUNTS } from '../../constants/constants'
 const WHAT_DO_IN_PROJECT = [
   'Managed team work.',
   'Developed the back-end part of the project (server on NodeJS + Express, integration with MongoDB, setting up and populating the database, developing a REST API, adding user registration and authorization).',
-  "Using Figma developed design that meets the needs of functionality and allows to keep the user's attention on the application as a result of ease of interaction. Came up with the location of the elements, the color scheme and the animations. Tested UI and UX. Developed design of user page, constructor, recipes page.",
+  'Using Figma developed design that meets the needs of functionality and allows to keep the user\'s attention on the application as a result of ease of interaction. Came up with the location of the elements, the color scheme and the animations. Tested UI and UX. Developed design of user page, constructor, recipes page.',
 ]
 const NAME = ['Kohno Alexander', 'Klyosov Alexander', 'Shamkolovich Sergey']
 const POSITION = ['Team lead, frontend developer', 'Frontend developer', 'Frontend developer']
