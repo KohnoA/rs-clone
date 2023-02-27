@@ -91,7 +91,6 @@ export interface IRecipeCard {
     kcal?: number;
 }
 
-
 export interface IUseInput {
   value: string,
   isValid: boolean,

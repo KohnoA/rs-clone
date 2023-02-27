@@ -33,6 +33,13 @@ export const enum CalculatorErrorMessage {
   none = ''
 }
 
+export const enum MainRequestsQuery {
+  balance = 'diet=balanced',
+  breakfast = 'mealType=Breakfast',
+  dinner = 'mealType=Dinner',
+  lanch = 'mealType=Lanch'
+}
+
 export const MAIN_APP_INFO: IMainAppInfo[] = [
   {
     title: 'Recipes',
