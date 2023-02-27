@@ -32,7 +32,7 @@ onAuthStateChanged(auth, (user) => {
 const location = useLocation()
 
 useEffect(() => {
-  if(!isAuth && location.pathname === '/favorite') {
+  if(!auth && location.pathname === '/favorite') {
     navigate('/')
   }
 }, [location.pathname])
