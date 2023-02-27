@@ -32,9 +32,9 @@ const RecipePage: React.FC = () => {
 
     return (
         <div className={styles.recipeInfo__wrapper}>
-        {error &&
-        <div style={{margin:'2em'}}><h1>Error has occured. {error}</h1></div>}
-        {isLoading
+        {error
+        ? <div style={{margin:'2em'}}><h1>Error has occured. {error}</h1></div>
+        : isLoading
             ? <Loader/>
             : <RecipeInfo
                 id={location.id}
