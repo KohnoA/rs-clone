@@ -45,8 +45,8 @@ const Profile: React.FC = () => {
       Hi, {name ? name : 'User'}!<span className={styles.profile__image}></span>
       <div className={`${styles.profile__select} ${select ? styles.profile__select_active : ''}`}>
         <div className={styles.profile__item}>
-          <Link to='/favorite' className={styles.profile__item}>
-            Favorites
+          <Link to='/cabinet' className={styles.profile__item}>
+            Cabinet
           </Link>
         </div>
         <div className={styles.profile__item} onClick={logOutHandler}>
