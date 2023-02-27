@@ -160,3 +160,19 @@
     transform: rotate(180deg);
     transition: 0.3s;
 }
+
+.sliderBtn_last {
+    cursor: not-allowed;
+    opacity: 0.5;
+
+    &:hover {
+        color: white;
+        background-color: $buttonColor;
+        cursor: not-allowed;
+
+        &:active {
+        color: white;
+        background-color: $buttonColor;
+        }
+    }
+}

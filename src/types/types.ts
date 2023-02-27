@@ -9,7 +9,8 @@ export interface IRecipesData {
           calories: string;
           source: string
           cuisineType: string;
-    }
+    },
+    id: string;
 }
 
 export interface IRecupesSearch {
@@ -62,7 +63,8 @@ export interface IRecipeFavorite {
     dishType?: string;
     calories?: number;
     label?: string;
-    uri?: string;
+    uri: string;
+    source?: string;
 }
 
 export interface IFilters {

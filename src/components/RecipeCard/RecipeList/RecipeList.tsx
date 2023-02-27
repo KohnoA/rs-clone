@@ -13,13 +13,14 @@ import * as API from '../../../constants/foodApi'
 import { useSelector } from 'react-redux'
 import { getSearchList } from '../../../store/selectors/searchSelectors'
 import Button from '../../Button/Button'
-import { extractUri } from '../../../utils/extractUri'
+import { AxiosError } from 'axios'
 
 const RecipeList: React.FC = () => {
   const [recipes, setRecipes] = useState<IRecipesData[]>([])
   const [nextPage, setNextPage] = useState<string>('')
   const [isPaginationLoad, setIsPaginationLoad] = useState<boolean>(false)
   const [visible, setVisible] = useState<boolean>(false)
+  const [paginationError, setPaginationError] = useState<string>('')
 
   const location = useLocation()
   const [search, isEditingSearch] = useSelector(getSearchList)
@@ -37,8 +38,8 @@ const RecipeList: React.FC = () => {
 
     return `${API.DOMAIN}/${API.RECIPES}?${String(params)}`
   }, [location.search, search, isEditingSearch])
-  
-  const [fetchingRecipes, isRecipesLoading] = useFetching(async () => {
+
+  const [fetchingRecipes, isRecipesLoading, error] = useFetching(async () => {
     if (isEditingSearch) {
       return
     }
@@ -56,11 +57,20 @@ const RecipeList: React.FC = () => {
   const observer = useRef<IntersectionObserver | null>(null)
 
   const changePage = async (url: string): Promise<void> => {
-    setIsPaginationLoad(true)
+    if (recipes.length === 0) return
 
-    const response = await RecipeService.getRecipes(`${url}`)
-    setNextPage(response._links.next.href)
-    setRecipes([...recipes, ...response.hits])
+    try {
+      setPaginationError('')
+      setIsPaginationLoad(true)
+
+      const response = await RecipeService.getRecipes(`${url}`)
+      setNextPage(response._links.next.href)
+      setRecipes([...recipes, ...response.hits])
+    } catch (err: unknown) {
+      if (err instanceof AxiosError) {
+        setPaginationError(err.message)
+      }
+    }
   }
 
   useEffect(() => {
@@ -82,6 +92,12 @@ const RecipeList: React.FC = () => {
     observer.current.observe(lastElement.current)
     setIsPaginationLoad(false)
   }, [nextPage])
+
+  const extractUri = (i: number): string => {
+    const mainLink = recipes[i].recipe.uri
+    const uri = mainLink.slice(mainLink.indexOf('_') + 1)
+    return uri
+  }
 
   const scrollUp = () => {
     window.scrollTo({
@@ -108,19 +124,19 @@ const RecipeList: React.FC = () => {
           onClick={scrollUp}
         />
       </div>
-      {isRecipesLoading ? (
-        <Loader />
-      ) : recipes.length === 0 ? (
+      {error ? (
         <div style={{ margin: '2em' }}>
-          <h1>Error has occured. Maybe it`s too many requests. Please, try later.</h1>
+          <h1>Error has occured. {error}</h1>
         </div>
+      ) : isRecipesLoading ? (
+        <Loader />
       ) : (
         <div className={styles.recipesWrapper}>
-          {recipes.map((recipe, i, thisArr) => (
+          {recipes.map((recipe, i) => (
             <RecipeCard
               route='recipes'
               key={i}
-              id={extractUri(i, thisArr)}
+              id={extractUri(i)}
               header={recipe.recipe.cuisineType}
               image={recipe.recipe.image}
               type={recipe.recipe.dishType}
@@ -134,10 +150,16 @@ const RecipeList: React.FC = () => {
         </div>
       )}
       <div className={styles.devider} />
-      {isPaginationLoad && (
+      {paginationError ? (
+        <div className={styles.paginationError}>
+          <span>Error has occured. {paginationError}. Please, try later.</span>
+        </div>
+      ) : isPaginationLoad ? (
         <div className={styles.paginationLoader}>
           <Loader />
         </div>
+      ) : (
+        <div></div>
       )}
     </div>
   )
