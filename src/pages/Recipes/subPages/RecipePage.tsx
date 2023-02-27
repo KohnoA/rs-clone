@@ -30,51 +30,30 @@ const RecipePage: React.FC = () => {
     fetching()
   }, [])
 
-<<<<<<< HEAD
-    return (
-        <div className={styles.recipeInfo__wrapper}>
-        {error
-        ? <div style={{margin:'2em'}}><h1>Error has occured. {error}</h1></div>
-        : isLoading
-            ? <Loader/>
-            : <RecipeInfo
-                id={location.id}
-                label={recipes.label}
-                image={recipes.image}
-                calories={recipes.calories}
-                ingredientLines={recipes.ingredientLines}
-                digest={recipes.digest}
-                dietLabels={recipes.dietLabels}
-                healthLabels={recipes.healthLabels}
-                cuisineType={recipes.cuisineType}
-                mealType={recipes.mealType}
-            />
-        }
-        </div>
-    );
-=======
   return (
     <div className={styles.recipeInfo__wrapper}>
-      {error &&
-        <div style={{ margin: '2em' }}><h1>Error has occured. {error}</h1></div>}
-      {isLoading
-        ? <Loader />
-        : <RecipeInfo
-            id={location.id}
-            label={recipes.label}
-            image={recipes.image}
-            calories={recipes.calories}
-            ingredientLines={recipes.ingredientLines}
-            digest={recipes.digest}
-            dietLabels={recipes.dietLabels}
-            healthLabels={recipes.healthLabels}
-            cuisineType={recipes.cuisineType}
-            mealType={recipes.mealType}
-          />
-      }
+      {error ? (
+        <div style={{ margin: '2em' }}>
+          <h1>Error has occured. {error}</h1>
+        </div>
+      ) : isLoading ? (
+        <Loader />
+      ) : (
+        <RecipeInfo
+          id={location.id}
+          label={recipes.label}
+          image={recipes.image}
+          calories={recipes.calories}
+          ingredientLines={recipes.ingredientLines}
+          digest={recipes.digest}
+          dietLabels={recipes.dietLabels}
+          healthLabels={recipes.healthLabels}
+          cuisineType={recipes.cuisineType}
+          mealType={recipes.mealType}
+        />
+      )}
     </div>
-  );
->>>>>>> 1c36f40c8a90152ab654ca3ca9d3339372ee4f44
-};
+  )
+}
 
 export default RecipePage
