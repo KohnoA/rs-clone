@@ -44,7 +44,7 @@
 }
 
 .filterWrapper {
-    height: 0;
+    height: max-content;
     position: sticky;
     top: 0;
     display: flex;
@@ -67,4 +67,10 @@
     transition: 0.5s;
     visibility: visible;
     opacity: 1;
+}
+
+.paginationError {
+    margin:2em;
+    width:100%;
+    text-align: center;
 }

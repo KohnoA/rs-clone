@@ -1,27 +1,27 @@
 .favourite__btn {
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-    position: absolute;
-    top: 22%;
-    right: 5%;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  position: absolute;
+  top: 22%;
+  right: 5%;
+  width: 35px;
+  height: 35px;
+
+  * {
     width: 35px;
     height: 35px;
+  }
 
-    * {
-        width: 35px;
-        height: 35px;
-    }
+  g {
+    background-color: #E0E0E0;
+    transition: 0.15s;
+  }
 
+
+  &:hover {
     g {
-        background-color: #E0E0E0;
-        transition: 0.15s;
+        opacity: 0.6;
     }
-
-
-    &:hover {
-        g {
-            opacity: 0.6;
-        }
-    }
+  }
 }

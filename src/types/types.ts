@@ -9,7 +9,8 @@ export interface IRecipesData {
           calories: string;
           source: string
           cuisineType: string;
-    }
+    },
+    id: string;
 }
 
 export interface IRecupesSearch {
@@ -62,7 +63,8 @@ export interface IRecipeFavorite {
     dishType?: string;
     calories?: number;
     label?: string;
-    uri?: string;
+    uri: string;
+    source?: string;
 }
 
 export interface IFilters {
@@ -90,7 +92,6 @@ export interface IRecipeCard {
     kcalIcon?: string;
     kcal?: number;
 }
-
 
 export interface IUseInput {
   value: string,
@@ -142,4 +143,11 @@ export interface IIngredients {
   food: string,
   weight: number,
   nutrients: ITotalNutrients
+}
+
+export interface IMainAppInfo {
+  title: string,
+  subTitle: string,
+  description: string,
+  link: string
 }

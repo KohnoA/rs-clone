@@ -11,6 +11,7 @@
     transition: 0.3s;
     cursor: pointer;
     max-height: 485px;
+    overflow: hidden;
 
     &:hover {
         transform: scale(1.03);
