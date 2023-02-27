@@ -9,5 +9,5 @@ export default class RecipeService {
         if(err instanceof AxiosError && err.request.status === 404)
         console.error(`Error has occured, ${err}`)
     }
-    } 
+    }
 }

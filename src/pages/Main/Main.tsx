@@ -1,13 +1,12 @@
-import { Example } from '../../components/exampleRequest';
+import { Example } from '../../components/exampleRequest'
 
 const Main: React.FC = () => {
-    return (
-        <div className={'container page'}>
-            Main
-      <Example/>
+  return (
+    <div className={'container page'}>
+      Main
+      <Example />
+    </div>
+  )
+}
 
-        </div>
-    );
-};
-
-export default Main;
+export default Main
