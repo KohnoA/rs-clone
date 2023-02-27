@@ -39,7 +39,7 @@ const FavoriteList: React.FC<IRecipes> = ({ url }: IRecipes) => {
         </div>
       ) : (
         <RecipeCard
-          route='favorite'
+          route='cabinet'
           key={1}
           id={id}
           header={recipes.cuisineType}
