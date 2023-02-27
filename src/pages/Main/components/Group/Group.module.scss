@@ -1,0 +1,129 @@
+@import '../../../../styles/variables.scss';
+
+.component {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-content: stretch;
+  margin-bottom: 70px;
+}
+
+.goToButton {
+  display: flex;
+  align-items: baseline;
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+
+  width: 75%;
+  padding: 15px 10px;
+
+  font: inherit;
+  color: black;
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-decoration: none;
+  writing-mode: vertical-rl;
+
+  border-radius: 15px;
+  border: none;
+  background-color: $appColor;
+  transition: .2s;
+
+  &:hover {
+    cursor: pointer;
+    background-color: $appColorHover;
+  }
+}
+
+.goToButtonArrow {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+
+  background-image: url('../../../../assets/icons/double_arrow_up.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  transform: rotate(90deg);
+}
+
+.recipes {
+  position: relative;
+  z-index: 2;
+  width: 75%;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 2px 4px 8px 0px rgba(34, 60, 80, 0.2);
+}
+
+.title {
+  margin-bottom: 30px;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 1fr;
+  justify-items: center;
+  align-items: center;
+  gap: 30px;
+}
+
+.left {
+  transform: translateX(-3%);
+
+  .title {
+    text-align: left;
+  }
+
+  .goToButton {
+    transform: translate3d(6%, -50%, 0);
+    box-shadow: 2px 4px 8px 0px rgba(34, 60, 80, 0.2);
+
+    &:hover {
+      transform: translate3d(10%, -50%, 0);
+    }
+  }
+}
+
+.right {
+  transform: translateX(3%);
+
+  .title {
+    text-align: right;
+  }
+
+  .goToButton {
+    transform: translate3d(-6%, -50%, 0) rotate(180deg);
+    box-shadow: -2px -4px 8px 0px rgba(34, 60, 80, 0.2);
+
+    &:hover {
+      transform: translate3d(-10%, -50%, 0) rotate(180deg);
+    }
+  }
+
+  .goToButtonArrow {
+    order: 1;
+  }
+}
+
+.green {
+  background-color: $thirdAppColor;
+}
+
+.red {
+  background-color: $fourAppColor;
+}
+
+.blue {
+  background-color: $secondAppColor;
+}
+
+.loader {
+  font-size: 2rem;
+  font-weight: 700;
+}

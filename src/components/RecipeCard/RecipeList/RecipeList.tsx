@@ -14,6 +14,7 @@ import { useSelector } from 'react-redux'
 import { getSearchList } from '../../../store/selectors/searchSelectors'
 import Button from '../../Button/Button'
 import { AxiosError } from 'axios'
+import { extractUri } from '../../../utils/extractUri'
 
 const RecipeList: React.FC = () => {
   const [recipes, setRecipes] = useState<IRecipesData[]>([])

@@ -18,9 +18,7 @@ const FavoritePage: React.FC = () => {
   )
 
   if (error) {
-    return (
-      <h2>Error has occured. Network Error. Maybe it`s too many requests. Please, try later.</h2>
-    )
+    return <h2>Error has occured. Network Error. Maybe it`s too many requests. Please, try later.</h2>
   }
 
   return (
@@ -38,11 +36,7 @@ const FavoritePageWrapper = () => {
   return (
     <div className={styles.favoritePage}>
       <h1>Favorite recipes</h1>
-      <div
-        className={
-          favArr.length === 0 ? styles.favoritePage__wrapper_empty : styles.favoritePage__wrapper
-        }
-      >
+      <div className={favArr.length === 0 ? styles.favoritePage__wrapper_empty : styles.favoritePage__wrapper}>
         <FavoritePage />
       </div>
     </div>

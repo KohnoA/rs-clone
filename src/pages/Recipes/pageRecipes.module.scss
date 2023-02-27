@@ -44,7 +44,7 @@
 }
 
 .filterWrapper {
-    height: 0;
+    height: max-content;
     position: sticky;
     top: 0;
     display: flex;

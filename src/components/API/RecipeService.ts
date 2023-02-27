@@ -14,4 +14,8 @@ export default class RecipeService {
             }
         }
     }
+<<<<<<< HEAD
+=======
+    }
+>>>>>>> 1c36f40c8a90152ab654ca3ca9d3339372ee4f44
 }

@@ -1,3 +1,5 @@
+import { IMainAppInfo } from '../types/types';
+
 export const GITHUB_ACCOUNTS = ['https://github.com/KohnoA', 'https://github.com/Nexuslolz', 'https://github.com/shamkolovich95'];
 export const EMAIL_REG_EXP = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 export const MIN_PASSWORD_LENGTH = 6;
@@ -30,3 +32,31 @@ export const enum CalculatorErrorMessage {
   requestError = 'Processing error, please check your data or try again later',
   none = ''
 }
+
+export const enum MainRequestsQuery {
+  balance = 'diet=balanced',
+  breakfast = 'mealType=Breakfast',
+  dinner = 'mealType=Dinner',
+  lunch = 'mealType=Lunch'
+}
+
+export const MAIN_APP_INFO: IMainAppInfo[] = [
+  {
+    title: 'Recipes',
+    subTitle: 'Want to find info about a recipe?',
+    description: 'Use our recipe database. In it you can find the recipe you are interested in and learn all the useful information about it. The content of proteins, fats, carbohydrates, other nutrients, as well as what you need in order to prepare this dish.',
+    link: '/',
+  },
+  {
+    title: 'Calculator',
+    subTitle: 'Want to count your total calories?',
+    description: 'Our calculator can provide you with useful information about your recipe. By specifying the ingredients, you can easily get information about the total calorie content, the total content of fat, proteins, vitamins, and other related indicators, as well as their percentage of the daily norm.',
+    link: '/calculator',
+  },
+  {
+    title: 'Generator',
+    subTitle: 'Want to start eating healthy?',
+    description: 'Take advantage of our power generator. Entering your parameters in the form. The algorithm will select for you the daily calorie intake, as well as offer your diet option for tomorrow\'s lunch and dinner.',
+    link: '/constructor',
+  },
+]
