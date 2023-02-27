@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-     justify-content: space-between;
+    justify-content: space-between;
     padding: 2em;
 
     h1 {
@@ -19,5 +19,15 @@
     gap: 3%;
     margin: 3em auto 10em;
     width: 90%;
+}
 
+.favoritePage__wrapper_empty {
+    display: flex;
+    justify-items: center;
+    align-items: flex-start;
+    height: 100%;
+    min-height: 60vh;
+    gap: 3%;
+    margin: 3em auto 10em;
+    width: 90%;
 }
