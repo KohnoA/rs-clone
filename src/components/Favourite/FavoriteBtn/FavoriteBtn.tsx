@@ -14,7 +14,7 @@ interface IFavoriteBtnProps {
 
 const FavouriteBtn = ({ cardId }: IFavoriteBtnProps) => {
   const dispatch = useDispatch()
-  const { isAuth } = useAuth()
+  const {isAuth} = useAuth()
 
   const toggleFavorite = useCallback(() => {
     dispatch(favoriteSlice.actions.toggleFavorite(cardId))
@@ -57,11 +57,7 @@ const FavouriteBtn = ({ cardId }: IFavoriteBtnProps) => {
         preserveAspectRatio='xMidYMid meet'
       >
         <metadata>Created by potrace 1.15, written by Peter Selinger 2001-2017</metadata>
-        <g
-          transform='translate(0.000000,1189.000000) scale(0.100000,-0.100000)'
-          fill={color}
-          stroke='none'
-        >
+        <g transform='translate(0.000000,1189.000000) scale(0.100000,-0.100000)' fill={color} stroke='none'>
           <path
             d='M3250 11884 c-25 -2 -106 -11 -180 -20 -1485 -172 -2704 -1295 -3001
             -2764 -133 -660 -67 -1507 171 -2223 252 -753 675 -1411 1397 -2172 342 -360

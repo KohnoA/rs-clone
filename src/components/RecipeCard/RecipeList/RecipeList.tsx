@@ -13,6 +13,7 @@ import * as API from '../../../constants/foodApi'
 import { useSelector } from 'react-redux'
 import { getSearchList } from '../../../store/selectors/searchSelectors'
 import Button from '../../Button/Button'
+import { extractUri } from '../../../utils/extractUri'
 
 const RecipeList: React.FC = () => {
   const [recipes, setRecipes] = useState<IRecipesData[]>([])
@@ -36,7 +37,7 @@ const RecipeList: React.FC = () => {
 
     return `${API.DOMAIN}/${API.RECIPES}?${String(params)}`
   }, [location.search, search, isEditingSearch])
-
+  
   const [fetchingRecipes, isRecipesLoading] = useFetching(async () => {
     if (isEditingSearch) {
       return
@@ -82,12 +83,6 @@ const RecipeList: React.FC = () => {
     setIsPaginationLoad(false)
   }, [nextPage])
 
-  const extractUri = (i: number): string => {
-    const mainLink = recipes[i].recipe.uri
-    const uri = mainLink.slice(mainLink.indexOf('_') + 1)
-    return uri
-  }
-
   const scrollUp = () => {
     window.scrollTo({
       top: 0,
@@ -121,11 +116,11 @@ const RecipeList: React.FC = () => {
         </div>
       ) : (
         <div className={styles.recipesWrapper}>
-          {recipes.map((recipe, i) => (
+          {recipes.map((recipe, i, thisArr) => (
             <RecipeCard
               route='recipes'
               key={i}
-              id={extractUri(i)}
+              id={extractUri(i, thisArr)}
               header={recipe.recipe.cuisineType}
               image={recipe.recipe.image}
               type={recipe.recipe.dishType}

@@ -1,29 +1,24 @@
-import { useInput } from '../../hooks/useInput'
-import { Validations, ModalContent, AuthErrorsMessage } from '../../constants/constants'
-import styles from './userForms.module.scss'
-import Button from '../Button/Button'
-import { useState, useEffect } from 'react'
-import { getAuth, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
-import { useAppDispatch } from '../../hooks/reduxHooks'
-import { setUser } from '../../store/slices/userSlice'
-import { useNavigate } from 'react-router-dom'
-import { openModal, closeModal } from '../../store/slices/modalSlice'
+import { useInput } from '../../hooks/useInput';
+import { Validations, ModalContent, AuthErrorsMessage } from '../../constants/constants';
+import styles from './userForms.module.scss';
+import Button from '../Button/Button';
+import { useState, useEffect } from 'react';
+import { getAuth, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { useAppDispatch } from '../../hooks/reduxHooks';
+import { setUser } from '../../store/slices/userSlice';
+import { useNavigate } from 'react-router-dom';
+import { openModal, closeModal } from '../../store/slices/modalSlice';
+import InputItem from '../InputItem/InputItem';
 
 const SignUp: React.FC = () => {
-  const name = useInput('', Validations.name)
-  const email = useInput('', Validations.email)
-  const password = useInput('', Validations.password)
-  const confirmPassword = useInput('', Validations.password)
-  const [nameInfo, setNameInfo] = useState<boolean>(false)
-  const [emailInfo, setEmailInfo] = useState<boolean>(false)
-  const [passwordInfo, setPasswordInfo] = useState<boolean>(false)
-  const [confirmPasswordInfo, setConfirmPasswordInfo] = useState<boolean>(false)
-  const [passwordsMatchError, setPasswordsMatchError] = useState<boolean>(false)
-  const [passwordVisible, setPasswordVisible] = useState<boolean>(false)
-  const [confirmPasswordVisible, setConfirmPasswordVisible] = useState<boolean>(false)
-  const [formError, setFormError] = useState<string | AuthErrorsMessage>('')
-  const dispatch = useAppDispatch()
-  const navigate = useNavigate()
+  const name = useInput('', Validations.name);
+  const email = useInput('', Validations.email);
+  const password = useInput('', Validations.password);
+  const confirmPassword = useInput('', Validations.password);
+  const [passwordsMatchError, setPasswordsMatchError] = useState<boolean>(false);
+  const [formError, setFormError] = useState<string | AuthErrorsMessage>('');
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (
@@ -77,136 +72,32 @@ const SignUp: React.FC = () => {
   }
 
   return (
-    <form action='#' className={styles.userForm} onSubmit={signUpHandler}>
-      <div className={styles.userForm__item}>
-        {name.isDirty && !name.isValid && (
-          <span
-            className={styles.userForm__errorInfo}
-            onMouseOver={() => setNameInfo(true)}
-            onMouseOut={() => setNameInfo(false)}
-          >
-            {nameInfo && (
-              <span className={styles.userForm__errorInfo_message}>
-                The name must be at least 3 and not more than 16 characters!
-              </span>
-            )}
-          </span>
-        )}
-        <input
-          type='text'
-          placeholder='Your Name'
-          value={name.value}
-          onChange={name.onChange}
-          onBlur={name.onBlur}
-          className={
-            name.isDirty && !name.isValid
-              ? `${styles.userForm__input} ${styles.userForm__inputError}`
-              : styles.userForm__input
-          }
-        />
-      </div>
+    <form action="#" className={ styles.userForm } onSubmit={ signUpHandler }>
+      <InputItem 
+        input={ name }
+        placeholder={ 'Your name' }
+        errorMessage={ 'The name must be at least 3 and not more than 16 characters!' }
+      />
 
-      <div className={styles.userForm__item}>
-        {email.isDirty && !email.isValid && (
-          <span
-            className={styles.userForm__errorInfo}
-            onMouseOver={() => setEmailInfo(true)}
-            onMouseOut={() => setEmailInfo(false)}
-          >
-            {emailInfo && (
-              <span className={styles.userForm__errorInfo_message}>
-                The email address must contain the &ldquo;@&ldquo; symbol. &ldquo;{email.value}
-                &ldquo; address is missing &ldquo;@&ldquo; character.
-              </span>
-            )}
-          </span>
-        )}
-        <input
-          type='email'
-          placeholder='E-mail'
-          value={email.value}
-          onChange={email.onChange}
-          onBlur={email.onBlur}
-          className={
-            email.isDirty && !email.isValid
-              ? `${styles.userForm__input} ${styles.userForm__inputError}`
-              : styles.userForm__input
-          }
-        />
-      </div>
+      <InputItem 
+        input={ email }
+        placeholder={ 'E-mail' }
+        errorMessage={ `The email address must contain the "@" symbol. "${email.value}" address is missing "@" character.` }
+      />
 
-      <div className={styles.userForm__item}>
-        {password.isDirty && !password.isValid && (
-          <span
-            className={styles.userForm__errorInfo}
-            onMouseOver={() => setPasswordInfo(true)}
-            onMouseOut={() => setPasswordInfo(false)}
-          >
-            {passwordInfo && (
-              <span className={styles.userForm__errorInfo_message}>
-                The name must be at least 6 and not more than 15 characters!
-              </span>
-            )}
-          </span>
-        )}
-        <input
-          type={passwordVisible ? 'text' : 'password'}
-          placeholder='Password'
-          value={password.value}
-          onChange={password.onChange}
-          onBlur={password.onBlur}
-          className={
-            password.isDirty && !password.isValid
-              ? `${styles.userForm__input} ${styles.userForm__inputError}`
-              : styles.userForm__input
-          }
-        />
-        <span
-          className={
-            passwordVisible
-              ? `${styles.userForm__password} ${styles.userForm__pasVisible}`
-              : `${styles.userForm__password} ${styles.userForm__pasUnvisible}`
-          }
-          onClick={() => setPasswordVisible((prev) => !prev)}
-        ></span>
-      </div>
+      <InputItem 
+        input={ password }
+        placeholder={ 'Password' }
+        errorMessage={ 'The password must be at least 6 and not more than 15 characters!' }
+        isPassword={ true }
+      />
 
-      <div className={styles.userForm__item}>
-        {passwordsMatchError && (
-          <span
-            className={styles.userForm__errorInfo}
-            onMouseOver={() => setConfirmPasswordInfo(true)}
-            onMouseOut={() => setConfirmPasswordInfo(false)}
-          >
-            {confirmPasswordInfo && (
-              <span className={styles.userForm__errorInfo_message}>
-                The fields, password and confirm password must match. And must be at least 6 and not
-                more than 15 characters!
-              </span>
-            )}
-          </span>
-        )}
-        <input
-          type={confirmPasswordVisible ? 'text' : 'password'}
-          placeholder='Confirm the password'
-          value={confirmPassword.value}
-          onChange={confirmPassword.onChange}
-          onBlur={confirmPassword.onBlur}
-          className={
-            passwordsMatchError
-              ? `${styles.userForm__input} ${styles.userForm__inputError}`
-              : styles.userForm__input
-          }
-        />
-        <span
-          className={
-            confirmPasswordVisible
-              ? `${styles.userForm__password} ${styles.userForm__pasVisible}`
-              : `${styles.userForm__password} ${styles.userForm__pasUnvisible}`
-          }
-          onClick={() => setConfirmPasswordVisible((prev) => !prev)}
-        ></span>
-      </div>
+      <InputItem 
+        input={ confirmPassword }
+        placeholder={ 'Confirm the password' }
+        errorMessage={ 'The fields, password and confirm password must match. And must be at least 6 and not more than 15 characters!' }
+        isPassword={ true }
+      />
 
       {formError && <div className={styles.userForm__formError}>{formError}</div>}
       <Button text='Sign Up' additionalClasses={styles.userForm__submit} />

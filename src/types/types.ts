@@ -91,7 +91,6 @@ export interface IRecipeCard {
     kcal?: number;
 }
 
-
 export interface IUseInput {
   value: string,
   isValid: boolean,
@@ -142,4 +141,11 @@ export interface IIngredients {
   food: string,
   weight: number,
   nutrients: ITotalNutrients
+}
+
+export interface IMainAppInfo {
+  title: string,
+  subTitle: string,
+  description: string,
+  link: string
 }
