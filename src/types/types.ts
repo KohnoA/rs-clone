@@ -10,7 +10,7 @@ export interface IRecipesData {
           source: string
           cuisineType: string;
     },
-    id?: string;
+    id: string;
 }
 
 export interface IRecupesSearch {
