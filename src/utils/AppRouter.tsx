@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom'
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 import PageNotFound from '../pages/404/404'
 import AboutUs from '../pages/AboutUs/AboutUs'
 import Constructor from '../pages/Constructor/Constructor'
@@ -43,15 +43,14 @@ const AppRouter = () => {
   return (
     <Routes>
       <Route path='*' element={<PageNotFound />} />
-      <Route path='/' element={<Recipes />} />
+      <Route path='/' element={<Main />} />
       <Route path='/recipes/:id' element={<RecipePage />} />
-      <Route path='/recipes' element={<Navigate to='/' replace />} />
+      <Route path='/recipes' element={<Recipes />} />
       <Route path='/favorite/:id' element={<RecipePage />} />
       <Route path='/constructor' element={<Constructor />} />
       <Route path='/about' element={<AboutUs />} />
       <Route path='/favorite' element={<FavoritePage />} />
       <Route path='/calculator' element={<Calculator />} />
-      <Route path='/main' element={<Main />} />
     </Routes>
   )
 }
