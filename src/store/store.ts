@@ -4,11 +4,13 @@ import { favoriteSlice } from './slices/favoriteSlice';
 import { searchSlice } from './slices/searchSlice';
 import userReducer from './slices/userSlice';
 import modalReducer from './slices/modalSlice';
+import { ingrSearchSlice } from './slices/ingrSearchSlice';
 
 const rootReducer = combineReducers({
     [foodAPI.reducerPath]: foodAPI.reducer,
     favorite: favoriteSlice.reducer,
     search: searchSlice.reducer,
+    searchIngr: ingrSearchSlice.reducer,
     user: userReducer,
     modal: modalReducer,
 });
