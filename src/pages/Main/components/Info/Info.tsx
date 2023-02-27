@@ -18,7 +18,7 @@ const Info: React.FC = () => {
           </div>
         )}
 
-        {/* <Link className={ styles.about } to='/about'><Button text='About Us' /></Link> */}
+        <Link className={ styles.about } to='/about'><Button text='About Us' /></Link>
       </div>
 
     </div>

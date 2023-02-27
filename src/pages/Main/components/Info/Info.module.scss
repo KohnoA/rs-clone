@@ -52,7 +52,7 @@
 }
 
 .about {
-  display: flex;
-  justify-content: center;
+  grid-column: 2/3;
+  justify-self: center;
   text-decoration: none;
 }
