@@ -1,12 +1,12 @@
 import { initialCalories } from '../../../constants/constants';
 import { IRecipe } from '../../../models/IRecipes';
 import { ILifeChange } from '../../../types/types';
-import { Title } from '../../Title/Title';
-import { FormButton } from '../CaloriesForm/FormItems/FormButton';
+import { Title } from '../../Title/title';
 import styles from './CaloriesRation.module.scss';
-import { amountCommonCalories, CALORIES_TO_NUTRIENTS } from '../ConstantsForm';
-import { CaloriesTable } from './CaloriesRationItems/CaloriesTable';
 import { useState } from 'react';
+import { FormButton } from '../CaloriesForm/FormItems/FormButton';
+import { CALORIES_TO_NUTRIENTS } from '../ConstantsForm';
+import { CaloriesTable } from './CaloriesRationItems/CaloriesTable';
 import { CaloriesAside } from './CaloriesRationItems/CaloriesAside';
 
 interface IProps {

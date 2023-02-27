@@ -1,10 +1,6 @@
 import { FetchBaseQueryError } from '@reduxjs/toolkit/dist/query';
-import { SetStateAction } from 'react';
-import { Dispatch } from 'redux';
-import { IRecipe, IRecipes } from '../../../../models/IRecipes';
-import { foodAPI } from '../../../../store/sevices/foodService.api';
+import { IRecipe } from '../../../../models/IRecipes';
 import { MyButton } from '../../../MyButton/MyButton';
-import { MyFavoriteBtn } from '../../../MyFavorite/MyFavorite';
 import styles from '../CaloriesRation.module.scss';
 
 interface IProps {

@@ -14,8 +14,8 @@ interface IProps {
   setError: React.Dispatch<React.SetStateAction<FetchBaseQueryError | undefined>>,
 }
 
-export const MyButton: React.FC<IProps> = ({text, type, calories, recipes, setMyRecipes, setLoading, setError}) => {
-  const { data, isLoading, error, refetch } = foodAPI.useFetchRecipesWithParamsRandomQuery({type, calories});
+export const MyButton: React.FC<IProps> = ({text, type, calories, recipes, setMyRecipes, setError}) => {
+  const { data, error, refetch } = foodAPI.useFetchRecipesWithParamsRandomQuery({type, calories});
 
   const setRandomRecipe = () => {
     if (data) {

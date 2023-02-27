@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { CaloriesForm } from '../../components/Calories/CaloriesForm/CaloriesForm';
 import { CaloriesRation } from '../../components/Calories/CaloriesRation/CaloriesRation';
 import { initialCalories } from '../../constants/constants';
