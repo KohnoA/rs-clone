@@ -10,16 +10,18 @@ import { useEffect, useState } from 'react'
 import iconType from '../../../../assets/icons/food.svg'
 import kcalIcon from '../../../../assets/icons/kcal.svg'
 import { extractUri } from '../../../../utils/extractUri'
+import { getRecipes } from '../../../../utils/getRecipes'
 
 interface SliderProps {
-  getData: (query: MainRequestsQuery, count: number) => Promise<IRecipesData[] | undefined>
+  category: MainRequestsQuery,
+  count?: number,
 }
 
-const Slider: React.FC<SliderProps> = ({ getData }) => {
+const Slider: React.FC<SliderProps> = ({ category, count = 10 }) => {
   const [data, setData] = useState<IRecipesData[] | null>(null)
 
   useEffect(() => {
-    getData(MainRequestsQuery.balance, 10).then((res) => {
+    getRecipes(category, count).then((res) => {
       if (res) setData(res)
     })
   }, [])
@@ -38,24 +40,23 @@ const Slider: React.FC<SliderProps> = ({ getData }) => {
         autoplay
         loop
       >
-        {data &&
-          data.map((recipe, index, thisArr) => {
-            return (
-              <SwiperSlide key={index}>
-                <RecipeCard
-                  route='recipes'
-                  id={extractUri(index, thisArr)}
-                  header={recipe.recipe.cuisineType}
-                  image={recipe.recipe.image}
-                  type={recipe.recipe.dishType}
-                  typeIcon={iconType}
-                  kcalIcon={kcalIcon}
-                  kcal={Math.round(Number(recipe.recipe.calories))}
-                  title={recipe.recipe.label}
-                />
-              </SwiperSlide>
-            )
-          })}
+        {data.map((recipe, index, thisArr) => {
+          return (
+            <SwiperSlide key={index}>
+              <RecipeCard
+                route='recipes'
+                id={extractUri(index, thisArr)}
+                header={recipe.recipe.cuisineType}
+                image={recipe.recipe.image}
+                type={recipe.recipe.dishType}
+                typeIcon={iconType}
+                kcalIcon={kcalIcon}
+                kcal={Math.round(Number(recipe.recipe.calories))}
+                title={recipe.recipe.label}
+              />
+            </SwiperSlide>
+          )
+        })}
       </Swiper>
 
       <div className={`button-prev-slide ${styles.prev_slide}`}></div>

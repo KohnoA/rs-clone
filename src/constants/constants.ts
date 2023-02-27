@@ -37,7 +37,7 @@ export const enum MainRequestsQuery {
   balance = 'diet=balanced',
   breakfast = 'mealType=Breakfast',
   dinner = 'mealType=Dinner',
-  lanch = 'mealType=Lanch'
+  lunch = 'mealType=Lunch'
 }
 
 export const MAIN_APP_INFO: IMainAppInfo[] = [
