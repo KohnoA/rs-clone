@@ -54,9 +54,9 @@ export const MAIN_APP_INFO: IMainAppInfo[] = [
     link: '/calculator',
   },
   {
-    title: 'Generator',
+    title: 'Constructor',
     subTitle: 'Want to start eating healthy?',
-    description: 'Take advantage of our power generator. Entering your parameters in the form. The algorithm will select for you the daily calorie intake, as well as offer your diet option for tomorrow\'s lunch and dinner.',
+    description: 'Take advantage of our power constructor. Entering your parameters in the form. The algorithm will select for you the daily calorie intake, as well as offer your diet option for tomorrow\'s lunch and dinner.',
     link: '/constructor',
   },
 ]

@@ -74,35 +74,39 @@
 }
 
 .left {
-  transform: translateX(-3%);
+  .recipes {
+    transform: translateX(-3%);
+  }
 
   .title {
     text-align: left;
   }
 
   .goToButton {
-    transform: translate3d(6%, -50%, 0);
+    transform: translate3d(3%, -50%, 0);
     box-shadow: 2px 4px 8px 0px rgba(34, 60, 80, 0.2);
 
     &:hover {
-      transform: translate3d(10%, -50%, 0);
+      transform: translate3d(7%, -50%, 0);
     }
   }
 }
 
 .right {
-  transform: translateX(3%);
+  .recipes {
+    transform: translateX(3%);
+  }
 
   .title {
     text-align: right;
   }
 
   .goToButton {
-    transform: translate3d(-6%, -50%, 0) rotate(180deg);
+    transform: translate3d(-3%, -50%, 0) rotate(180deg);
     box-shadow: -2px -4px 8px 0px rgba(34, 60, 80, 0.2);
 
     &:hover {
-      transform: translate3d(-10%, -50%, 0) rotate(180deg);
+      transform: translate3d(-7%, -50%, 0) rotate(180deg);
     }
   }
 
