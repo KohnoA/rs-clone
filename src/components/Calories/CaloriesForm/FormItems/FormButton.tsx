@@ -1,4 +1,5 @@
 import { RemoveOrCountState } from '../../FormTypes';
+import style from '../CaloriesForm.module.scss';
 
 interface IProps {
   text: string,
@@ -7,7 +8,7 @@ interface IProps {
 
 export const FormButton: React.FC<IProps> = ({text, onClick}: IProps) => {
   return (
-    <button onClick={onClick}>
+    <button className={style['calories-form__button']} onClick={onClick}>
       {text}
     </button>
   );

@@ -1,3 +1,4 @@
+import { IRecipe, ITotalNutrientsItem } from '../../models/IRecipes';
 import { CountCalories, CountNutrients, ICountCalories } from './FormTypes';
 
 const MALE = {
@@ -87,25 +88,55 @@ export const SELECT_OPTIONS = ['Ваш образ жизни', 'Малоакти
 export const countNutrientsPercent: CountNutrients = (state: string) => {
   const GOALS = ['loss', 'gain', 'keep'];
 
-  return state === GOALS[0] ? { fats: 30, carbohydrates: 35, rolls: 35 }
-    : state === GOALS[1] ? { fats: 25, carbohydrates: 45, rolls: 30 }
-    : { fats: 15, carbohydrates: 50, rolls: 35 }
+  return state === GOALS[0] ? { fats: 0.30, carbohydrates: 0.35, rolls: 0.35 }
+    : state === GOALS[1] ? { fats: 0.25, carbohydrates: 0.45, rolls: 0.30 }
+    : { fats: 0.15, carbohydrates: 0.50, rolls: 0.35 }
 }
 
-export const MIL_TIPE = ['breakfast', 'lunch', 'dinner', 'snack'];
+export const MIL_TIPE = ['breakfast', 'dinner', 'lunch', 'snack'];
 export const CURRENT_CALORIES = {
   breakfast: { mod: true, cal: 0.25 },
   dinner:  { mod: true, cal: 0.40 },
   lunch:  { mod: true, cal: 0.25 },
-  snack:  { mod: false, cal: 0.25 },
+  snack:  { mod: false, cal: 0.10 },
 }
 
 export const getCurrentCaloriesOfMilType = (calories: number, type: string) => {
   type T = keyof typeof CURRENT_CALORIES;
 
   if (CURRENT_CALORIES[type as T].mod) {
-    return `+${Math.ceil(calories * (CURRENT_CALORIES[type as T].cal - 0.05))}-${Math.ceil(calories * CURRENT_CALORIES[type as T].cal)}`;
+    return `${Math.ceil(calories * (CURRENT_CALORIES[type as T].cal - 0.05))}-${Math.ceil(calories * CURRENT_CALORIES[type as T].cal)}`;
   }
 
-  return `+${calories * CURRENT_CALORIES[type as T].cal}`;
+  return `0-${Math.ceil(calories * CURRENT_CALORIES[type as T].cal)}`;
 };
+
+export const CALORIES_TO_NUTRIENTS = {
+  fats: 9,
+  rolls: 4,
+  carbohydrates: 4,
+}
+
+export interface INutrients {
+  Carbs: number,
+  Energy: number,
+  Fat: number,
+  Protein: number,
+}
+
+export const amountCommonCalories = (recipes: IRecipe[]) => {
+  const KCAL_AND_PFC = ['ENERC_KCAL', 'PROCNT', 'FAT', 'CHOCDF'];
+  type C = keyof INutrients;
+
+  return recipes.reduce((acc, recipe) => {
+    KCAL_AND_PFC.forEach(nutrient => {
+      const current = recipe.recipe.totalNutrients[nutrient as keyof ITotalNutrientsItem];
+      acc[current.label as C] === undefined
+        ? acc[current.label as C] = Math.ceil(current.quantity)
+        : acc[current.label as C] = Math.ceil(current.quantity) + acc[current.label as C];
+    });
+    return acc;
+  }, {} as INutrients);
+}
+
+export const PARAGRAPH_TEXT = 'Введите свой возраст, пол, вес, рост, а также выберите степень физической нагрузки (сколько раз в неделю Вы занимаетесь фитнесом), нажмите рассчитать и онлайн калькулятор произведет для Вас расчет суточной нормы калорий с учетом похудения и без него!';

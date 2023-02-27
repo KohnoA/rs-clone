@@ -1,0 +1,18 @@
+@import '../../styles/variables.scss';
+
+.button {
+  background-color: transparent;
+  color: $buttonColor;
+  border: none;
+  transition: .2s;
+
+  &:hover {
+    cursor: pointer;
+    color: black;
+    color: $appColorHover;
+  }
+
+  &:active {
+    color: $appColorActive;
+  }
+}

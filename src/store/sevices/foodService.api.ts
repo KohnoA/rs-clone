@@ -4,7 +4,7 @@ import { IFoodApi } from '../../models/IFood';
 import { IRecipes } from '../../models/IRecipes';
 import { IRecupesSearch } from '../../types/types';
 
-export interface IType {
+interface IType {
   type: string,
   calories: string,
 }

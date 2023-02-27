@@ -12,7 +12,7 @@ const Constructor: React.FC = () => {
   return (
     <div className='container page'>
       { calories
-        ? <CaloriesRation state={calories} stateFn={setCalories} nutrients={nutrients} />
+        ? <CaloriesRation calories={calories} setCalories={setCalories} chooseNutrients={nutrients} />
         : <CaloriesForm stateFn={setCalories} nutrientsFn={setNutrients} />
       }
     </div>

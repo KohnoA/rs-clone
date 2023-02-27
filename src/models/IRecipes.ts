@@ -75,7 +75,7 @@ interface ITotalNutrientsDesc {
     unit: string;
 }
 
-interface ITotalNutrientsItem {
+export interface ITotalNutrientsItem {
         ENERC_KCAL:ITotalNutrientsDesc;
         FAT:ITotalNutrientsDesc;
         FASAT:ITotalNutrientsDesc;

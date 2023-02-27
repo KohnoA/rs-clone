@@ -3,7 +3,7 @@ import styles from './Button.module.scss';
 interface IButton {
   text: string,
   additionalClasses?: string,
-  onClick?: () => void
+  onClick?: () => void;
 };
 
 const Button: React.FC<IButton> = ({ text, additionalClasses, onClick }) => {

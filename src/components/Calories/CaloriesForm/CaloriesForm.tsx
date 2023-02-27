@@ -3,11 +3,11 @@ import { FormRowRadio } from './FormItems/FormRowRadio';
 import { InitialStateText, HandleChangeInput, HandleChangeSelect, RemoveOrCountState, ICountCalories } from '../FormTypes';
 import { FormRowSelect } from './FormItems/FormRowSelect';
 import { FormRowText } from './FormItems/FormRowText';
-import { GENDERS, GOALS, initialStateRadio, TEXTS, initialStateText, initialStateSelect, countCalories, KFA, countNutrientsPercent } from '../ConstantsForm';
+import { GENDERS, GOALS, initialStateRadio, TEXTS, initialStateText, initialStateSelect, countCalories, KFA, countNutrientsPercent, PARAGRAPH_TEXT } from '../ConstantsForm';
 import { useStateCustom } from '../../../utils/utils';
 import { Title } from '../../Title/Title';
 import { ILifeChange } from '../../../types/types';
-
+import style from './CaloriesForm.module.scss';
 
 interface IProps {
   stateFn: React.Dispatch<React.SetStateAction<number>>,
@@ -51,9 +51,10 @@ export const CaloriesForm: React.FC<IProps> = ({stateFn, nutrientsFn}: IProps) =
   }
 
   return (
-    <>
-      <Title text='Калькулятор калорий для похудения'/>
-      <form>
+    <div className={style['calories-form-container']}>
+      <Title text='Калькулятор нормы калорий'/>
+      <p className={style['calories-form-container__text']}>{PARAGRAPH_TEXT}</p>
+      <form className={style['calories-form']}>
         <FormRowRadio
           span='Ваш пол'
           genders={GENDERS}
@@ -77,6 +78,6 @@ export const CaloriesForm: React.FC<IProps> = ({stateFn, nutrientsFn}: IProps) =
         <FormButton onClick={count} text='Расчитать'/>
         <FormButton onClick={removeState} text='Сбросить'/>
       </form>
-    </>
+    </div>
   );
 };

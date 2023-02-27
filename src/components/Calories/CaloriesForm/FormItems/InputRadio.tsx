@@ -1,4 +1,5 @@
 import { HandleChangeInput } from '../../FormTypes';
+import style from '../CaloriesForm.module.scss';
 
 interface IProps {
   value: string,
@@ -11,7 +12,7 @@ interface IProps {
 export const InputRadio: React.FC<IProps> = ({text, state, onChange, ...props}: IProps) => {
   const isCheck = state === props.value ? true : false;
   return (
-    <label>
+    <label className={style['calories-form-row-labels__label']}>
       <input type='radio' {...props} checked={isCheck} onChange={onChange}/>
       {text}
     </label>

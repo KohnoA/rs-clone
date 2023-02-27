@@ -129,7 +129,7 @@ export interface INutritionFactsData {
   ]
 }
 
-type ITotalNutrientsKey = 'FAT' | 'FASAT' | 'CHOLE' | 'NA' | 'CHOCDF' | 'FIBTG' | 'SUGAR' | 'PROCNT' |
+export type ITotalNutrientsKey = 'FAT' | 'FASAT' | 'CHOLE' | 'NA' | 'CHOCDF' | 'FIBTG' | 'SUGAR' | 'PROCNT' |
   'VITD' | 'CA' | 'FE' | 'K' | 'FATRN' | 'ENERC_KCAL';
 
 export type ITotalNutrients = Record<ITotalNutrientsKey, ITotalNutrientsItem>;

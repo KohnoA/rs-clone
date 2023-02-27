@@ -1,5 +1,6 @@
 import { HandleChangeSelect } from '../../FormTypes';
 import { SELECT_OPTIONS } from '../../ConstantsForm';
+import style from '../CaloriesForm.module.scss';
 
 interface IProps {
   span: string,
@@ -10,8 +11,8 @@ interface IProps {
 
 export const FormRowSelect: React.FC<IProps> = ({span, name, state, onChange}: IProps) => {
   return (
-    <div>
-      <span>{span}</span>
+    <div className={style['calories-form-row_select']}>
+      <span className={style['calories-form-row_select__span']}>{span}</span>
       <select name={name} onChange={onChange}>
         {SELECT_OPTIONS.map((select, i) => {
           const isSelected = state === i ? true : false;
