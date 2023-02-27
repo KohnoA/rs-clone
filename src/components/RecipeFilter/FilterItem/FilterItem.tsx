@@ -4,6 +4,7 @@ import health from '../../../assets/icons/health.svg'
 import cuisines from '../../../assets/icons/cuisines.svg'
 import mealType from '../../../assets/icons/mealType.svg'
 import { Link, useLocation } from 'react-router-dom'
+import { useState } from 'react'
 
 interface IFilterItem {
   query: string
@@ -31,14 +32,18 @@ const FilterItem: React.FC<IFilterItem> = ({
   item6,
 }: IFilterItem) => {
   const location = useLocation()
+  const [open, setOpen] = useState<boolean>(false)
 
   return (
     <div className={styles.slider__wrapper} id={String(id)}>
-      <div className={styles.filter__subheaderWrapper}>
-        <h3 className={styles.filter__subheader}>{header}</h3>
-        <img className={styles.filterList__img} src={`${iconArr[id]}`} alt='' />
+      <div onClick={() => setOpen((state) => !state)} className={styles.filter__subheaderWrapper}>
+        <div className={styles.filter__headerList}>
+          <h3 className={styles.filter__subheader}>{header}</h3>
+          <img className={styles.filterList__img} src={`${iconArr[id]}`} alt='' />
+        </div>
+        <button className={open ? styles.filterList__btn : styles.filterList__btn_close}></button>
       </div>
-      <ul className={styles.filterSublist}>
+      <ul className={open ? styles.filterSublist_open : styles.filterSublist}>
         <li className={styles.filterList__item}>
           <Link className={styles.filterList__link} to={`${location.pathname}?${query}=${item1}`}>
             {item1}
