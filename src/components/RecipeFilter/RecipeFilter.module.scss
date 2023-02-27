@@ -89,6 +89,7 @@
     height: 0;
     transform: scaleY(0);
     transition: 0.3s;
+    padding-left: 0em;
 }
 .filterSublist_open {
     margin-bottom: 2em;
@@ -97,6 +98,7 @@
     height: auto;
     transform: scaleY(100%);
     transition: 0.3s;
+    padding-left: 1em;
 }
 
 .filter__subheaderWrapper{
