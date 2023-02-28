@@ -8,8 +8,9 @@
   border-radius: 15px;
   box-shadow: 1px 3px 8px 2px #ddd;
   width: 100%;
-  max-width: 20vw;
-  gap: 3em;
+  gap: 2vw;
+  min-width: 230px;
+  max-width: 325px;
 }
 
 .avatarHeaderWrapper {
@@ -63,6 +64,7 @@
   padding: 2px 8px;
   max-width: 150px;
   box-shadow: 1px 3px 8px 2px #ddd;
+  width: 70%;
 }
 
 .avatar__input::-webkit-outer-spin-button,

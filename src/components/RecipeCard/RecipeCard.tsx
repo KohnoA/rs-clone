@@ -15,11 +15,12 @@ const RecipeCard: React.FC<IRecipeCard> = ({
   typeIcon,
   kcalIcon,
   kcal,
+  additionalClass,
 }: IRecipeCard) => {
   const router = useNavigate()
 
   return (
-    <div onClick={() => router(`/${route}/${id}`)} id={id} className={styles.card}>
+    <div onClick={() => router(`/${route}/${id}`)} id={id} className={`${styles.card} ${additionalClass}`}>
       <div className={styles.card__headerPanel}>
         <h3 className={styles.card__header}>{header}</h3>
         <FavouriteBtn cardId={id!} />

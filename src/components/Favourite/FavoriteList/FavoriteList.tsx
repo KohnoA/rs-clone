@@ -3,6 +3,7 @@ import iconType from '../../../assets/icons/food.svg'
 import kcalIcon from '../../../assets/icons/kcal.svg'
 import { useFetchFavoriteRecipesQuery } from '../../../store/sevices/foodService.api'
 import { useEffect } from 'react'
+import styles from '../../RecipeCard/RecipeCard.module.scss'
 
 interface IProps {
   id: string
@@ -24,7 +25,8 @@ const FavoriteList: React.FC<IProps> = ({ id, setError }: IProps) => {
 
   return (
     <RecipeCard
-      route='favorite'
+      additionalClass={styles.card__favorite}
+      route='cabinet'
       id={id}
       header={data.recipe.cuisineType}
       image={data.recipe.image}

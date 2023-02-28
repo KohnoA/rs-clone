@@ -13,6 +13,10 @@
     padding: 2em;
     box-sizing: border-box;
     border-radius: 10px;
+
+    @media (max-width: 1150px) {
+        grid-template-columns: 1fr 1fr;
+    }
 }
 
 .paginationLoader {
@@ -59,7 +63,7 @@
     visibility: hidden;
     opacity: 0;
     position: absolute;
-    top: 40em;
+    top: 100%;
     right: 0;
 }
 
