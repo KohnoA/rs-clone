@@ -22,6 +22,8 @@ const BuyItem: React.FC<IBuyItemProps> = ({ ...props }: IBuyItemProps) => {
       itemArr.splice(index, 1)
 
       localStorage.setItem(`buyList-${id}`, JSON.stringify(itemArr))
+
+      event.target.closest('li')!.style.display = 'none'
     }
   }
 
