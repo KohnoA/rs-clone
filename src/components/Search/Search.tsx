@@ -15,7 +15,7 @@ const Search: React.FC = () => {
   }, [])
 
   const submitHandler = useCallback((event: React.FormEvent) => {
-    navigate('/')
+    navigate('/recipes')
     event.preventDefault()
     dispatch(searchSlice.actions.setIsEditing(false))
   }, [])
