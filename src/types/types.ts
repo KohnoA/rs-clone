@@ -101,6 +101,7 @@ export interface IRecipeCard {
     typeIcon?: string;
     kcalIcon?: string;
     kcal?: number;
+    additionalClass?: string;
 }
 
 export interface IUseInput {

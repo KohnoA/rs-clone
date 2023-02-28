@@ -7,6 +7,7 @@
     border-radius: 10px;
     background-color: white;
     box-shadow: 1px 3px 8px 2px #ddd;
+    min-width: 200px;
 
     transition: 0.3s;
     cursor: pointer;
@@ -18,7 +19,12 @@
         box-shadow: 0 0 30px 1px #ffe5a1;
     }
 }
-
+.card__favorite {
+    // width: 225px;
+    width: 48%;
+    max-width: 250px;
+    height: 470px;
+}
 .link {
     color: black;
     text-decoration: none;
