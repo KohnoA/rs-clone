@@ -1,13 +1,20 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+/* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
 import React, { useCallback, useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { useAuth } from '../../hooks/useAuth'
 import useDebounce from '../../hooks/useDebounce'
 import { useFetchIngredientsQuery } from '../../sevices/foodService.api'
 import { getIngrList } from '../../store/selectors/ingrSearchSelector'
 import { ingrSearchSlice } from '../../store/slices/ingrSearchSlice'
 import SearchInput from '../SearchInput/SearchInput'
 import styles from './BuyList.module.scss'
+import BuyItem from './components/BuyItem'
 
 const BuyList = () => {
+  const { id } = useAuth()
+
+  const [checked, setChecked] = useState<string[]>(JSON.parse(localStorage.getItem(`buyList-${id}`)!) ?? [])
   const [searchValue] = useSelector(getIngrList)
   const dispatch = useDispatch()
 
@@ -38,6 +45,27 @@ const BuyList = () => {
     setDropDown(debounced.length > 3 && ingrs?.length! > 0)
   }, [debounced, data])
 
+  const addIngr = (event: React.MouseEvent<HTMLLIElement>) => {
+    if (event.target instanceof HTMLElement) {
+      setDropDown(false)
+      resetHandler()
+      const listItem = event.target.closest('li') as HTMLLIElement
+      const serializedList = localStorage.getItem(`buyList-${id}`) ?? '[]'
+      const checkedList: string[] = JSON.parse(serializedList)
+
+      checkedList.push(listItem.id)
+      const result = JSON.stringify(checkedList)
+
+      localStorage.setItem(`buyList-${id}`, result)
+    }
+    const data = JSON.parse(localStorage.getItem(`buyList-${id}`)!)
+    setChecked([...data])
+
+    useEffect(() => {
+      setChecked([...data])
+    }, checked)
+  }
+
   return (
     <div className={styles.buyList}>
       <h1>Buy List</h1>
@@ -58,31 +86,22 @@ const BuyList = () => {
             dropDown && (
               <ul className={styles.buyList__searchDropDown}>
                 {ingrs?.map((ingr, i) => (
-                  <li className={styles.buyList__searchItem} key={i}>
+                  <li className={styles.buyList__searchItem} key={i} id={ingr.food.foodId} onClick={addIngr}>
                     <div>{ingr.food.label}</div>
                     <div className={styles.ingrCharacteristics}>
                       <div>
-                        <span className={styles.ingrs__item}>
-                          {Number(ingr.food.nutrients.ENERC_KCAL).toFixed(2)}
-                        </span>{' '}
+                        <span className={styles.ingrs__item}>{Number(ingr.food.nutrients.ENERC_KCAL).toFixed(2)}</span>{' '}
                         kcal
                       </div>
                       <div>
-                        <span className={styles.ingrs__item}>
-                          {Number(ingr.food.nutrients.PROCNT).toFixed(2)}
-                        </span>{' '}
+                        <span className={styles.ingrs__item}>{Number(ingr.food.nutrients.PROCNT).toFixed(2)}</span>{' '}
                         Protein
                       </div>
                       <div>
-                        <span className={styles.ingrs__item}>
-                          {Number(ingr.food.nutrients.FAT).toFixed(2)}
-                        </span>{' '}
-                        Fat
+                        <span className={styles.ingrs__item}>{Number(ingr.food.nutrients.FAT).toFixed(2)}</span> Fat
                       </div>
                       <div>
-                        <span className={styles.ingrs__item}>
-                          {Number(ingr.food.nutrients.CHOCDF).toFixed(2)}
-                        </span>{' '}
+                        <span className={styles.ingrs__item}>{Number(ingr.food.nutrients.CHOCDF).toFixed(2)}</span>{' '}
                         Carbs
                       </div>
                     </div>
@@ -93,8 +112,9 @@ const BuyList = () => {
           )}
         </div>
         <ul className={styles.buyListList}>
-          <li>1</li>
-          <li>2</li>
+          {checked.map((id, i) => {
+            return <BuyItem key={id + i} id={id} />
+          })}
         </ul>
       </div>
     </div>
