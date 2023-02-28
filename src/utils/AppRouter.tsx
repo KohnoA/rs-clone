@@ -4,7 +4,6 @@ import AboutUs from '../pages/AboutUs/AboutUs'
 import Constructor from '../pages/Constructor/Constructor'
 import Recipes from '../pages/Recipes/Recipes'
 import RecipePage from '../pages/Recipes/subPages/RecipePage'
-import FavoritePage from '../pages/Favorite/FavoritePage'
 import Main from '../pages/Main/Main'
 import { getAuth, onAuthStateChanged } from '@firebase/auth'
 import { useAppDispatch } from '../hooks/reduxHooks'
@@ -12,6 +11,7 @@ import { setUser } from '../store/slices/userSlice'
 import Calculator from '../pages/Calculator/Calculator'
 import { useAuth } from '../hooks/useAuth'
 import { useEffect } from 'react'
+import Cabinet from '../pages/Cabinet/Cabinet'
 
 const AppRouter = () => {
   const auth = getAuth()
@@ -45,12 +45,12 @@ const AppRouter = () => {
       <Route path='*' element={<PageNotFound />} />
       <Route path='/' element={<Main />} />
       <Route path='/recipes/:id' element={<RecipePage />} />
+      <Route path='/cabinet/:id' element={<RecipePage />} />
       <Route path='/recipes' element={<Recipes />} />
-      <Route path='/favorite/:id' element={<RecipePage />} />
       <Route path='/constructor' element={<Constructor />} />
       <Route path='/about' element={<AboutUs />} />
-      <Route path='/favorite' element={<FavoritePage />} />
       <Route path='/calculator' element={<Calculator />} />
+      <Route path='/cabinet' element={<Cabinet />} />
     </Routes>
   )
 }

@@ -1,8 +1,8 @@
 import React, { useCallback } from 'react'
-import styles from './Search.module.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import { searchSlice } from '../../store/slices/searchSlice'
 import { getSearchList } from '../../store/selectors/searchSelectors'
+import SearchInput from '../SearchInput/SearchInput'
 import { useNavigate } from 'react-router-dom'
 
 const Search: React.FC = () => {
@@ -15,7 +15,7 @@ const Search: React.FC = () => {
   }, [])
 
   const submitHandler = useCallback((event: React.FormEvent) => {
-    navigate('/')
+    navigate('/recipes')
     event.preventDefault()
     dispatch(searchSlice.actions.setIsEditing(false))
   }, [])
@@ -25,26 +25,13 @@ const Search: React.FC = () => {
   }, [])
 
   return (
-    <form className={styles.search} action='#' method='GET'>
-      <input
-        className={styles.search__input}
-        type='text'
-        placeholder='Carbonara...'
-        value={searchValue}
-        onChange={setSearchValue}
-      />
-      <span
-        className={searchValue ? styles.search__clean : `${styles.search__clean} ${styles.search__hidden}`}
-        onClick={resetHandler}
-      />
-      <button
-        className={searchValue ? styles.search__find : `${styles.search__find} ${styles.search__hidden}`}
-        type='submit'
-        onClick={submitHandler}
-      >
-        Search
-      </button>
-    </form>
+    <SearchInput
+      value={searchValue}
+      onChange={setSearchValue}
+      onClickReset={resetHandler}
+      onClickHandler={submitHandler}
+      placeholder='Carbonara...'
+    />
   )
 }
 

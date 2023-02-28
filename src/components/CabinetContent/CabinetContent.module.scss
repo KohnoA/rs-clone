@@ -1,0 +1,17 @@
+@import '../../styles/variables.scss';
+
+.cabinetContent__controls {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.cabinetContent__wrapper {
+    width: 100%;
+}
+
+.cabinetBtn_active {
+    background-color: $appColorHover;
+    color: black;
+    opacity: 0.9;
+}

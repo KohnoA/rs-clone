@@ -1,0 +1,91 @@
+.avatar {
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #f4f4f4;
+  border-radius: 15px;
+  box-shadow: 1px 3px 8px 2px #ddd;
+  width: 100%;
+  max-width: 20vw;
+  gap: 3em;
+}
+
+.avatarHeaderWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+}
+
+.avatar__img {
+  border-radius: 50%;
+  width: 35%;
+  height: 35%;
+  min-width: 150px;
+}
+
+.avatar__header {
+
+}
+
+.avatar__text {
+  text-align: center;
+  word-wrap: break-word;
+  max-width: 300px;
+}
+
+.avatarList {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  list-style: none;
+  padding: 0;
+}
+
+.avatarList__item {
+  margin-bottom: 6%;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+
+  * {
+    margin-left: 5%;
+  }
+}
+
+.avatar__input {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  background-color: white;
+  border-radius: 15px;
+  padding: 2px 8px;
+  max-width: 150px;
+  box-shadow: 1px 3px 8px 2px #ddd;
+}
+
+.avatar__input::-webkit-outer-spin-button,
+.avatar__input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+    margin: 0;
+}
+
+.textContent {
+  display: block;
+  min-width: 100%;
+  max-width: 220px;
+  min-height: 30px;
+  max-height: 70px;
+  padding: 15px;
+  margin-bottom: 30px;
+  font: inherit;
+  outline: none;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 1px 3px 8px 2px #ddd;
+}

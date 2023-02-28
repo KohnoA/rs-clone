@@ -88,7 +88,29 @@ export const foodAPI = createApi({
       }),
     }),
 
+    fetchIngredients: build.query<IRecupesSearch, string>({
+      query:(ingr: string) => ({
+        url: `/${API.FOOD}`,
+        params: {
+          ['app_id']: API.ID_FOOD,
+          ['app_key']: API.API_KEY_FOOD,
+          ingr: ingr,
+        },
+      }),
+    }),
+
+    fetchIngredientsList: build.query<IRecupesSearch, string>({
+      query:(id: string) => ({
+        url: `/${API.FOOD}`,
+        params: {
+          ['app_id']: API.ID_FOOD,
+          ['app_key']: API.API_KEY_FOOD,
+          ingr: id,
+        },
+      }),
+    }),
   }),
 });
 
-export const {useFetchAllFoodQuery, useFetchRecipesQuery, useFetchRecipesStartQuery, useFetchRecipesWithParamsQuery, useFetchFavoriteRecipesQuery } = foodAPI
+// export const {useFetchFavoriteRecipesQuery , useFetchIngredientsQuery, useFetchIngredientsListQuery} = foodAPI
+export const {useFetchAllFoodQuery, useFetchRecipesQuery, useFetchRecipesStartQuery, useFetchRecipesWithParamsQuery, useFetchFavoriteRecipesQuery, useFetchIngredientsQuery, useFetchIngredientsListQuery } = foodAPI

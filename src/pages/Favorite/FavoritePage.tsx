@@ -36,8 +36,8 @@ const FavoritePageWrapper = () => {
   return (
     <div className={styles.favoritePage}>
       <h1>Favorite recipes</h1>
-      <div className={favArr.length === 0 ? styles.favoritePage__wrapper_empty : styles.favoritePage__wrapper}>
-        <FavoritePage />
+      <div className={styles.favoritePage__wrapper}>
+        {favArr.length === 0 ? <h2>There is no recipes yet.</h2> : <FavoritePage />}
       </div>
     </div>
   )
