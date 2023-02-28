@@ -1,7 +1,7 @@
 import { initialCalories } from '../../../constants/constants';
 import { IRecipe } from '../../../models/IRecipes';
 import { ILifeChange } from '../../../types/types';
-import { Title } from '../../Title/title';
+import { Title } from '../../title/title';
 import styles from './CaloriesRation.module.scss';
 import { useState } from 'react';
 import { FormButton } from '../CaloriesForm/FormItems/FormButton';

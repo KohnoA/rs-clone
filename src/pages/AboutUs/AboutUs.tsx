@@ -1,6 +1,6 @@
 import image from '../../assets/images/person-avatar-placeholder.png';
 import { ImageBlock } from '../../components/image-block/image-block';
-import { Title } from '../../components/Title/title';
+import { Title } from '../../components/title/title';
 
 import { GITHUB_ACCOUNTS } from '../../constants/constants';
 
