@@ -14,23 +14,6 @@ const LazyLoader: React.FC<ILazyLoader> = (props: ILazyLoader) => {
   const [isLoading, setIsLoading] = useState(true)
   const imgRef = useRef<HTMLImageElement | null>(null)
 
-<<<<<<< HEAD
-    useEffect(() => {
-      if(imgRef.current) {
-        imgRef.current.onload = () => setIsLoading(false)
-      }
-    }, [])
-
-    return (
-        <div className={styles.loader__wrapper}>
-            {isLoading && <LoaderFav/>}
-           <img className={className} ref={imgRef} src={src} alt={alt}/>
-        </div>
-    );
-};
-
-export default LazyLoader;
-=======
   useEffect(() => {
     if (imgRef.current) {
       imgRef.current.onload = () => setIsLoading(false)
@@ -46,4 +29,3 @@ export default LazyLoader;
 }
 
 export default LazyLoader
->>>>>>> develop

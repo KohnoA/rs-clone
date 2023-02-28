@@ -1,20 +1,13 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-<<<<<<< HEAD:src/store/sevices/foodService.api.ts
 import * as API from '../../constants/foodApi';
 import { IFoodApi } from '../../models/IFood';
 import { IRecipes } from '../../models/IRecipes';
-import { IRecupesSearch } from '../../types/types';
+import { IRecipesData, IRecupesSearch } from '../../types/types';
 
 interface IType {
   type: string,
   calories: string,
 }
-=======
-import * as API from '../constants/foodApi';
-import { IFoodApi } from '../models/IFood';
-import { IRecipes } from '../models/IRecipes';
-import { IRecipesData, IRecupesSearch } from '../types/types';
->>>>>>> develop:src/sevices/foodService.api.ts
 
 export const foodAPI = createApi({
   reducerPath: 'foodAPI',
@@ -98,8 +91,4 @@ export const foodAPI = createApi({
   }),
 });
 
-<<<<<<< HEAD:src/store/sevices/foodService.api.ts
-export const {useFetchAllFoodQuery, useFetchRecipesQuery, useFetchRecipesStartQuery, useFetchRecipesWithParamsQuery} = foodAPI
-=======
-export const {useFetchFavoriteRecipesQuery} = foodAPI
->>>>>>> develop:src/sevices/foodService.api.ts
+export const {useFetchAllFoodQuery, useFetchRecipesQuery, useFetchRecipesStartQuery, useFetchRecipesWithParamsQuery, useFetchFavoriteRecipesQuery } = foodAPI

@@ -12,8 +12,4 @@ const Navigation: React.FC = () => {
   )
 }
 
-<<<<<<< HEAD
 export default Navigation;
-=======
-export default Navigation
->>>>>>> develop
