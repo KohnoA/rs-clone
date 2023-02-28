@@ -1,0 +1,112 @@
+@import '../../styles/variables.scss';
+
+.item {
+  position: relative;
+  margin: 0 .5rem;
+  margin-bottom: 25px;
+}
+
+.input {
+  width: 100%;
+  padding: 10px 20px;
+  padding-right: 65px;
+
+  font: inherit;
+
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  outline: none;
+  transition: .2s;
+
+  &:hover, &:focus {
+    border: 1px solid rgba(0, 0, 0, 0.5);
+  }
+}
+
+.inputError {
+  border-color: red;
+
+  &:hover, &:focus {
+    border-color: red;
+  }
+}
+
+.errorInfo {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+
+  width: 16px;
+  height: 16px;
+
+  background-image: url('../../assets/icons/help.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity: .7;
+  transition: .2s;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  &_message {
+    position: absolute;
+    
+    top: -20px;
+    left: 32px;
+
+    width: 20vw;
+    padding: 10px;
+
+    text-align: left;
+
+    background-color: $appColor;
+    border-radius: 15px;
+    box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+
+    &::before {
+      content: '';
+      position: absolute;
+
+      top: 20px;
+      left: -8px;
+
+      width: 16px;
+      height: 16px;
+
+      background-color: $appColor;
+      transform: rotate(45deg);
+      border-radius: 2px;
+    }
+  }
+}
+
+.password {
+  position: absolute;
+
+  top: 13px;
+  right: 40px;
+
+  width: 16px;
+  height: 16px;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  transition: .2s;
+  opacity: .3;
+
+  &:hover {
+    cursor: pointer;
+    opacity: .6;
+  }
+}
+
+.pasVisible {
+  background-image: url('../../assets/icons/visible.svg');
+}
+
+.pasUnvisible {
+  background-image: url('../../assets/icons/unvisible.svg');
+}

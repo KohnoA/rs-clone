@@ -1,54 +1,40 @@
-import { useFetching } from '../../../hooks/useFetching';
-import { IRecipeFavorite, IRecipes } from '../../../types/types';
-import RecipeService from '../../API/RecipeService';
-import RecipeCard from '../../RecipeCard/RecipeCard';
-import { useEffect, useMemo, useState } from 'react';
+import RecipeCard from '../../RecipeCard/RecipeCard'
 import iconType from '../../../assets/icons/food.svg'
 import kcalIcon from '../../../assets/icons/kcal.svg'
-import LoaderFav from '../../Loader/LoaderFav/LoaderFav';
+import { useFetchFavoriteRecipesQuery } from '../../../store/sevices/foodService.api'
+import { useEffect } from 'react'
 
+interface IProps {
+  id: string
+  setError: (error: boolean) => void
+}
 
-const FavoriteList: React.FC<IRecipes> = ({url}: IRecipes) => {
-    const [recipes, setRecipes] = useState<IRecipeFavorite>({})
+const FavoriteList: React.FC<IProps> = ({ id, setError }: IProps) => {
+  const { data, isError } = useFetchFavoriteRecipesQuery(id)
 
-    const [fetchingRecipes, isRecipesLoading] = useFetching(async() => {
-        const response = await RecipeService.getRecipes(`${url}`)
-        setRecipes(response.recipe)
-    })
+  useEffect(() => {
+    if (isError) {
+      setError(true)
+    }
+  }, [isError])
 
-    useEffect(() => {
-        fetchingRecipes()
-    }, [])
+  if (!data) {
+    return null
+  }
 
-    const id = useMemo(() => {
-        const mainLink = recipes.uri
-        if (!mainLink) return
-        const uri = mainLink.slice(mainLink.indexOf('_') + 1)
-        return(uri)
-    }, [recipes.uri])
+  return (
+    <RecipeCard
+      route='favorite'
+      id={id}
+      header={data.recipe.cuisineType}
+      image={data.recipe.image}
+      type={data.recipe.dishType}
+      typeIcon={iconType}
+      kcalIcon={kcalIcon}
+      kcal={Math.round(Number(data.recipe.calories))}
+      title={data.recipe.label}
+    />
+  )
+}
 
-    if(!id) return null
-
-    return (
-      <>  {isRecipesLoading
-            ? <LoaderFav/>
-            : Object.keys(recipes).length === 0
-                ? <div style={{margin:'2em'}}><h1>Error has occured. Maybe it`s too many requests. Please, try later.</h1></div>
-                :  <RecipeCard
-                     route='favorite'
-                     key={1}
-                     id={id}
-                     header={recipes.cuisineType}
-                     image={recipes.image}
-                     type={recipes.dishType}
-                     typeIcon={iconType}
-                     kcalIcon={kcalIcon}
-                     kcal={Math.round(Number(recipes.calories))}
-                     title={recipes.label}
-                  />
-          }
-        </>
-    );
-};
-
-export default FavoriteList;
+export default FavoriteList

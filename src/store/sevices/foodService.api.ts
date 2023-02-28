@@ -1,8 +1,13 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import * as API from '../constants/foodApi';
-import { IFoodApi } from '../models/IFood';
-import { IRecipes } from '../models/IRecipes';
-import { IRecupesSearch } from '../types/types';
+import * as API from '../../constants/foodApi';
+import { IFoodApi } from '../../models/IFood';
+import { IRecipes } from '../../models/IRecipes';
+import { IRecipesData, IRecupesSearch } from '../../types/types';
+
+interface IType {
+  type: string,
+  calories: string,
+}
 
 export const foodAPI = createApi({
   reducerPath: 'foodAPI',
@@ -20,12 +25,6 @@ export const foodAPI = createApi({
       }),
     }),
 
-    // fetchNutrientsFood: build.mutation({
-    //   query: () => ({
-    //     url: `/${NUTRIENTS}`,
-    //   }),
-    // }),
-
     fetchRecipesStart: build.query<IRecipes, string>({
         query: () => ({
             url: `/${API.RECIPES}`,
@@ -39,18 +38,43 @@ export const foodAPI = createApi({
         }),
     }),
 
+    fetchFavoriteRecipes: build.query<IRecipesData, string>({
+        query: (id: string) => ({
+            url: `/${API.RECIPES}/${id}`,
+            params: {
+                type: API.TYPE,
+                ['app_id']: API.ID_RECIPES,
+                ['app_key']: API.API_KEY_RECIPES,
+            },
+        }),
+    }),
+
     fetchRecipesWithParams: build.query<IRecipes, string>({
-        query: (diet) => ({
+        query: (type) => ({
             url: `/${API.RECIPES}`,
             params: {
                 type: API.TYPE,
                 ['app_id']: API.ID_RECIPES,
                 ['app_key']: API.API_KEY_RECIPES,
                 imageSize: API.IMAGE_SIZE,
-                diet: diet,
+                mealType: type,
             },
         }),
     }),
+
+    fetchRecipesWithParamsRandom: build.query<IRecipes, IType>({
+      query: ({type, calories}) => ({
+          url: `/${API.RECIPES}`,
+          params: {
+              type: API.TYPE,
+              ['app_id']: API.ID_RECIPES,
+              ['app_key']: API.API_KEY_RECIPES,
+              random: true,
+              mealType: type,
+              calories: calories,
+          },
+      }),
+  }),
 
     fetchRecipes: build.query<IRecupesSearch, string>({
       query:(recipe: string) => ({
@@ -66,3 +90,5 @@ export const foodAPI = createApi({
 
   }),
 });
+
+export const {useFetchAllFoodQuery, useFetchRecipesQuery, useFetchRecipesStartQuery, useFetchRecipesWithParamsQuery, useFetchFavoriteRecipesQuery } = foodAPI

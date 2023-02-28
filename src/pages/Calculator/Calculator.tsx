@@ -31,7 +31,7 @@ const Calculator: React.FC = () => {
         `${NUTRITION_ANALYSIS_BASE_REQUEST}?app_id=${NUTRITION_ANALYSIS_APP_ID}&app_key=${NUTRITION_ANALYSIS_APP_KEY}`, 
         JSON.stringify({
           title: 'recipe',
-          ingr: value.split('\n')
+          ingr: value.split('\n').filter(item => item)
         }), 
         { 
           headers: {

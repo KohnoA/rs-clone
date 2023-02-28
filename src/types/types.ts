@@ -9,7 +9,8 @@ export interface IRecipesData {
           calories: string;
           source: string
           cuisineType: string;
-    }
+    },
+    id: string;
 }
 
 export interface IRecupesSearch {
@@ -62,7 +63,8 @@ export interface IRecipeFavorite {
     dishType?: string;
     calories?: number;
     label?: string;
-    uri?: string;
+    uri: string;
+    source?: string;
 }
 
 export interface IFilters {
@@ -91,7 +93,6 @@ export interface IRecipeCard {
     kcal?: number;
 }
 
-
 export interface IUseInput {
   value: string,
   isValid: boolean,
@@ -112,7 +113,11 @@ export interface IUserState {
   id: string | null,
   name: string | null,
 }
-
+export interface ILifeChange {
+  fats: number,
+  carbohydrates: number,
+  rolls: number,
+}
 export interface INutritionFactsData {
   calories: number,
   totalNutrients: ITotalNutrients,
@@ -125,7 +130,7 @@ export interface INutritionFactsData {
   ]
 }
 
-type ITotalNutrientsKey = 'FAT' | 'FASAT' | 'CHOLE' | 'NA' | 'CHOCDF' | 'FIBTG' | 'SUGAR' | 'PROCNT' |
+export type ITotalNutrientsKey = 'FAT' | 'FASAT' | 'CHOLE' | 'NA' | 'CHOCDF' | 'FIBTG' | 'SUGAR' | 'PROCNT' |
   'VITD' | 'CA' | 'FE' | 'K' | 'FATRN' | 'ENERC_KCAL';
 
 export type ITotalNutrients = Record<ITotalNutrientsKey, ITotalNutrientsItem>;
@@ -142,4 +147,11 @@ export interface IIngredients {
   food: string,
   weight: number,
   nutrients: ITotalNutrients
+}
+
+export interface IMainAppInfo {
+  title: string,
+  subTitle: string,
+  description: string,
+  link: string
 }
