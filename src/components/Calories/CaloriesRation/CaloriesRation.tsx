@@ -4,10 +4,10 @@ import { ILifeChange } from '../../../types/types';
 import { Title } from '../../title/title';
 import styles from './CaloriesRation.module.scss';
 import { useState } from 'react';
-import { FormButton } from '../CaloriesForm/FormItems/FormButton';
+import { CaloriesAside } from './CaloriesRationItems/CaloriesAside';
 import { CALORIES_TO_NUTRIENTS } from '../ConstantsForm';
 import { CaloriesTable } from './CaloriesRationItems/CaloriesTable';
-import { CaloriesAside } from './CaloriesRationItems/CaloriesAside';
+import { FormButton } from '../CaloriesForm/FormItems/FormButton';
 
 interface IProps {
   calories: number,

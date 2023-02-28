@@ -16,7 +16,7 @@ const useValidation = (value: string, validation: Validations): boolean => {
           ? setValid(true)
           : setValid(false);
         break;
-      
+
       case Validations.name:
         value.length >= MIN_NAME_LENGTH && value.length <= MAX_NAME_LENGTH
           ? setValid(true)
@@ -43,12 +43,12 @@ export const useInput = (init: string, validation: Validations): IUseInput => {
     setValue('');
   };
 
-  return { 
+  return {
     value,
     isDirty,
     isValid,
-    onChange, 
-    onBlur, 
+    onChange,
+    onBlur,
     clear
   };
 }

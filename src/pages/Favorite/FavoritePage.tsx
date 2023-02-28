@@ -1,33 +1,46 @@
-import { useSelector } from 'react-redux';
-import FavoriteList from '../../components/Favourite/FavoriteList/FavoriteList';
-import { getFavoriteList } from '../../store/selectors/favoriteSelectors';
-import styles from './FavoritePage.module.scss';
-import * as API from '../../constants/foodApi'
-import {useMemo} from 'react'
+import { useSelector } from 'react-redux'
+import FavoriteList from '../../components/Favourite/FavoriteList/FavoriteList'
+import { getFavoriteList } from '../../store/selectors/favoriteSelectors'
+import styles from './FavoritePage.module.scss'
+import { useState, useCallback } from 'react'
 
-const FavoritePage = () => {
-    const favArr = useSelector(getFavoriteList)
+const FavoritePage: React.FC = () => {
+  const favArr = useSelector(getFavoriteList)
+  const [error, setError] = useState(false)
 
-    const url = useMemo(() => {
-        const params = new URLSearchParams('')
-        params.set('type', API.TYPE)
-        params.set('app_id', API.ID_RECIPES)
-        params.set('app_key', API.API_KEY_RECIPES)
+  const fillError = useCallback(
+    (hasError: boolean) => {
+      if (!error) {
+        setError(hasError)
+      }
+    },
+    [error],
+  )
 
-        return (id: string) => `${API.DOMAIN}/${API.RECIPES}/${id}?${String(params)}`
-    }, [] )
+  if (error) {
+    return <h2>Error has occured. Network Error. Maybe it`s too many requests. Please, try later.</h2>
+  }
 
-    return (
-        <div className={styles.favoritePage}>
-            <h1>Favorite recipes</h1>
-        <div className={styles.favoritePage__wrapper}>
-            {favArr.length > 0
-            ? favArr.map((id: string) =>  <FavoriteList key={id} url={url(id)}/> )
-            : <h1>There is no favorite recipes yet.</h1>}
-        </div>
-        </div>
-    );
+  return (
+    <>
+      {favArr.map((id) => (
+        <FavoriteList key={id} id={id} setError={fillError} />
+      ))}
+    </>
+  )
+}
 
-};
+const FavoritePageWrapper = () => {
+  const favArr = useSelector(getFavoriteList)
 
-export default FavoritePage;
+  return (
+    <div className={styles.favoritePage}>
+      <h1>Favorite recipes</h1>
+      <div className={favArr.length === 0 ? styles.favoritePage__wrapper_empty : styles.favoritePage__wrapper}>
+        <FavoritePage />
+      </div>
+    </div>
+  )
+}
+
+export default FavoritePageWrapper
