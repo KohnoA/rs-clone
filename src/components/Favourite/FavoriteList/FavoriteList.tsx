@@ -1,7 +1,7 @@
 import RecipeCard from '../../RecipeCard/RecipeCard'
 import iconType from '../../../assets/icons/food.svg'
 import kcalIcon from '../../../assets/icons/kcal.svg'
-import { useFetchFavoriteRecipesQuery } from '../../../sevices/foodService.api'
+import { useFetchFavoriteRecipesQuery } from '../../../store/sevices/foodService.api'
 import { useEffect } from 'react'
 
 interface IProps {

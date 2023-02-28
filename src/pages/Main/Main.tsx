@@ -10,30 +10,29 @@ const Main: React.FC = () => {
       <h3 className={ styles.title }>Healthy eating</h3>
 
       <Slider category={ MainRequestsQuery.balance } />
-
       <Info />
 
       <h3 className={ styles.title }>Dishes of the day</h3>
-      <Group 
-        title='Breakfast' 
-        background='red' 
-        linkGroup='breakfast' 
+      <Group
+        title='Breakfast'
+        background='red'
+        linkGroup='breakfast'
         category={ MainRequestsQuery.breakfast }
-        orientationClass='left' 
+        orientationClass='left'
       />
-      <Group 
-        title='Lunch' 
-        background='green' 
-        linkGroup='lunch' 
+      <Group
+        title='Lunch'
+        background='green'
+        linkGroup='lunch'
         category={ MainRequestsQuery.lunch }
-        orientationClass='right' 
+        orientationClass='right'
       />
-      <Group 
-        title='Dinner' 
-        background='blue' 
-        linkGroup='dinner' 
+      <Group
+        title='Dinner'
+        background='blue'
+        linkGroup='dinner'
         category={ MainRequestsQuery.dinner }
-        orientationClass='left' 
+        orientationClass='left'
       />
     </div>
   )

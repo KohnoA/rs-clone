@@ -1,7 +1,8 @@
-import { Title } from '../../components/title/title'
-import image from '../../assets/images/person-avatar-placeholder.png'
-import { ImageBlock } from '../../components/image-block/image-block'
-import { GITHUB_ACCOUNTS } from '../../constants/constants'
+import image from '../../assets/images/person-avatar-placeholder.png';
+import { ImageBlock } from '../../components/image-block/image-block';
+import { Title } from '../../components/title/title';
+
+import { GITHUB_ACCOUNTS } from '../../constants/constants';
 
 const WHAT_DO_IN_PROJECT = [
   'Managed team work.',
@@ -18,8 +19,8 @@ const ANOTHER = [
 
 const AboutUs: React.FC = () => {
   return (
-    <div className='container page about-page'>
-      <Title>About Us</Title>
+    <div className="container page about-page">
+      <Title text='About Us'/>
       {NAME.map((_, i) => {
         return (
           <ImageBlock

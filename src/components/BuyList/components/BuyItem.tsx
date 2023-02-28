@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { useAuth } from '../../../hooks/useAuth'
-import { useFetchIngredientsListQuery } from '../../../sevices/foodService.api'
+import { useFetchIngredientsListQuery } from '../../../store/sevices/foodService.api'
 import Button from '../../Button/Button'
 import styles from './BuyItem.module.scss'
 

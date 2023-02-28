@@ -1,0 +1,80 @@
+@import '../../../styles/variables.scss';
+
+.calories-form-container {
+
+  &__text {
+    text-indent: 30px;
+    text-align: justify;
+    margin-bottom: 20px;
+  }
+}
+
+.calories-form {
+  max-width: 60%;
+  margin: 0 auto;
+  padding: 30px;
+  background-color: #f4f4f4;
+  border-radius: 5%;
+
+  &-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 10px;
+
+    &-labels {
+      display: flex;
+      flex-direction: column;
+      margin-left: 15px;
+
+      &__label:not(:last-child) {
+        margin-bottom: 5px;
+      }
+    }
+  }
+
+  &-row_text {
+    margin-bottom: 10px;
+
+    &__span {
+      display: inline-block;
+      width: 100px;
+    }
+
+    &__input {
+
+    }
+  }
+
+  &-row_select {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+
+    &__span {
+      margin-bottom: 3px;
+    }
+  }
+
+  &__button {
+    padding: 8px 15px;
+    margin: 0 .5rem;
+    font: inherit;
+    font-size: 14px;
+    color: white;
+    background-color: $buttonColor;
+    border: none;
+    border-radius: 15px;
+    transition: .2s;
+
+    &:hover {
+      cursor: pointer;
+      color: black;
+      background-color: $appColorHover;
+    }
+
+    &:active {
+      background-color: $appColorActive;
+    }
+  }
+}
