@@ -80,7 +80,17 @@ export const foodAPI = createApi({
       }),
     }),
 
+    fetchIngredientsList: build.query<IRecupesSearch, string>({
+      query:(id: string) => ({
+        url: `/${API.FOOD}`,
+        params: {
+          ['app_id']: API.ID_FOOD,
+          ['app_key']: API.API_KEY_FOOD,
+          ingr: id,
+        },
+      }),
+    }),
   }),
 });
 
-export const {useFetchFavoriteRecipesQuery , useFetchIngredientsQuery} = foodAPI
+export const {useFetchFavoriteRecipesQuery , useFetchIngredientsQuery, useFetchIngredientsListQuery} = foodAPI
