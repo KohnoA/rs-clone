@@ -9,6 +9,7 @@ export interface IRecipesData {
         FAT: string;
         CHOCDF: string;
       }
+      foodId: string;
     };
     recipe: {
           uri: string;
