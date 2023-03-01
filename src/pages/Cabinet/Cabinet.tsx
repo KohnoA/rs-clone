@@ -5,7 +5,7 @@ import styles from './Cabinet.module.scss'
 
 const Cabinet: React.FC = () => {
   return (
-    <div className={styles.cabinet}>
+    <div className={`container page ${styles.cabinet}`}>
       <Avatar />
       <CabinetContent />
     </div>

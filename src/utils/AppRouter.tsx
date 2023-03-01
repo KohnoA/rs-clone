@@ -5,39 +5,31 @@ import Constructor from '../pages/Constructor/Constructor'
 import Recipes from '../pages/Recipes/Recipes'
 import RecipePage from '../pages/Recipes/subPages/RecipePage'
 import Main from '../pages/Main/Main'
-import { getAuth, onAuthStateChanged } from '@firebase/auth'
-import { useAppDispatch } from '../hooks/reduxHooks'
-import { setUser } from '../store/slices/userSlice'
 import Calculator from '../pages/Calculator/Calculator'
-import { useAuth } from '../hooks/useAuth'
 import { useEffect } from 'react'
 import Cabinet from '../pages/Cabinet/Cabinet'
+import { getAuth, onAuthStateChanged } from 'firebase/auth'
+import { openModal } from '../store/slices/modalSlice'
+import { useAppDispatch } from '../hooks/reduxHooks'
+import { ModalContent } from '../constants/constants'
 
 const AppRouter = () => {
-  const auth = getAuth()
-  const dispatch = useAppDispatch()
-  const { isAuth } = useAuth()
+  const dispatch = useAppDispatch();
   const navigate = useNavigate()
-
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      dispatch(
-        setUser({
-          email: user.email,
-          token: user.refreshToken,
-          id: user.uid,
-          name: user.displayName,
-        }),
-      )
-    }
-  })
-
   const location = useLocation()
+  const auth = getAuth()
 
   useEffect(() => {
-    if (!isAuth && location.pathname === '/favorite') {
-      navigate('/')
-    }
+    onAuthStateChanged(auth, (user) => { 
+      if (location.pathname === '/cabinet' && !user) { 
+        navigate('/');
+        dispatch(openModal({
+          isOpen: true,
+          content: ModalContent.signIn
+        }));
+      }
+    });
+
   }, [location.pathname])
 
   return (

@@ -64,6 +64,8 @@ const SignUp: React.FC = () => {
 
       navigate('/')
       dispatch(closeModal())
+      localStorage.setItem('login', `${user.uid}`)
+      location.reload()
     } catch (error) {
       if (error instanceof Error) console.error(error.message)
 
