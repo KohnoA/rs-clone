@@ -19,15 +19,11 @@ const SearchInput = ({ ...props }: ISearchInput) => {
         onChange={props.onChange}
       />
       <span
-        className={
-          props.value ? styles.search__clean : `${styles.search__clean} ${styles.search__hidden}`
-        }
+        className={props.value ? styles.search__clean : `${styles.search__clean} ${styles.search__hidden}`}
         onClick={props.onClickReset}
       />
       <button
-        className={
-          props.value ? styles.search__find : `${styles.search__find} ${styles.search__hidden}`
-        }
+        className={props.value ? styles.search__find : `${styles.search__find} ${styles.search__hidden}`}
         type='submit'
         onClick={props.onClickHandler}
       >

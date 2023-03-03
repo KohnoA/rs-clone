@@ -7,7 +7,7 @@ import useDebounce from '../../hooks/useDebounce'
 import { getIngrList } from '../../store/selectors/ingrSearchSelector'
 import { useFetchIngredientsQuery } from '../../store/sevices/foodService.api'
 import { ingrSearchSlice } from '../../store/slices/ingrSearchSlice'
-import SearchInput from '../SearchInput/SearchInput'
+import SearchInput from '../Search/SearchInput/SearchInput'
 import styles from './BuyList.module.scss'
 import BuyItem from './components/BuyItem'
 

@@ -1,4 +1,5 @@
 import styles from './Footer.module.scss'
+import { GITHUB_ACCOUNTS } from '../../constants/constants'
 
 const Footer: React.FC = () => {
   return (
@@ -7,21 +8,13 @@ const Footer: React.FC = () => {
         <div className={styles.production}>
           <p className={styles.production__title}>Production:</p>
           <ul className={styles.production__list}>
-            <li className={styles.production__item}>
-              <a href='https://github.com/shamkolovich95' className={styles.production__link}>
-                shamkolovich95
-              </a>
-            </li>
-            <li className={styles.production__item}>
-              <a href='https://github.com/Nexuslolz' className={styles.production__link}>
-                Nexuslolz
-              </a>
-            </li>
-            <li className={styles.production__item}>
-              <a href='https://github.com/KohnoA' className={styles.production__link}>
-                KohnoA
-              </a>
-            </li>
+            {GITHUB_ACCOUNTS.map(item => 
+              <li key={item} className={styles.production__item}>
+                <a href={item} className={styles.production__link}>
+                  {item.split('/').at(-1)}
+                </a>
+              </li>
+            )}
           </ul>
         </div>
 

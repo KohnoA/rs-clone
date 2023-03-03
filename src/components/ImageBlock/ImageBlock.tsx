@@ -1,4 +1,4 @@
-import styles from './image.module.scss'
+import styles from './ImageBlock.module.scss'
 
 interface Props {
   image: string
@@ -7,6 +7,7 @@ interface Props {
   do: string
   another: string
   github: string
+  location: string
 }
 
 export const ImageBlock = (props: Props) => {
@@ -18,6 +19,7 @@ export const ImageBlock = (props: Props) => {
       <div className={styles['about-page-cart-text']}>
         <h2 className={styles['about-page-cart-text__name']}>{props.name}</h2>
         <h3 className={styles['about-page-cart-text__position']}>{props.position}</h3>
+        <p className={styles['about-page-cart-text__paragraph']}>{props.location}</p>
         <p className={styles['about-page-cart-text__paragraph']}>{props.do}</p>
         <p className={styles['about-page-cart-text__paragraph']}>{props.another}</p>
       </div>

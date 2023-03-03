@@ -166,3 +166,13 @@ export interface IMainAppInfo {
   description: string,
   link: string
 }
+
+export interface IDevelopersInfo {
+  gitHub: string,
+  name: string,
+  subTitle: string,
+  description: string,
+  contribution: string,
+  location: string
+  image?: string
+}

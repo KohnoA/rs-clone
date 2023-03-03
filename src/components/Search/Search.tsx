@@ -2,7 +2,7 @@ import React, { useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { searchSlice } from '../../store/slices/searchSlice'
 import { getSearchList } from '../../store/selectors/searchSelectors'
-import SearchInput from '../SearchInput/SearchInput'
+import SearchInput from './SearchInput/SearchInput'
 import { useNavigate } from 'react-router-dom'
 
 const Search: React.FC = () => {

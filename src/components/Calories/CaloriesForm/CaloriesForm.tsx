@@ -5,7 +5,7 @@ import { FormRowSelect } from './FormItems/FormRowSelect';
 import { FormRowText } from './FormItems/FormRowText';
 import { GENDERS, GOALS, initialStateRadio, TEXTS, initialStateText, initialStateSelect, countCalories, KFA, countNutrientsPercent, PARAGRAPH_TEXT } from '../ConstantsForm';
 import { useStateCustom } from '../../../utils/utils';
-import { Title } from '../../title/title';
+import { Title } from '../../Title/Title';
 import { ILifeChange } from '../../../types/types';
 import style from './CaloriesForm.module.scss';
 

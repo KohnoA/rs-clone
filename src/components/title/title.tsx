@@ -1,4 +1,4 @@
-import styles from './title.module.scss';
+import styles from './Title.module.scss';
 
 interface IProps {
   text: string,
@@ -7,8 +7,8 @@ interface IProps {
 
 export const Title: React.FC<IProps> = ({text, cal}: IProps) => {
     return (
-        <h1 className={styles['about-page__title']}>
+        <h2 className={styles['about-page__title']}>
             {text} {cal}
-        </h1>
+        </h2>
     );
 };
