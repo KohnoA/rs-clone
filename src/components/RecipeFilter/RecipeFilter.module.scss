@@ -36,6 +36,11 @@
 }
 
 .filterList {
+
+    * {
+        position: relative;
+    }
+
     height: 100%;
     list-style: none;
     height: min-content;
@@ -86,17 +91,16 @@
     margin-bottom: 0em;
     opacity: 0;
     visibility: hidden;
-    height: 0;
-    transform: scaleY(0);
     transition: 0.3s;
+    overflow-y: hidden;
     padding-left: 0em;
+    height: 0;
 }
 .filterSublist_open {
     margin-bottom: 2em;
     opacity: 1;
     visibility: visible;
     height: auto;
-    transform: scaleY(100%);
     transition: 0.3s;
     padding-left: 1em;
 }
