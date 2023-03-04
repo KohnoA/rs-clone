@@ -82,7 +82,7 @@ export const DEVELOPERS_INFO: IDevelopersInfo[] = [
     gitHub: GITHUB_ACCOUNTS[1],
     name: 'Klyosov Alexander',
     subTitle: 'Frontend developer',
-    description: 'My name is Alexandr Klyosov. I was born in 20.07.1997, in Russia, Chelyabinsk region, Magnitogorsk. I graduated from medical university in Chelyabinsk. Later I moved to Ekaterinburg for further education. While I studied in medical university I decided to study and work in IT sphere. I want to be a developer. Languages which I learn now is HTML, CSS, JS. I very excited in process of studying. I really like it. I hope that after rs school graduation I will apply for a job in position of frontend developer.',
+    description: 'I am 25 years old, was born in Russia, Chelyabinsk region, Magnitogorsk city. I graduated from medical university in Chelyabinsk. Later I moved to Yekaterinburg for further education. While I studied in medical university I decided to study and work in IT sphere. I want to be a developer. Languages which I learn now is HTML, CSS, JS. I very excited in process of studying. I really like it. I hope that after rs school graduation I will apply for a job in position of frontend developer.',
     contribution: 'Developed user control panel and recipes page. Implement adding recipes to favorite box. Created page of the recipe And the buy list for user with searching for ingredients.',
     image: nexusLolzPhoto,
     location: 'Yekaterinburg, Russia',

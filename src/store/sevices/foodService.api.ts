@@ -112,5 +112,4 @@ export const foodAPI = createApi({
   }),
 });
 
-// export const {useFetchFavoriteRecipesQuery , useFetchIngredientsQuery, useFetchIngredientsListQuery} = foodAPI
 export const {useFetchAllFoodQuery, useFetchRecipesQuery, useFetchRecipesStartQuery, useFetchRecipesWithParamsQuery, useFetchFavoriteRecipesQuery, useFetchIngredientsQuery, useFetchIngredientsListQuery } = foodAPI
