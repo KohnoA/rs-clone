@@ -10,7 +10,7 @@ const Avatar: React.FC = () => {
   const { name, id } = useAuth()
   const [isEditing, setIsEditing] = useState<boolean>(false)
 
-  const getAboutData = localStorage.getItem(`${id}`) ?? JSON.stringify(ProfileData)
+  const getAboutData = localStorage.getItem(`User-info__${id}`) ?? JSON.stringify(ProfileData)
   const aboutData = JSON.parse(getAboutData)
 
   const [age, setAge] = useState(aboutData.age)
@@ -31,7 +31,7 @@ const Avatar: React.FC = () => {
         about,
       }
 
-      localStorage.setItem(`${id}`, JSON.stringify(aboutInfo))
+      localStorage.setItem(`User-info__${id}`, JSON.stringify(aboutInfo))
     }
   }
 
