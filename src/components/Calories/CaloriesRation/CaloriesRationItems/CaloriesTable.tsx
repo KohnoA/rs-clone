@@ -41,29 +41,29 @@ export const CaloriesTable: React.FC<IProps> = ({calories, rolls, fats, carbohyd
       <thead>
         <tr>
           <td></td>
-          <td>Калории</td>
-          <td>Белки</td>
-          <td>Жиры</td>
-          <td>Углеводы</td>
+          <td>Calories</td>
+          <td>Proteins</td>
+          <td>Fats</td>
+          <td>Carbohydrates</td>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>Цель на день</td>
+          <td>Goal for the day</td>
           <td>{calories}</td>
           <td>{rolls}</td>
           <td>{fats}</td>
           <td>{carbohydrates}</td>
         </tr>
         <tr>
-          <td>Употреблено</td>
+          <td>Consumed</td>
           <td>{countingEnergy}</td>
           <td>{countingCarbs}</td>
           <td>{countingFat}</td>
           <td>{countingProtein}</td>
         </tr>
         <tr>
-          <td>Осталось</td>
+          <td>Left</td>
           <td>{result.calories}</td>
           <td>{result.carbs}</td>
           <td>{result.fats}</td>

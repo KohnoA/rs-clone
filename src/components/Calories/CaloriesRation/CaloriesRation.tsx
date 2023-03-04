@@ -24,7 +24,7 @@ export const CaloriesRation: React.FC<IProps> = ({calories, setCalories, chooseN
   const [recipes, setRecipes] = useState<IRecipe[]>([]);
   return (
     <>
-      <Title text='Cуточная норма калорий'/>
+      <Title text='Daily calorie intake'/>
       <div className={styles['calculator-sidebar-container']}>
         <div className={styles['calculator-sidebar']}>
           <CaloriesAside recipes={recipes} calories={calories} setRecipes={setRecipes} />
@@ -37,7 +37,7 @@ export const CaloriesRation: React.FC<IProps> = ({calories, setCalories, chooseN
             recipes={recipes}
           />
       </div>
-        <FormButton text='пересчитать' onClick={() => setCalories(initialCalories)}/>
+        <FormButton text='Reconstruct' onClick={() => setCalories(initialCalories)}/>
     </>
   );
 };

@@ -15,18 +15,8 @@ interface IProps {
 export const ButtonsToggle: React.FC<IProps> = ({type, currentCalories, recipes, setMyRecipes, setLoading, setError}) => {
   return (
     <div className={styles['calculator-sidebar-section-buttons']}>
-      {/* <MyButton
-        text='Добавить блюдо'
-        type={type}
-        calories={currentCalories}
-        recipes={recipes}
-        setMyRecipes={setMyRecipes}
-        setLoading={setLoading}
-        setError={setError}
-      />
-      | */}
       <MyButton
-        text='Рандомное'
+        text='Random'
         type={type}
         calories={currentCalories}
         recipes={recipes}
@@ -34,7 +24,6 @@ export const ButtonsToggle: React.FC<IProps> = ({type, currentCalories, recipes,
         setLoading={setLoading}
         setError={setError}
       />
-      {/* <MyFavoriteBtn myClass={styles['calculator-sidebar-section-buttons__favorite']}/> */}
     </div>
   );
 };

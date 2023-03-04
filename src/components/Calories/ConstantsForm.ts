@@ -3,50 +3,50 @@ import { CountCalories, CountNutrients, ICountCalories } from './FormTypes';
 
 const MALE = {
   value: 'male',
-  text: 'мужской',
+  text: 'male',
   name: 'gender',
 };
 
 const FEMALE = {
   value: 'female',
-  text: 'женский',
+  text: 'female',
   name: 'gender',
 };
 
 const LOSS = {
   value: 'loss',
-  text: 'сбросить вес',
+  text: 'lose weight',
   name: 'goal',
 };
 
 const GAIN = {
   value: 'gain',
-  text: 'набрать мышечную массу',
+  text: 'gain muscle mass',
   name: 'goal',
 };
 
 const KEEP = {
   value: 'keep',
-  text: 'поддерживать вес',
+  text: 'maintain weight',
   name: 'goal',
 };
 
 const AGE = {
   type: 'text',
   name: 'age',
-  span: 'Возраст',
+  span: 'Age:',
 };
 
 const HEIGHT = {
   type: 'text',
   name: 'height',
-  span: 'Рост (см)',
+  span: 'Height (cm):',
 };
 
 const WEIGHT = {
   type: 'text',
   name: 'weight',
-  span: 'Вес (кг)',
+  span: 'Weight (kg):',
 };
 
 export const initialStateRadio = {
@@ -83,7 +83,13 @@ export const countCalories: ICountCalories = {
 
 export const KFA = [1, 1.2, 1.375, 1.55, 1.725, 1.9];
 
-export const SELECT_OPTIONS = ['Ваш образ жизни', 'Малоактивный образ жизни (мало или совсем нет занятий спортом)', 'Легкая активность (несложные упражнения / спорт 1–3 дня в неделю)', 'Умеренная активность (умеренные упражнения / спорт 3-5 раз в неделю)', 'Активный (тяжелые упражнения / спорт 6-7 почти ежедневно)', 'Повышенная активность (очень тяжелые упражнения / спорт и физическая работа)'];
+export const SELECT_OPTIONS = [
+  'Your lifestyle', 'Inactive lifestyle (little or no exercise)', 
+  'Light activity (light exercise/sport 1-3 days per week)', 
+  'Moderate activity (moderate exercise/sport 3-5 times per week)', 
+  'Active (heavy exercise/sport 6-7 almost daily)', 
+  'Increased activity (very hard exercise/sports and physical work)'
+];
 
 export const countNutrientsPercent: CountNutrients = (state: string) => {
   const GOALS = ['loss', 'gain', 'keep'];
@@ -139,4 +145,4 @@ export const amountCommonCalories = (recipes: IRecipe[]) => {
   }, {} as INutrients);
 }
 
-export const PARAGRAPH_TEXT = 'Введите свой возраст, пол, вес, рост, а также выберите степень физической нагрузки (сколько раз в неделю Вы занимаетесь фитнесом), нажмите рассчитать и онлайн калькулятор произведет для Вас расчет суточной нормы калорий с учетом похудения и без него!';
+export const PARAGRAPH_TEXT = 'Enter your age, gender, weight, height, and also select the degree of physical activity (how many times a week you do fitness), click calculate and the online calculator will calculate the daily calorie intake for you, taking into account weight loss and without it!';
