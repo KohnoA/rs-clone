@@ -152,6 +152,7 @@
     cursor: pointer;
     background-color: transparent;
     transition: 0.3s;
+    transform: rotate(180deg);
 }
 
 .filterList__btn_close {
@@ -161,7 +162,7 @@
     border: none;
     cursor: pointer;
     background-color: transparent;
-    transform: rotate(180deg);
+    transform: rotate(0deg);
     transition: 0.3s;
 }
 
