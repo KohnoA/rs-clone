@@ -1,0 +1,15 @@
+.notFound {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &__code {
+    font-size: 3rem;
+    font-weight: 700;
+  }
+
+  &__desc {
+    font-size: 1.8rem;
+  }
+}

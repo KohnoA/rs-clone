@@ -1,0 +1,16 @@
+.favorite__btn {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+
+  * {
+    width: 20px;
+    height: 20px;
+  }
+
+  g {
+      background-color: #E0E0E0;
+  }
+}

@@ -1,0 +1,41 @@
+@import '../../styles/variables.scss';
+
+.userForm {
+  display: flex;
+  flex-direction: column;
+
+  &__submit, &__help {
+    margin-bottom: 25px;
+  }
+
+  &__submit {
+    padding-top: 11px;
+    padding-bottom: 11px;
+  }
+
+  &__help {
+    padding-bottom: 25px;
+
+    color: $appColorActive;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+    &:hover {
+      transition: .2s;
+      opacity: .7;
+    }
+  }
+
+  &__change {
+    color: $appColorActive;
+
+    &:hover {
+      transition: .2s;
+      opacity: .7;
+    }
+  }
+
+  &__formError {
+    margin-bottom: 10px;
+    color: red;
+  }
+}

@@ -1,0 +1,80 @@
+
+@import '../../styles/variables.scss';
+
+.pageRecipes {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
+
+.recipesWrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2em;
+    padding: 2em;
+    box-sizing: border-box;
+    border-radius: 10px;
+
+    @media (max-width: 1150px) {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.paginationLoader {
+    position: relative;
+    top: -25%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 3em;
+}
+
+.cardWrapper {
+    overflow-y: scroll;
+    height: 100vh;
+
+    &::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+        background-color: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: transparent;
+    }
+}
+
+.devider {
+    height: 18em;
+}
+
+.filterWrapper {
+    height: max-content;
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
+.upBtn {
+    width: max-content;
+    align-self: flex-end;
+    transition: 0.5s;
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    top: 100%;
+    right: 0;
+}
+
+.upBtn__visible {
+    transition: 0.5s;
+    visibility: visible;
+    opacity: 1;
+}
+
+.paginationError {
+    margin:2em;
+    width:100%;
+    text-align: center;
+}
