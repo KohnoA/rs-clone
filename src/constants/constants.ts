@@ -18,9 +18,10 @@ export const NUTRITION_ANALYSIS_APP_KEY = 'df20c251f90c957e7829cc43301294f5'
 export const NUTRITION_ANALYSIS_BASE_REQUEST = 'https://api.edamam.com/api/nutrition-details'
 
 export const enum Validations {
-  email = 'email',
-  password = 'password',
-  name = 'name',
+  email,
+  password,
+  name,
+  confirmPassword
 }
 
 export const enum ModalContent {

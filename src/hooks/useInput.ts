@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { IUseInput } from '../types/types';
 import { EMAIL_REG_EXP, MIN_PASSWORD_LENGTH, MAX_PASSWORD_LENGTH, MIN_NAME_LENGTH, MAX_NAME_LENGTH, Validations } from '../constants/constants';
 
-const useValidation = (value: string, validation: Validations): boolean => {
+const useValidation = (value: string, validation: Validations, matchValue?: string): boolean => {
   const [isValid, setValid] = useState(false);
 
   useEffect(() => {
@@ -22,17 +22,23 @@ const useValidation = (value: string, validation: Validations): boolean => {
           ? setValid(true)
           : setValid(false);
         break;
+
+      case Validations.confirmPassword:
+        value === matchValue && value.length >= MIN_PASSWORD_LENGTH && value.length <= MAX_PASSWORD_LENGTH
+          ? setValid(true)
+          : setValid(false);
+        break;
     }
 
-  }, [value]);
+  }, [value, matchValue]);
 
   return isValid;
 }
 
-export const useInput = (init: string, validation: Validations): IUseInput => {
+export const useInput = (init: string, validation: Validations, matchValue?: string): IUseInput => {
   const [value, setValue] = useState<string>(init);
   const [isDirty, setDirty] = useState<boolean>(false);
-  const isValid = useValidation(value, validation);
+  const isValid = useValidation(value, validation, matchValue);
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => setValue(event.target.value);
 

@@ -1,33 +1,23 @@
-import { useInput } from '../../hooks/useInput';
-import { Validations, ModalContent, AuthErrorsMessage } from '../../constants/constants';
-import styles from './userForms.module.scss';
-import Button from '../Button/Button';
-import { useState, useEffect } from 'react';
-import { getAuth, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
-import { useAppDispatch } from '../../hooks/reduxHooks';
-import { setUser } from '../../store/slices/userSlice';
-import { useNavigate } from 'react-router-dom';
-import { openModal, closeModal } from '../../store/slices/modalSlice';
-import InputItem from '../InputItem/InputItem';
+import { useInput } from '../../hooks/useInput'
+import { Validations, ModalContent, AuthErrorsMessage } from '../../constants/constants'
+import styles from './userForms.module.scss'
+import Button from '../Button/Button'
+import { useState } from 'react'
+import { getAuth, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
+import { useAppDispatch } from '../../hooks/reduxHooks'
+import { setUser } from '../../store/slices/userSlice'
+import { useNavigate } from 'react-router-dom'
+import { openModal, closeModal } from '../../store/slices/modalSlice'
+import InputItem from '../InputItem/InputItem'
 
 const SignUp: React.FC = () => {
-  const name = useInput('', Validations.name);
-  const email = useInput('', Validations.email);
-  const password = useInput('', Validations.password);
-  const confirmPassword = useInput('', Validations.password);
-  const [passwordsMatchError, setPasswordsMatchError] = useState<boolean>(false);
-  const [formError, setFormError] = useState<string | AuthErrorsMessage>('');
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (
-      (confirmPassword.isDirty && !confirmPassword.isValid) ||
-      password.value !== confirmPassword.value
-    )
-      setPasswordsMatchError(true)
-    else setPasswordsMatchError(false)
-  }, [confirmPassword.value, password.value, confirmPassword.isDirty, confirmPassword.isValid])
+  const name = useInput('', Validations.name)
+  const email = useInput('', Validations.email)
+  const password = useInput('', Validations.password)
+  const confirmPassword = useInput('', Validations.confirmPassword, password.value)
+  const [formError, setFormError] = useState<string | AuthErrorsMessage>('')
+  const dispatch = useAppDispatch()
+  const navigate = useNavigate()
 
   const changeFormHandler = (event: React.MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault()
@@ -37,7 +27,7 @@ const SignUp: React.FC = () => {
   const signUpHandler = (event: React.FormEvent) => {
     event.preventDefault()
 
-    if (!email.isValid || !password.isValid || !name.isValid || passwordsMatchError) {
+    if (!email.isValid || !password.isValid || !name.isValid || !confirmPassword.isValid) {
       setFormError(AuthErrorsMessage.invalidFields)
       return
     }
@@ -74,31 +64,31 @@ const SignUp: React.FC = () => {
   }
 
   return (
-    <form action="#" className={ styles.userForm } onSubmit={ signUpHandler }>
-      <InputItem 
-        input={ name }
-        placeholder={ 'Your name' }
-        errorMessage={ 'The name must be at least 3 and not more than 16 characters!' }
+    <form action='#' className={styles.userForm} onSubmit={signUpHandler}>
+      <InputItem
+        input={name}
+        placeholder={'Your name'}
+        errorMessage={'The name must be at least 3 and not more than 16 characters!'}
       />
 
-      <InputItem 
-        input={ email }
-        placeholder={ 'E-mail' }
-        errorMessage={ `The email address must contain the "@" symbol. "${email.value}" address is missing "@" character.` }
+      <InputItem
+        input={email}
+        placeholder={'E-mail'}
+        errorMessage={`The email address must contain the "@" symbol. "${email.value}" address is missing "@" character.`}
       />
 
-      <InputItem 
-        input={ password }
-        placeholder={ 'Password' }
-        errorMessage={ 'The password must be at least 6 and not more than 15 characters!' }
-        isPassword={ true }
+      <InputItem
+        input={password}
+        placeholder={'Password'}
+        errorMessage={'The password must be at least 6 and not more than 15 characters!'}
+        isPassword={true}
       />
 
-      <InputItem 
-        input={ confirmPassword }
-        placeholder={ 'Confirm the password' }
-        errorMessage={ 'The fields, password and confirm password must match. And must be at least 6 and not more than 15 characters!' }
-        isPassword={ true }
+      <InputItem
+        input={confirmPassword}
+        placeholder={'Confirm the password'}
+        errorMessage={'The fields, password and confirm password must match. And must be at least 6 and not more than 15 characters!'}
+        isPassword={true}
       />
 
       {formError && <div className={styles.userForm__formError}>{formError}</div>}
