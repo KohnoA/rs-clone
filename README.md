@@ -4,9 +4,17 @@
 - Axios
 - Redux(Redux toolkit)
 - Typescript
+- SCSS(modules)
 - Firebase
 - Swiper.js
 - Eslint, prettier 
+
+## Установка
+- Склонировать репозиторий: git clone https://github.com/KohnoA/rs-clone.git
+- Перейти в папку с проектом: cd rs-clone
+- Перейти в ветку develop: git checkout develop
+- Установить зависимости: npm install
+- Запустить проект: npm run start
 
 ## Функционал приложения:
 ### Main
