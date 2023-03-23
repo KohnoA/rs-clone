@@ -18,7 +18,11 @@ const FavoritePage: React.FC = () => {
   )
 
   if (error) {
-    return <h2>Error has occured. Network Error. Maybe it`s too many requests. Please, try later.</h2>
+    return (
+      <h2 className={styles.recipesError}>
+        Error has occured. Network Error. Maybe it`s too many requests. Please, try later.
+      </h2>
+    )
   }
 
   return (
