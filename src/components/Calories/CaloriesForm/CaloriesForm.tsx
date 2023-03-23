@@ -70,28 +70,32 @@ export const CaloriesForm: React.FC<IProps> = ({ stateFn, nutrientsFn }: IProps)
   return (
     <div className={style['calories-form-container']}>
       <Title text='Constructor' />
-      <p className={style['calories-form-container__text']}>{PARAGRAPH_TEXT}</p>
       <form className={style['calories-form']}>
-        <FormRowRadio
-          span="What's your gender:"
-          genders={GENDERS}
-          state={radioInfo.gender}
-          onChange={handleChangeRadio}
-        />
-        {TEXTS.map((text, i) => {
-          return (
-            <FormRowText
-              key={i}
-              data={text}
-              onChange={handleChangeText}
-              state={textInfo[text.name as keyof InitialStateText]}
-            />
-          )
-        })}
-        <FormRowSelect span='Lifestyle:' name='lifeStyle' state={selectInfo} onChange={handleChangeSelect} />
-        <FormRowRadio span='Ваша цель' goals={GOALS} state={radioInfo.goal} onChange={handleChangeRadio} />
-        <FormButton onClick={count} text='Construct' />
-        <FormButton onClick={removeState} text='Reset' />
+        <p className={style['calories-form-container__text']}>{PARAGRAPH_TEXT}</p>
+        <div className={style['calories-form-wrapper']}>
+          <FormRowRadio
+            span="What's your gender:"
+            genders={GENDERS}
+            state={radioInfo.gender}
+            onChange={handleChangeRadio}
+          />
+          {TEXTS.map((text, i) => {
+            return (
+              <FormRowText
+                key={i}
+                data={text}
+                onChange={handleChangeText}
+                state={textInfo[text.name as keyof InitialStateText]}
+              />
+            )
+          })}
+          <FormRowSelect span='Lifestyle:' name='lifeStyle' state={selectInfo} onChange={handleChangeSelect} />
+          <FormRowRadio span='Your purpose:' goals={GOALS} state={radioInfo.goal} onChange={handleChangeRadio} />
+        </div>
+        <div className={style['calories-form__btn-wrapper']}>
+          <FormButton onClick={count} text='Construct' />
+          <FormButton onClick={removeState} text='Reset' />
+        </div>
       </form>
     </div>
   )

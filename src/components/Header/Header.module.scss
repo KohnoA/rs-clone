@@ -7,6 +7,7 @@
   padding-bottom: 25px;
   margin-bottom: 15px;
   width: 100%;
+  position: relative;
 }
 
 .search__visibiity_hidden {
@@ -18,4 +19,12 @@
   visibility: visible;
   opacity: 1;
   transition: 0.2s;
+}
+
+.profile__wrapper {
+  display: block;
+
+  @media(max-width: $tablet-width) {
+    display: none;
+  }
 }

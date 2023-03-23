@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 @import-normalize;
+@import './variables.scss';
 
 * {
   margin: 0;
@@ -40,4 +41,8 @@ body {
   max-width: 1400px;
   margin: 0 auto;
   padding: 15px;
+
+  @media(max-width: $hideMenu-width) {
+    // overflow-x: hidden;
+  }
 }

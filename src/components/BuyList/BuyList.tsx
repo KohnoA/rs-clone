@@ -78,6 +78,7 @@ const BuyList = () => {
               onClickReset={resetHandler}
               onClickHandler={submitHandler}
               placeholder='Rice...'
+              additionalClass={`${searchValue ? styles.buyList__searchInput : ''}`}
             />
           </div>
           {error ? (

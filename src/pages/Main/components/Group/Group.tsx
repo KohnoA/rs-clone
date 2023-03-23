@@ -32,9 +32,10 @@ const Group: React.FC<GroupProps> = ({ title, background, linkGroup, category, c
       <div className={`${styles.recipes} ${styles[background]}`}>
         <h3 className={styles.title}>{title}</h3>
         <div className={styles.wrapper}>
-          {data 
-            ? data.map((recipe, index, thisArr) => (
+          {data ? (
+            data.map((recipe, index, thisArr) => (
               <RecipeCard
+                additionalClass={styles.main__card}
                 route='recipes'
                 key={`${index}${recipe.recipe.label}`}
                 id={extractUri(index, thisArr)}
@@ -47,8 +48,9 @@ const Group: React.FC<GroupProps> = ({ title, background, linkGroup, category, c
                 title={recipe.recipe.label}
               />
             ))
-            : <div className={ styles.loader }>Loading...</div>
-          }
+          ) : (
+            <div className={styles.loader}>Loading...</div>
+          )}
         </div>
       </div>
       <Link to={`/?mealType=${linkGroup}`} className={styles.goToButton}>

@@ -1,3 +1,5 @@
+@import '../../styles/variables.scss';
+
 .buyList {
   display: flex;
   flex-direction: column;
@@ -18,11 +20,13 @@
   width: 98%;
   row-gap: 2em;
   position: relative;
+  min-width: 66vw;
 }
 
 .buyList__search {
   display: flex;
   min-height: 40px;
+  transition: 0.2s;
 }
 
 .buyListList {
@@ -34,16 +38,15 @@
 }
 
 .buyList__searchDropDown {
-  width: 93%;
+  width: 100%;
   max-height: 250px;
   overflow-y: scroll;
   background: white;
   position: absolute;
   top: 100%;
-  left: 4%;
+  left: 0;
   border: 1px solid #ccc;
   background-color: #f4f4f4;
-  // padding: 15px 25px;
   list-style: none;
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
@@ -56,6 +59,10 @@
 
 &::-webkit-scrollbar-thumb {
     background-color: #3d3d3d76;
+}
+
+@media(max-width: $mobile-width) {
+  top: 86%;
 }
 }
 
@@ -81,6 +88,11 @@
   justify-content: space-between;
   align-items: center;
 
+
+  @media(max-width: $mobile-width) {
+    font-size: 12px;
+  }
+
   &:hover {
     cursor: pointer;
     background-color: #ddd;
@@ -88,4 +100,10 @@
 }
 .ingrs__item {
   font-weight: bold;
+}
+
+.buyList__searchInput {
+  margin: 0;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 }

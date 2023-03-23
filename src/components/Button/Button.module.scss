@@ -22,4 +22,8 @@
   &:active {
     background-color: $appColorActive;
   }
+
+  @media(max-width: $mobile-width) {
+    padding: 15px;
+  }
 }

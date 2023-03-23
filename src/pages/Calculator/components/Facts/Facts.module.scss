@@ -1,3 +1,5 @@
+@import '../../../../styles/variables.scss';
+
 .analizeData {
   align-self: flex-start;
   width: 35%;
@@ -8,6 +10,11 @@
   background-color: white;
   border-radius: 15px;
   box-shadow: 1px 3px 8px 2px #ddd;
+
+  @media(max-width: $desktop-width) {
+    align-self: center;
+    width: 80%;
+  }
 }
 
 .spaceBetween {

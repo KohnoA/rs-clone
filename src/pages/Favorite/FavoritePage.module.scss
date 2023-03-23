@@ -1,9 +1,15 @@
+@import '../../styles/variables.scss';
+
 .favoritePage {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
   padding: 2em;
+
+  @media(max-width: $hideMenu-width) {
+    padding: 2em 0.5em;
+  }
 }
 
 .favoritePage__wrapper {
@@ -18,8 +24,24 @@
   width: 98%;
   row-gap: 2em;
   min-height: 60vh;
+  min-width: 66vw;
 
-  .card {
-    width: 45% !important;
+  @media(max-width: $hideMenu-width) {
+    min-width: 300px;
+    justify-content: center;
+    gap: 6%;
+    row-gap: 2em;
+  }
+
+  @media(max-width: 560px) {
+    gap: 4vw;
+    row-gap: 2em;
+  }
+
+}
+
+.recipesError {
+  @media(max-width: $mobile-width) {
+    font-size: 20px;
   }
 }

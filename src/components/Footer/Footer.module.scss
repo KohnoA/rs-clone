@@ -2,6 +2,10 @@
 
 .footerBg {
   background-color: $appColor;
+
+  @media(max-width: $mobile-width) {
+    font-size: 11px;
+  }
 }
 
 .footer {

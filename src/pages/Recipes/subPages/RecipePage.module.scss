@@ -1,7 +1,19 @@
+@import '../../../styles/variables.scss';
+
 .recipeInfo__wrapper {
   display: flex;
   flex-direction: column;
   margin: 1em auto;
   padding: 0 5em;
   width: 100%;
+
+  @media(max-width: $mobile-width) {
+    padding: 0 2em;
+  }
+}
+
+.recipesError {
+  @media(max-width: $mobile-width) {
+    font-size: 20px;
+  }
 }

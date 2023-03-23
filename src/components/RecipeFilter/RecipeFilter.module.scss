@@ -11,6 +11,7 @@
     max-height: 70vh;
     overflow-y: auto;
     min-height: max-content;
+    min-width: 300px;
 
     &::-webkit-scrollbar {
         padding: 10px;
@@ -32,6 +33,11 @@
         gap: 5%;
         display: flex;
         align-items: center;
+
+        @media(max-width: $desktop-width) {
+            font-size: 16px;
+            font-weight: normal;
+        }
     }
 }
 

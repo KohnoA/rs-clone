@@ -42,7 +42,10 @@ const Profile: React.FC = () => {
       onMouseOver={() => setSelect(true)}
       onMouseOut={() => setSelect(false)}
     >
-      Hi, {name ? name : 'User'}!<span className={styles.profile__image}></span>
+      <div className={styles.profile__headerWrapper}>
+        <span className={styles.profile__header}> Hi, {name ? name : 'User'}!</span>
+        <span className={styles.profile__image}></span>
+      </div>
       <div className={`${styles.profile__select} ${select ? styles.profile__select_active : ''}`}>
         <div className={styles.profile__item}>
           <Link to='/cabinet' className={styles.profile__item}>

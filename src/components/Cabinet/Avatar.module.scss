@@ -1,3 +1,5 @@
+@import '../../styles/variables.scss';
+
 .avatar {
   padding: 2em;
   display: flex;
@@ -9,8 +11,40 @@
   box-shadow: 1px 3px 8px 2px #ddd;
   width: 100%;
   gap: 2vw;
-  min-width: 230px;
+  min-width: 300px;
   max-width: 325px;
+  transition: 0.6s;
+
+  @media(max-width:$hideMenu-width) {
+    position: absolute;
+    top: 12%;
+    left: -100%;
+    z-index: 25;
+  }
+}
+
+.avatar_active {
+  @media(max-width:$hideMenu-width) {
+    left: 7%;
+  }
+}
+
+.avatar__overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  visibility: hidden;
+  opacity: 0;
+  background-color: transparent;
+  z-index: -10;
+  transition: 0.6s;
+}
+.avatar__overlay_active {
+  z-index: 10;
+  visibility: visible;
+  opacity: 1;
 }
 
 .avatarHeaderWrapper {
@@ -86,4 +120,34 @@
   border: none;
   border-radius: 10px;
   box-shadow: 1px 3px 8px 2px #ddd;
+}
+
+.avatar__openBtn {
+  display: none;
+
+  @media(max-width: $hideMenu-width) {
+    display: block;
+    border-radius: 50%;
+    min-width: 36px;
+    min-height: 36px;
+    border: none;
+    background-image: url('../../assets/images/person-avatar-placeholder.png');
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: absolute;
+    cursor: pointer;
+    transition: 0.2s;
+    z-index: 10;
+    border: 3px solid rgb(124, 124, 124);
+
+    &:hover {
+      transform: scale(0.95)
+    }
+
+    @media(max-width: $mobile-width) {
+      width: 46px;
+      height: 46px;
+    }
+  }
 }
