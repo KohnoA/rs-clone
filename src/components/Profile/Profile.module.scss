@@ -27,6 +27,7 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
+    display: block;
   }
 
   &__select {
@@ -46,6 +47,18 @@
     pointer-events: none;
     opacity: 0;
     transition: .2s;
+
+    @media(max-width: $tablet-width) {
+      color: black;
+      pointer-events: all;
+      opacity: 1;
+      padding: 0 15px 15px 15px;
+      .profile__item {
+        &:first-child {
+          padding-top: 10px;
+        }
+      }
+    }
   }
 
   &__select_active {
@@ -81,4 +94,19 @@
   &__active {
     border-radius: 15px 15px 0 0;
   }
+
+  @media(max-width: $tablet-width) {
+    border-radius: 15px 15px 0 0;
+  }
+}
+
+.profile__headerWrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.profile__header {
+  min-width: 60px;
 }
