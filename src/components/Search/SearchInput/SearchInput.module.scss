@@ -1,7 +1,10 @@
+@import '../../../styles/variables.scss';
+
 .search {
   position: relative;
   flex-grow: 1;
   display: flex;
+  transition: 0.2s;
 
   margin: 0 15px;
   padding: 2px 5px 2px 10px;
@@ -9,10 +12,19 @@
   background-color: #f4f4f4;
   border-radius: 15px;
   border: 1px solid #ccc;
-  min-width: 220px;
+  min-width: 180px;
 
-  @media (max-width: 1100px) {
+  @media (max-width: $desktop-width) {
     width: 20vw;
+    font-size: 14px;
+  }
+
+  @media(max-width: $mobile-width) {
+    padding: 0;
+    margin: 0 5px;
+    height: 30px;
+    align-self: center;
+    border-radius: 10px;
   }
 
   &::before {
@@ -31,6 +43,10 @@
     background-size: contain;
 
     opacity: 0.4;
+
+    @media(max-width: $mobile-width) {
+      display: none;
+    }
   }
 
   &__input {
@@ -47,6 +63,10 @@
     @media (max-width: 1100px) {
       width: 50%;
     }
+
+    @media(max-width:$mobile-width) {
+      padding-left: 15px;
+    }
   }
 
   &__clean {
@@ -62,6 +82,10 @@
 
     transition: 0.2s;
     opacity: 0.5;
+
+    @media(max-width: $desktop-width) {
+      margin: auto 2px;
+    }
 
     &:hover {
       cursor: pointer;

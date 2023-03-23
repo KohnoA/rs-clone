@@ -6,11 +6,12 @@ interface ISearchInput {
   onClickReset: () => void
   onClickHandler: (event: React.FormEvent) => void
   placeholder: string
+  additionalClass?: string
 }
 
 const SearchInput = ({ ...props }: ISearchInput) => {
   return (
-    <form className={styles.search} action='#' method='GET'>
+    <form className={`${styles.search} ${props.additionalClass}`} action='#' method='GET'>
       <input
         className={styles.search__input}
         type='text'
