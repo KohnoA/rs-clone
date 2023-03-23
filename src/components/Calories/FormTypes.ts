@@ -1,4 +1,4 @@
-import { ILifeChange } from "../../types/types";
+import { ILifeChange } from '../../types/types';
 
 export interface IGender {
   value: string,

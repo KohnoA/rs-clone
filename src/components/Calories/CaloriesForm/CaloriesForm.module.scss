@@ -3,61 +3,175 @@
 .calories-form-container {
 
   &__text {
-    text-indent: 30px;
-    text-align: justify;
-    margin-bottom: 20px;
+    line-height: 1.5rem;
+    margin: 0 auto 35px;
+    max-width: 85%;
+    text-align: center;
+
+    @media(max-width:$mobile-width) {
+      line-height: 1.2rem;
+    }
   }
 }
 
 .calories-form {
   max-width: 60%;
-  margin: 0 auto;
-  padding: 30px;
+  margin: 0 auto 2em;
+  padding: 40px 30px 60px;
   background-color: #f4f4f4;
-  border-radius: 5%;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @media(max-width: $desktop-width) {
+    font-size: 14px;
+  }
+
+  @media(max-width: $tablet-width) {
+    font-size: 12px;
+    max-width: 75%;
+  }
+
+  @media(max-width: $mobile-width) {
+    max-width: 85%;
+    font-size: 11px;
+    padding: 25px 15px 30px;
+  }
+
+  &-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 76%;
+  }
 
   &-row {
     display: flex;
+    flex-direction: row;
     align-items: center;
     gap: 20px;
-    margin-bottom: 10px;
+    margin-bottom: 1.5em;
+    width: 100%;
+
+    span {
+      max-width: 200px;
+
+      @media(max-width: $desktop-width){
+        max-width: 125px;
+      }
+
+      @media(max-width: $tablet-width) {
+        max-width: 75px;
+      }
+    }
 
     &-labels {
       display: flex;
       flex-direction: column;
-      margin-left: 15px;
+      background-color: white;
+      border-radius: 10px;
+      padding: 1.2em;
+      padding-left: 10%;
+      gap: 10px;
+      box-shadow: 1px 3px 8px 2px #ddd;
+      width: 50%;
+      min-width: 235px;
+      position: relative;
+
+      @media(max-width: $desktop-width) {
+        min-width: 220px;
+      }
+
+      @media(max-width: $tablet-width) {
+        min-width: 225px;
+      }
+
+      @media(max-width: $mobile-width) {
+        min-width: 160px;
+      }
+
+      &__label {
+        margin-left: 5px;
+      }
 
       &__label:not(:last-child) {
         margin-bottom: 5px;
       }
+
+      input {
+        visibility: hidden;
+      }
+
+      span {
+        max-width: 200px;
+      }
     }
   }
 
+  &__btn-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 225px;
+    justify-content: space-between;
+    margin-top: 2em;
+  }
+
   &-row_text {
-    margin-bottom: 10px;
+    margin-bottom: 1.5em;
+    width: 100%;
 
     &__span {
       display: inline-block;
       width: 100px;
+      margin-right: 1em;
+
+      @media(max-width: $mobile-width) {
+        width: 70px;
+      }
     }
 
-    &__input {
+    input {
+      background-color: white;
+      border-radius: 5px;
+      border: none;
+      padding: 0.5em;
+      outline: none;
+      box-shadow: 1px 3px 8px 2px #ddd;
+      width: 69%;
 
+      @media(max-width: 936px) {
+        width: 59%;
+      }
     }
   }
 
   &-row_select {
     display: flex;
-    flex-direction: column;
-    margin-bottom: 10px;
+    flex-direction: row;
+    margin-bottom: 1.5em;
+    align-items: center;
+    width: 100%;
+
+    select {
+      background-color: white;
+      border-radius: 5px;
+      border: none;
+      padding: 0.5em;
+      outline: none;
+      box-shadow: 1px 3px 8px 2px #ddd;
+      width: 75%;
+    }
 
     &__span {
       margin-bottom: 3px;
+      margin-right: 1em;
     }
   }
 
   &__button {
-    padding: 8px 15px;
+    padding: 10px 20px;
     margin: 0 .5rem;
     font: inherit;
     font-size: 14px;
@@ -76,5 +190,79 @@
     &:active {
       background-color: $appColorActive;
     }
+  }
+}
+
+.calories-form-row-labels__input + .calories-form-row-labels__label::before {
+  position: absolute;
+  content: '';
+  width: 15px;
+  height: 15px;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 50%;
+  top: 0;
+  left: -15%;
+  cursor: pointer;
+}
+
+.calories-form-row-labels__input:checked + .calories-form-row-labels__label::after {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: $appColor;
+}
+
+.calories-form-row-labels__input {
+  z-index: -1;
+  position: absolute;
+}
+
+.calories-form-row-labels__label {
+  span {
+    display: inline-flex;
+    align-items: center;
+    user-select: none;
+    transition: 0.2s;
+    position: relative;
+    cursor: pointer;
+  }
+}
+
+.calories-form-row-labels__label {
+  span::before {
+    content: '';
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+    flex-grow: 0;
+    border: 1px solid #858788;
+    border-radius: 50%;
+    margin-right: 0.5em;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 50% 50%;
+    transition: 0.2s;
+  }
+}
+
+.calories-form-row-labels__label {
+  input:not(:disabled):not(:checked)+span:hover::before {
+    transition: 0.2s;
+    border-color: $appColorHover;
+    cursor: pointer;
+  }
+}
+
+.calories-form-row-labels__label {
+  input:checked + span::before {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='lightGray'/%3e%3c/svg%3e");
+    background-size: 80%;
+    background-color: white;
   }
 }
