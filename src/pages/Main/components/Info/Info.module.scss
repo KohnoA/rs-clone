@@ -16,10 +16,19 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 30px;
   padding: 30px;
-  // background-color: #f4f4f4;
   background-color: $secondAppColor;
   border-radius: 15px;
   box-shadow: 2px 4px 8px 0px rgba(34, 60, 80, 0.2);
+
+  @media(max-width: $hideMenu-width) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  @media(max-width: $mobile-width) {
+    font-size: 0.8em;
+  }
 }
 
 .item_component {
