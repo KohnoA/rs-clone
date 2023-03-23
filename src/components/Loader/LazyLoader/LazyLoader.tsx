@@ -23,7 +23,7 @@ const LazyLoader: React.FC<ILazyLoader> = (props: ILazyLoader) => {
   return (
     <div className={styles.loader__wrapper}>
       {isLoading && <LoaderFav />}
-      <img className={className} ref={imgRef} src={src} alt={alt} />
+      <img className={`${styles.lazyLoader__img} ${className}`} ref={imgRef} src={src} alt={alt} />
     </div>
   )
 }
