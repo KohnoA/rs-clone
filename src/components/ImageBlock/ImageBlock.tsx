@@ -12,7 +12,7 @@ interface Props {
 
 export const ImageBlock = (props: Props) => {
   return (
-    <a href={props.github} className={styles['about-page-cart']}>
+    <a target='_blank' href={props.github} className={styles['about-page-cart']} rel='noreferrer'>
       <div className={styles['about-page-cart__image-block']}>
         <img src={props.image} alt='person' />
       </div>
