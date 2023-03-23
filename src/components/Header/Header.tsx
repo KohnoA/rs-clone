@@ -13,9 +13,9 @@ import { ModalContent } from '../../constants/constants'
 import { useAuth } from '../../hooks/useAuth'
 
 const Header: React.FC = () => {
-  const {isOpen, content} = useAppSelector(state => state.modal);
-  const {isAuth} = useAuth();
-  const dispatch = useAppDispatch();
+  const { isOpen, content } = useAppSelector((state) => state.modal)
+  const { isAuth } = useAuth()
+  const dispatch = useAppDispatch()
 
   const openSignInModal = () => {
     dispatch(
@@ -32,8 +32,8 @@ const Header: React.FC = () => {
       <Search />
       <Navigation />
 
-      {!isAuth && <Button text='Sign In' onClick={openSignInModal} />}
-      {isAuth && <Profile />}
+      {!isAuth && <Button additionalClasses={styles.profile__wrapper} text='Sign In' onClick={openSignInModal} />}
+      <span className={styles.profile__wrapper}>{isAuth && <Profile />}</span>
 
       {isOpen && (
         <Modal title={content}>
