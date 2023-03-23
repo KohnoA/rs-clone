@@ -106,8 +106,11 @@ const RecipeList: React.FC = () => {
       behavior: 'smooth',
     })
 
+    setIsOpen(false)
     setVisible(false)
   }
+
+  const [isOpen, setIsOpen] = useState<boolean>(false)
 
   window.addEventListener('scroll', () => {
     const scrollY = window.scrollY || document.documentElement.scrollTop
@@ -116,17 +119,29 @@ const RecipeList: React.FC = () => {
 
   return (
     <div className={styles.pageRecipes}>
-      <div className={styles.filterWrapper}>
+      <div
+        className={`${styles.filterWrapper__btn} ${isOpen ? styles.filterWrapper__btn_active : ''}`}
+        onClick={() => setIsOpen(true)}
+      >
+        <span className={styles.filterWrapper__btnText}>
+          Categories <span className={styles.filterWrapper__btnTextImg}></span>
+        </span>
+      </div>
+      <div className={`${styles.filterWrapper} ${isOpen ? styles.filterWrapper_active : ''}`}>
         <RecipeFilter />
         <Button
           text='To Begin'
           additionalClasses={`${styles.upBtn} ${visible ? styles.upBtn__visible : ''}`}
           onClick={scrollUp}
         />
+        <div
+          className={`${styles.filterWrapperOverlay} ${isOpen ? styles.filterWrapperOverlay_active : ''}`}
+          onClick={() => setIsOpen(false)}
+        ></div>
       </div>
       {error ? (
         <div style={{ margin: '2em' }}>
-          <h1>Error has occured. {error}</h1>
+          <h1 className={styles.recipesError}>Error has occured. {error}</h1>
         </div>
       ) : isRecipesLoading ? (
         <Loader />
