@@ -11,6 +11,7 @@ import iconType from '../../../../assets/icons/food.svg'
 import kcalIcon from '../../../../assets/icons/kcal.svg'
 import { extractUri } from '../../../../utils/extractUri'
 import { getRecipes } from '../../../../utils/getRecipes'
+import ResizeObserver from 'react-resize-observer'
 
 interface SliderProps {
   category: MainRequestsQuery
@@ -26,13 +27,17 @@ const Slider: React.FC<SliderProps> = ({ category, count = 10 }) => {
     })
   }, [])
 
+  const [size, setSize] = useState<number>(0)
+
+  const mobileWidth = 580
+
   return data ? (
     <div className={styles.carusel_wrapper}>
       <Swiper
         className={styles.carusel}
         modules={[Navigation, Autoplay]}
-        spaceBetween={50}
-        slidesPerView={3}
+        spaceBetween={size > mobileWidth ? 50 : 30}
+        slidesPerView={size > mobileWidth ? 3 : 2}
         navigation={{
           nextEl: '.button-next-slide',
           prevEl: '.button-prev-slide',
@@ -44,6 +49,7 @@ const Slider: React.FC<SliderProps> = ({ category, count = 10 }) => {
           return (
             <SwiperSlide key={index}>
               <RecipeCard
+                additionalClass={styles.slider__card}
                 route='recipes'
                 id={extractUri(index, thisArr)}
                 header={recipe.recipe.cuisineType}
@@ -57,8 +63,8 @@ const Slider: React.FC<SliderProps> = ({ category, count = 10 }) => {
             </SwiperSlide>
           )
         })}
+        <ResizeObserver onResize={(rect: { width: number }) => setSize(rect.width)} />
       </Swiper>
-
       <div className={`button-prev-slide ${styles.prev_slide}`}></div>
       <div className={`button-next-slide ${styles.next_slide}`}></div>
     </div>

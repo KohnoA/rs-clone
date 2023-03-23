@@ -1,12 +1,28 @@
+@import '../../../../styles/variables.scss';
+
 .carusel_wrapper {
   position: relative;
   width: 75%;
   margin: 0 auto;
   margin-bottom: 70px;
+
+  @media(max-width: $desktop-width) {
+    width: 85%;
+  }
+
+  @media(max-width: $hideMenu-width) {
+    overflow-x: hidden;
+    width: 100%;
+  }
 }
 
 .carusel {
   padding: 20px;
+
+  @media(max-width: $hideMenu-width) {
+    overflow: visible;
+    width: 100%;
+  }
 }
 
 .prev_slide, .next_slide {
@@ -29,11 +45,19 @@
   &:hover {
     opacity: .7;
   }
+
+  @media(max-width: $hideMenu-width) {
+    display: none;
+  }
 }
 
 .prev_slide {
   left: -60px;
   background-image: url('../../../../assets/icons/arrow_back.svg');
+
+  @media(max-width: $desktop-width) {
+    left: -50px;
+  }
 }
 
 .next_slide {
@@ -52,4 +76,11 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
+}
+
+.slider__card {
+
+  @media(max-width: $tablet-width) {
+    min-width: 100%;
+  }
 }
