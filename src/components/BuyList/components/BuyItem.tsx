@@ -31,7 +31,7 @@ const BuyItem: React.FC<IBuyItemProps> = ({ ...props }: IBuyItemProps) => {
 
   return (
     <li id={props.id} className={styles.buyList__item}>
-      <div>{hints[0].food.label}</div>
+      <div className={styles.someIngr__header}>{hints[0].food.label}</div>
       <div className={styles.ingrCharacteristics__item}>
         <div>
           <span className={styles.someIngrs__item}>{Number(hints[0].food.nutrients.ENERC_KCAL).toFixed(2)}</span> kcal
