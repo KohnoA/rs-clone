@@ -71,11 +71,79 @@
   justify-items: center;
   align-items: center;
   gap: 30px;
+  position: relative;
+
+  @media(max-width:1150px) {
+    grid-template-columns: 1fr 1fr;
+    .card__main {
+      min-height: 469px;
+    }
+  }
+
+  @media(max-width: $tablet-width) {
+    height: 1300px;
+    align-items: start;
+
+    .main__card:nth-child(odd) {
+      transform: translateX(2vw);
+      min-width: 200px;
+      min-height: auto;
+    }
+
+    .main__card:nth-child(even) {
+      transform: translate(0vw, 10vw);
+      min-width: 200px;
+      min-height: auto;
+    }
+  }
+
+  @media(max-width: 670px) {
+    height: 1155px;
+    .main__card:nth-child(n) {
+      min-width: 170px;
+
+    }
+  }
+
+  @media(max-width: $mobile-width) {
+    grid-template-columns: 1fr;
+    height: max-content;
+
+    .main__card:nth-child(n) {
+      min-width: 230px;
+
+    }
+
+    .main__card:nth-child(odd) {
+      transform: translateX(5%);
+    }
+
+    .main__card:nth-child(even) {
+      transform: translateX(-5%);
+    }
+
+    .main__card:nth-child(4),
+    .main__card:nth-child(5),
+    .main__card:nth-child(6),
+    .main__card:nth-child(7),
+    .main__card:nth-child(8),
+    .main__card:nth-child(9) {
+      display: none;
+    }
+  }
 }
 
 .left {
   .recipes {
     transform: translateX(-3%);
+
+    @media(max-width: $mobile-width) {
+      transform: translateX(-8%);
+      }
+
+      @media(max-width: 450px) {
+        width: 80%;
+      }
   }
 
   .title {
@@ -89,12 +157,46 @@
     &:hover {
       transform: translate3d(7%, -50%, 0);
     }
+
+
+  @media(max-width: $desktop-width) {
+    transform: translate3d(5%, -50%, 0);
+    &:hover {
+      transform: translate3d(7%, -50%, 0);
+    }
+  }
+  @media(max-width: $hideMenu-width) {
+    transform: translate3d(7%, -50%, 0);
+    &:hover {
+      transform: translate3d(9%, -50%, 0);
+    }
+  }
+  @media(max-width: $tablet-width) {
+    transform: translate3d(9%, -50%, 0);
+    &:hover {
+      transform: translate3d(11%, -50%, 0);
+    }
+  }
+  @media(max-width: $mobile-width) {
+    transform: translate3d(11%, -50%, 0);
+    &:hover {
+      transform: translate3d(13%, -50%, 0);
+    }
+  }
   }
 }
 
 .right {
   .recipes {
     transform: translateX(3%);
+
+    @media(max-width: $mobile-width) {
+      transform: translateX(8%);
+    }
+
+    @media(max-width: 450px) {
+      width: 80%;
+    }
   }
 
   .title {
@@ -107,6 +209,31 @@
 
     &:hover {
       transform: translate3d(-7%, -50%, 0) rotate(180deg);
+    }
+
+    @media(max-width: $desktop-width) {
+      transform: translate3d(-5%, -50%, 0) rotate(180deg);
+      &:hover {
+      transform: translate3d(-7%, -50%, 0) rotate(180deg);
+    }
+    }
+    @media(max-width: $hideMenu-width) {
+      transform: translate3d(-7%, -50%, 0) rotate(180deg);
+      &:hover {
+      transform: translate3d(-9%, -50%, 0) rotate(180deg);
+    }
+    }
+    @media(max-width: $tablet-width) {
+      transform: translate3d(-9%, -50%, 0) rotate(180deg);
+      &:hover {
+      transform: translate3d(-11%, -50%, 0) rotate(180deg);
+    }
+    }
+    @media(max-width: $mobile-width) {
+      transform: translate3d(-11%, -50%, 0) rotate(180deg);
+      &:hover {
+      transform: translate3d(-13%, -50%, 0) rotate(180deg);
+    }
     }
   }
 
