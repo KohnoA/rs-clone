@@ -1,0 +1,129 @@
+
+@import '../../styles/variables.scss';
+.about-page-cart {
+    display: block;
+    display: flex;
+    background-color: rgba(175,175,175,.2);
+    box-shadow: 7px 7px 36px -10px rgb(0 0 0 / 25%);
+    margin: 0px 20px 30px 20px;
+    text-decoration: none;
+    color: black;
+    border-radius: 15px;
+    overflow: hidden;
+
+    &__image-block {
+        width: 285px;
+        min-height: 340px;
+        position: relative;
+
+        @media(max-width:$tablet-width) {
+            width: 230px;
+            min-height: 280px;
+        }
+
+        @media(max-width:$mobile-width) {
+            width: 100%;
+            min-height: 325px;
+        }
+
+        & > img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+
+            @media(max-width:$mobile-width) {
+                height: 100%;
+            }
+        }
+    }
+
+    &-text {
+        width: calc(100% - 285px - 30px);
+        padding: 10px;
+        margin-left: 20px;
+
+        @media(max-width:$tablet-width) {
+            width: 63%;
+            overflow-y: scroll;
+
+            &::-webkit-scrollbar {
+                width: 0.2em;
+                background-color: rgb(216, 216, 216);
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background-color: darkgray;
+            }
+            margin-left: 10px;
+        }
+
+        @media(max-width: $mobile-width) {
+            width: 100%;
+            padding-right: 20px;
+        }
+
+        &__name {
+            font-size: 32px;
+            font-weight: 700;
+            line-height: 120%;
+            margin-bottom: 10px;
+            text-align: center;
+
+            @media(max-width:$tablet-width) {
+                font-size: 18px;
+                margin-bottom: 5px;
+            }
+            @media(max-width:$mobile-width) {
+                font-size: 18px;
+            }
+        }
+
+        &__position {
+            font-size: 20px;
+            font-weight: 400;
+            margin-bottom: 20px;
+            line-height: 120%;
+            text-align: center;
+
+            @media(max-width: $tablet-width) {
+                font-size: 15px;
+                margin-bottom: 10px;
+            }
+
+            @media(max-width: $mobile-width) {
+                font-size: 14px;
+            }
+        }
+
+        &__paragraph {
+            text-align: justify;
+            text-indent: 30px;
+            font-size: 16px;
+            margin-bottom: 10px;
+
+
+        @media(max-width: $tablet-width) {
+            font-size: 13px;
+            margin-bottom: 5px;
+        }
+
+        @media(max-width: $mobile-width) {
+            font-size: 12px;
+        }
+        }
+    }
+
+    @media(max-width:$tablet-width) {
+        font-size: 14px;
+        max-height: 300px;
+    }
+
+    @media(max-width:$mobile-width) {
+        font-size: 11px;
+        flex-direction: column;
+        max-height: max-content;
+    }
+}

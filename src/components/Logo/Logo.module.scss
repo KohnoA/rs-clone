@@ -1,0 +1,33 @@
+.logo {
+  display: flex;
+  transition: .2s;
+  text-decoration: none;
+
+  &:hover {
+    cursor: pointer;
+    opacity: .7;
+  }
+
+  &__image {
+    display: inline-block;
+
+    width: 36px;
+    height: 36px;
+
+    margin-right: 5px;
+
+    background-image: url('../../assets/icons/logo.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
+  &__text {
+    align-self: center;
+
+    font-size: 1.6rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: black;
+  }
+}

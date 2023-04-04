@@ -1,0 +1,25 @@
+@import '../../styles/variables.scss';
+
+.cabinetContent__controls {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    @media(max-width: $hideMenu-width) {
+        margin-left: 40px;
+    }
+
+    @media(max-width:$mobile-width) {
+        margin-left: 50px;
+    }
+}
+
+.cabinetContent__wrapper {
+    width: 100%;
+}
+
+.cabinetBtn_active {
+    background-color: $appColorHover;
+    color: black;
+    opacity: 0.9;
+}

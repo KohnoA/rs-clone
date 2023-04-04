@@ -1,0 +1,49 @@
+@import '../../../styles/variables.scss';
+
+.favourite__btn {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  position: absolute;
+  top: 22%;
+  right: 5%;
+  width: 35px;
+  height: 35px;
+
+  * {
+    width: 35px;
+    height: 35px;
+  }
+
+  g {
+    background-color: #E0E0E0;
+    transition: 0.15s;
+  }
+
+
+  &:hover {
+    g {
+        opacity: 0.6;
+    }
+  }
+
+  @media(max-width:$tablet-width) {
+    svg {
+      display: block;
+      width: 30px;
+      height: 30px;
+    }
+  }
+
+  @media(max-width: 750px) {
+    svg {
+      width: 25px;
+      height: 25px;
+    }
+  }
+
+  @media(max-width: 750px) {
+    width: 25px;
+    height: 25px;
+  }
+}

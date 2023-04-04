@@ -1,0 +1,46 @@
+@import '../../../styles/variables.scss';
+
+.buyList__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background-color: #f4f4f4;
+    border-radius: 15px;
+    box-shadow: 1px 3px 8px 2px #ddd;
+    padding: 15px 25px;
+    margin-bottom: 1.5em;
+
+    @media(max-width: $mobile-width) {
+        font-size: 12px;
+        padding: 8px 0px 8px 10px;
+    }
+}
+
+.someIngr__header {
+
+    @media(max-width: $mobile-width) {
+        margin-right: 15px;
+        max-width: 30px;
+    }
+}
+
+.ingrCharacteristics__item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10%;
+
+    div {
+        text-align: center;
+    }
+}
+
+.someIngrs__item {
+    font-weight: bold;
+}
+
+.buyList__btn {
+    padding: 5px 15px;
+    border-radius: 10px;
+}

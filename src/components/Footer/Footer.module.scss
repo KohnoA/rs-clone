@@ -1,0 +1,73 @@
+@import '../../styles/variables.scss';
+
+.footerBg {
+  background-color: $appColor;
+
+  @media(max-width: $mobile-width) {
+    font-size: 11px;
+  }
+}
+
+.footer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  width: 100%;
+  padding: 30px 15px;
+
+  &__description {
+    place-self: end center;
+  }
+
+  &__rss {
+    place-self: end end;
+
+    width: 100px;
+    height: 44px;
+
+    background-image: url('../../assets/icons/rsschool-logo.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    transform: translateY(1px);
+    transition: .2s;
+
+    &:hover {
+      cursor: pointer;
+      opacity: .7;
+    }
+  }
+}
+
+.production {
+  &__title {
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  &__list {
+    list-style: none;
+    padding-left: 5px;
+  }
+
+  &__item {
+    margin-bottom: 5px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__link {
+    color: black;
+    transition: .2s;
+    text-decoration: none;
+
+
+    &:hover {
+      opacity: .7;
+    }
+  }
+}

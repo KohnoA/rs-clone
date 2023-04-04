@@ -1,0 +1,117 @@
+@import '../../../styles/variables.scss';
+
+.loading {
+  width: 50px;
+  height: 50px;
+  background-image: url('../../../assets/icons/loaderFavorite.gif');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: white;
+  margin-left: 30px;
+}
+
+.calculator-wrapper {
+
+  @media(max-width: $tablet-width) {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  }
+}
+
+.calculator-sidebar-container {
+  display: grid;
+  grid-template-columns: 25% 1fr 45% 1fr;
+
+  @media(max-width: $tablet-width) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2em;
+  }
+}
+
+.calculator-sidebar {
+  list-style: none;
+  padding: 0 5px;
+
+  &-section {
+    padding: 5px 0;
+    margin: 3px 0;
+    position: relative;
+
+    &-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+
+      &__title {
+        font-size: 16px;
+        display: inline-block;
+
+        &::first-letter {
+          text-transform: capitalize;
+        }
+      }
+
+      &__plus {
+        font-size: 25px;
+        font-weight: 500;
+      }
+    }
+
+    &-buttons {
+      display: grid;
+      grid-template-columns: repeat(3, auto) 1fr;
+      align-content: center;
+
+      &__favorite {
+        justify-self: end;
+      }
+    }
+
+    &-list {
+      list-style: none;
+      margin-top: 10px;
+
+      &__item {
+        padding: 0 0 10px;
+        line-height: 1.2;
+        cursor: pointer;
+        transition: 0.2s;
+
+        &:hover {
+          color: $appColorHover;
+        }
+      }
+    }
+  }
+}
+
+.calculator__table {
+  grid-column: 3 / 4;
+  border-radius: 15px;
+  box-shadow: 1px 3px 8px 2px #ddd;
+  overflow: hidden;
+  border-collapse: collapse;
+  outline: 1px solid #ccc;
+
+  & thead {
+    border-bottom: 1px solid #ccc;
+    background-color: #ffe5a1;
+  }
+
+  & > th, td {
+    padding: 10px 8px;
+    text-align: center;
+  }
+
+  @media(max-width:$mobile-width) {
+    font-size: 12px;
+  }
+}

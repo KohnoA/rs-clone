@@ -1,0 +1,76 @@
+@import '../../../../styles/variables.scss';
+
+.analizeData {
+  align-self: flex-start;
+  width: 35%;
+
+  margin-top: 28px;
+  padding: 40px 20px 20px 20px;
+
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 1px 3px 8px 2px #ddd;
+
+  @media(max-width: $desktop-width) {
+    align-self: center;
+    width: 80%;
+  }
+}
+
+.spaceBetween {
+  display: flex;
+  justify-content: space-between;
+}
+
+.infoItem {
+  margin-bottom: 8px;
+  padding-top: 8px;
+  border-top: 1px solid #cccccc8e;
+}
+
+.infoItemNest {
+  margin-left: 20px;
+}
+
+.title {
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+
+  font-size: 1.8rem;
+  text-align: center;
+
+  border-bottom: 8px solid #cccccc8e;
+}
+
+.serving {
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.caloriesWrap {
+  margin-bottom: 3px;
+  border-bottom: 4px solid #cccccc8e;
+}
+
+.calories {
+  display: flex;
+  justify-content: space-between;
+
+  padding-bottom: 10px;
+
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.dailyValue {
+  margin-bottom: 5px;
+  font-size: .6rem;
+  font-weight: 700;
+  text-align: right;
+}
+
+.outro {
+  margin-top: 42px;
+  font-size: .6rem;
+  text-align: center;
+}

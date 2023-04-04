@@ -1,0 +1,109 @@
+@import '../../styles/variables.scss';
+
+.buyList {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 2em;
+}
+
+.buyList__wrapper {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-items: flex-start;
+  height: 100%;
+  min-height: 60vh;
+  gap: 3%;
+  margin: 3em 0 10em;
+  width: 98%;
+  row-gap: 2em;
+  position: relative;
+  min-width: 66vw;
+}
+
+.buyList__search {
+  display: flex;
+  min-height: 40px;
+  transition: 0.2s;
+}
+
+.buyListList {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0;
+  list-style: none;
+}
+
+.buyList__searchDropDown {
+  width: 100%;
+  max-height: 250px;
+  overflow-y: scroll;
+  background: white;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  border: 1px solid #ccc;
+  background-color: #f4f4f4;
+  list-style: none;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+
+  &::-webkit-scrollbar {
+    width: 0.15em;
+    height: 0.15em;
+    background-color: #ddd;
+}
+
+&::-webkit-scrollbar-thumb {
+    background-color: #3d3d3d76;
+}
+
+@media(max-width: $mobile-width) {
+  top: 86%;
+}
+}
+
+.buyList__error {
+  color: red;
+}
+
+.buyList__loader {
+  width: 20px;
+  height: 20px;
+}
+
+.searchDropDown__wrapper {
+  position: relative;
+}
+
+.buyList__searchItem {
+  padding: 15px 25px;
+  transition: 0.2s;
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+
+  @media(max-width: $mobile-width) {
+    font-size: 12px;
+  }
+
+  &:hover {
+    cursor: pointer;
+    background-color: #ddd;
+  }
+}
+.ingrs__item {
+  font-weight: bold;
+}
+
+.buyList__searchInput {
+  margin: 0;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}

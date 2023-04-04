@@ -1,0 +1,209 @@
+
+@import '../../styles/variables.scss';
+
+.pageRecipes {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+
+    @media(max-width: $hideMenu-width) {
+        width: 100%;
+        grid-template-columns: 1fr;
+    }
+}
+
+.recipesWrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2em;
+    padding: 2em;
+    box-sizing: border-box;
+    border-radius: 10px;
+
+    @media (max-width: 1150px) {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    @media(max-width: $hideMenu-width) {
+        display: flex;
+        padding: 1em;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        flex-direction: row;
+    }
+
+    @media(max-width: $tablet-width) {
+        gap: 1em;
+    }
+}
+
+.paginationLoader {
+    position: relative;
+    top: -25%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 3em;
+}
+
+.cardWrapper {
+    overflow-y: scroll;
+    height: 100vh;
+
+    &::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+        background-color: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: transparent;
+    }
+}
+
+.devider {
+    height: 18em;
+
+    @media(max-width: $desktop-width) {
+        height: 1em;
+    }
+}
+
+.filterWrapper {
+    height: max-content;
+    position: sticky;
+    top: 5%;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    transition: 0.6s;
+    z-index: 45;
+
+    @media(max-width: $hideMenu-width) {
+        position: fixed;
+        transition: 0.6s;
+        left: -100%;
+    }
+}
+
+.filterWrapper_active {
+    @media(max-width: $hideMenu-width){
+        left: 4%;
+        top: 5%;
+        z-index: 45;
+    }
+}
+
+.filterWrapperOverlay {
+    z-index: -10;
+    visibility: hidden;
+    opacity: 0;
+
+    @media(max-width: $hideMenu-width){
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        top: 0;
+        left: 0;
+    }
+}
+
+.filterWrapperOverlay_active {
+    visibility: visible;
+    opacity: 1;
+}
+
+.filterWrapper__btn {
+    display: none;
+
+    @media(max-width: $hideMenu-width){
+        visibility: visible;
+        opacity: 1;
+        display: flex;
+        align-items: baseline;
+        justify-content: center;
+        flex-direction: column;
+        position: fixed;
+        border: none;
+        z-index: 35;
+        width: 50px;
+        height: 200px;
+        left: -2%;
+        top: 35%;
+        background-color: $appColor;
+        border-top-right-radius: 15px;
+        border-bottom-right-radius: 15px;
+        cursor: pointer;
+        transition: 0.3s;
+        box-shadow: 2px 4px 8px 0px rgba(34, 60, 80, 0.2);
+
+        &:hover {
+            box-shadow: none;
+        }
+    }
+
+    @media(max-width: $mobile-width) {
+        width: 55px;
+        left: -4%;
+    }
+
+    @media(max-width: 500px) {
+        left: -6%;
+    }
+
+}
+
+.filterWrapper__btnTextImg {
+    background-image: url('../../assets/icons/double_arrow_up.svg');
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    transform: rotate(-90deg);
+}
+.filterWrapper__btnText {
+    display: inline-block;
+    transform: rotate(-180deg);
+    font-weight: bold;
+    text-transform: uppercase;
+    writing-mode: vertical-rl;
+    font-size: 16px;
+    letter-spacing: 2px;
+}
+
+.filterWrapper__btn_active {
+    visibility: hidden;
+    opacity: 0;
+}
+
+.upBtn {
+    width: max-content;
+    align-self: flex-end;
+    transition: 0.5s;
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    top: 100%;
+    right: 0;
+}
+
+.upBtn__visible {
+    transition: 0.5s;
+    visibility: visible;
+    opacity: 1;
+}
+
+.paginationError {
+    margin:2em;
+    width:100%;
+    text-align: center;
+}
+
+.recipesError {
+    @media(max-width: $mobile-width) {
+        font-size: 20px;
+    }
+}
